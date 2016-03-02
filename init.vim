@@ -25,8 +25,9 @@ let mapleader="\<SPACE>"
 " Allow JSX in normal JS files
 let g:jsx_ext_required = 0 
 
-" Set up ESLint for JS & JSX files
+" Set up ESLint for JS & JSX files & Style Lint for CSS
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_css_checkers = ['stylelint']
 
 " Theme configs
 set background=dark
@@ -40,3 +41,4 @@ let g:gitgutter_sign_column_always = 1
 set colorcolumn=80
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
+
