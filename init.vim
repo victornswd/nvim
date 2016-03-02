@@ -6,16 +6,22 @@ filetype off
 call plug#begin('~/.vim/plugged')
 
 Plug 'junegunn/vim-easy-align'
-Plug 'mxw/vim-jsx' | Plug 'pangloss/vim-javascript'
-Plug 'isRuslan/vim-es6'
-Plug 'junegunn/seoul256.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'airblade/vim-gitgutter'
-Plug 'scrooloose/syntastic'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'ap/vim-css-color'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
+" Theme
+Plug 'junegunn/seoul256.vim'
+
+" Syntax highlighting
+Plug 'mxw/vim-jsx' | Plug 'pangloss/vim-javascript'
+Plug 'isRuslan/vim-es6'
+Plug 'ap/vim-css-color'
+
+" Dev helpers (linting, project spacing...)
+Plug 'editorconfig/editorconfig-vim'
+Plug 'scrooloose/syntastic'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
@@ -23,7 +29,7 @@ call plug#end()
 let mapleader="\<SPACE>"
 
 " Allow JSX in normal JS files
-let g:jsx_ext_required = 0 
+let g:jsx_ext_required = 0
 
 " Set up ESLint for JS & JSX files & Style Lint for CSS
 let g:syntastic_javascript_checkers = ['eslint']
