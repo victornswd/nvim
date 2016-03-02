@@ -1,5 +1,6 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+set nocompatible
+set t_Co=256
+filetype off
 
 call plug#begin('~/.vim/plugged')
 
@@ -20,12 +21,14 @@ call plug#end()
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 let g:syntastic_javascript_checkers = ['eslint']
 
-set t_Co=256
+" Theme configs
 set background=dark
 let g:seoul256_background = 236
 colorscheme seoul256
+
+" Style line numbers, gutter and 80char limit
 set number
-set numberwidth=3
+set numberwidth=4
 let g:gitgutter_sign_column_always = 1
 set colorcolumn=80
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
