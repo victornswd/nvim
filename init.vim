@@ -60,5 +60,8 @@ set colorcolumn=80
 highlight OverLength ctermbg=darkRed ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
+" Update Vim without restarting
+map <leader>s :source ~/.config/nvim/init.vim<CR>
+
 " Strip trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
