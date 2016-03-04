@@ -54,6 +54,7 @@ colorscheme gruvbox
 
 " Style tabline
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_section_b = '⎇  ' . gitbranch#name()
 
 " Style line numbers, gutter and 80char limit
 set number
