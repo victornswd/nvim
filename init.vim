@@ -60,3 +60,5 @@ set colorcolumn=80
 highlight OverLength ctermbg=darkRed ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
+" Strip trailing whitespace
+autocmd BufWritePre * :%s/\s\+$//e
