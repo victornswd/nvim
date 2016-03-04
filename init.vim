@@ -21,7 +21,7 @@ Plug 'ap/vim-css-color'
 
 " Dev helpers (linting, project spacing...)
 Plug 'editorconfig/editorconfig-vim'
-Plug 'scrooloose/syntastic'
+Plug 'benekastah/neomake'
 Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/vim-gitbranch'
 Plug 'heavenshell/vim-jsdoc'
@@ -40,11 +40,11 @@ let g:jsx_ext_required = 0
 let g:used_javascript_libs = 'underscore,react,jquery'
 
 " Set up ESLint for JS & JSX files & Style Lint for CSS
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exec = './node_modules/.bin/eslint'
-let g:syntastic_css_checkers = ['stylelint']
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_css_enabled_makers = ['stylelint']
+let g:neomake_javascript_eslint_exe = './node_modules/.bin/eslint'
+autocmd! BufWritePost,BufEnter * Neomake " run Neomake on load/save
+autocmd! QuitPre * let g:neomake_verbose = 0 " don't run Neomake on save&quit
 
 " Theme configs
 set background=dark
