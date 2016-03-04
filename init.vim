@@ -41,7 +41,10 @@ let g:used_javascript_libs = 'underscore,react,jquery'
 
 " Set up ESLint for JS & JSX files & Style Lint for CSS
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exec = './node_modules/.bin/eslint'
 let g:syntastic_css_checkers = ['stylelint']
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " Theme configs
 set background=dark
