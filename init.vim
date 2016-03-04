@@ -1,5 +1,6 @@
 set nocompatible
 set t_Co=256
+set encoding=utf-8
 filetype off
 
 " Plugins installed by vim-plug
