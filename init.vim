@@ -12,17 +12,21 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " Theme
-Plug 'junegunn/seoul256.vim'
+Plug 'morhetz/gruvbox'
 
 " Syntax highlighting
-Plug 'mxw/vim-jsx' | Plug 'pangloss/vim-javascript'
-Plug 'isRuslan/vim-es6'
+Plug 'sheerun/vim-polyglot'
+Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'ap/vim-css-color'
 
 " Dev helpers (linting, project spacing...)
 Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/syntastic'
 Plug 'airblade/vim-gitgutter'
+Plug 'itchyny/vim-gitbranch'
+Plug 'heavenshell/vim-jsdoc'
+Plug 'ternjs/tern_for_vim'
+Plug 'Valloric/YouCompleteMe'
 
 call plug#end()
 
@@ -38,14 +42,18 @@ let g:syntastic_css_checkers = ['stylelint']
 
 " Theme configs
 set background=dark
-let g:seoul256_background = 236
-colorscheme seoul256
+let g:airline_powerline_fonts = 1
+let g:gruvbox_italic=1
+colorscheme gruvbox
+
+" Style tabline
+let g:airline#extensions#tabline#enabled = 1
 
 " Style line numbers, gutter and 80char limit
 set number
 set numberwidth=4
 let g:gitgutter_sign_column_always = 1
 set colorcolumn=80
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+highlight OverLength ctermbg=darkRed ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
