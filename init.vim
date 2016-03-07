@@ -82,14 +82,14 @@ map <leader>s :source ~/.config/nvim/init.vim<CR>
 
 " Statusline
 set statusline=
-set statusline+=%4*\ %{GitBranch()}\                              " git branch
-set statusline+=%1*\ %t\ %m                                "File+modified
-set statusline+=%2*\ %=\                         " Left/Right separator
-set statusline+=%2*\ %y\                                  "FileType
-set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
-set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\[%{&ff}\]            "Encoding2
-set statusline+=%8*\ LN/Col:\ %02l/%02c\               "Rownumber/Colnumber
-set statusline+=%0*\ \ %r%w\ %P\ \                      "Readonly? Top/bot.
+set statusline+=%4*\ %{GitBranch()}\                    " Git branch
+set statusline+=%1*\ %t\ %m                             " File+modified
+set statusline+=%2*\ %=\                                " Left/Right separator
+set statusline+=%2*\ %y\                                " FileType
+set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}    " Encoding
+set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\[%{&ff}\] " Encoding2
+set statusline+=%8*\ LN/Col:\ %02l/%02c\                " Rownumber/Colnumber
+set statusline+=%0*\ \ %r%w\ %P\ \                      " Readonly? Top/bot.
 
 function! HighlightSearch()
   if &hls
