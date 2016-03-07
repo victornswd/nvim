@@ -6,8 +6,14 @@ filetype off
 " Plugins installed by vim-plug
 call plug#begin('~/.vim/plugged')
 
+" Commenting and complex aligning
 Plug 'junegunn/vim-easy-align'
-Plug 'vim-airline/vim-airline'
+Plug 'tpope/vim-commentary'
+
+" Status line and buffer/tab line
+Plug 'itchyny/lightline.vim'
+
+" Fuzzy finder for files, find-in-files...
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
