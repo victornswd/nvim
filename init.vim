@@ -54,13 +54,8 @@ autocmd! QuitPre * let g:neomake_verbose = 0 " don't run Neomake on save&quit
 
 " Theme configs
 set background=dark
-let g:airline_powerline_fonts = 1
 let g:gruvbox_italic=1
 colorscheme gruvbox
-
-" Style tabline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_section_b = '⎇  ' . gitbranch#name()
 
 " Style line numbers, gutter and 80char limit
 set number
@@ -75,3 +70,20 @@ map <leader>s :source ~/.config/nvim/init.vim<CR>
 
 " Strip trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
+
+" Lightline configs
+set noshowmode
+let g:lightline = {
+      \ 'colorscheme': 'gruvbox',
+      \ 'active': {
+      \   'left': [ [ 'mode' ],
+      \             [ 'gitbranch', 'filename' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'LightLineBranch'
+      \ }
+      \ }
+
+function! LightLineBranch()
+  return exists('*gitbranch#name') ?  '⎇  ' . gitbranch#name(): ''
+endfunction
