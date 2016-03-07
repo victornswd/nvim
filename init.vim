@@ -41,6 +41,10 @@ Plug 'heavenshell/vim-jsdoc'
 Plug 'ternjs/tern_for_vim'
 Plug 'Valloric/YouCompleteMe'
 
+" Autoclose braces and surround selection with braces...
+Plug 'cohama/lexima.vim'
+Plug 'tpope/vim-surround'
+
 call plug#end()
 
 " Map the leader key to SPACE
