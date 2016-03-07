@@ -78,6 +78,12 @@ map <leader>s :source ~/.config/nvim/init.vim<CR>
 " TODO: add new line, change tabs to spaces
 autocmd vimrc BufWritePre * :%s/\s\+$//e
 
+" Tern Stuff
+"enable keyboard shortcuts
+let g:tern_map_keys=1
+"show argument hints
+let g:tern_show_argument_hints='on_hold'
+
 " Lightline configs
 set noshowmode
 let g:lightline = {
