@@ -3,6 +3,12 @@ set t_Co=256
 set encoding=utf-8
 filetype off
 
+" define a group `vimrc` and initialize.
+" http://rbtnn.hateblo.jp/entry/2014/12/28/010913<Paste>
+augroup vimrc
+  autocmd!
+augroup END
+
 " Plugins installed by vim-plug
 call plug#begin('~/.vim/plugged')
 
@@ -49,8 +55,8 @@ let g:used_javascript_libs = 'underscore,react,jquery'
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_css_enabled_makers = ['stylelint']
 let g:neomake_javascript_eslint_exe = './node_modules/.bin/eslint'
-autocmd! BufWritePost,BufEnter * Neomake " run Neomake on load/save
-autocmd! QuitPre * let g:neomake_verbose = 0 " don't run Neomake on save&quit
+autocmd vimrc BufWritePost,BufEnter * Neomake " run Neomake on load/save
+autocmd vimrc QuitPre * let g:neomake_verbose = 0 " don't run Neomake on :wq
 
 " Theme configs
 set background=dark
@@ -69,7 +75,8 @@ match OverLength /\%81v.\+/
 map <leader>s :source ~/.config/nvim/init.vim<CR>
 
 " Strip trailing whitespace
-autocmd BufWritePre * :%s/\s\+$//e
+" TODO: add new line, change tabs to spaces
+autocmd vimrc BufWritePre * :%s/\s\+$//e
 
 " Lightline configs
 set noshowmode
