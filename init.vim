@@ -17,7 +17,6 @@ Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-commentary'
 
 " Status line and buffer/tab line
-" Plug 'itchyny/lightline.vim'
 Plug 'ap/vim-buftabline'
 
 " Fuzzy finder for files, find-in-files...
@@ -89,30 +88,23 @@ set statusline+=%2*\ %y\                                " FileType
 set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}    " Encoding
 set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\[%{&ff}\] " Encoding2
 set statusline+=%8*\ LN/Col:\ %02l/%02c\                " Rownumber/Colnumber
-set statusline+=%0*\ \ %r%w\ %P\ \                      " Readonly? Top/bot.
-
-function! HighlightSearch()
-  if &hls
-    return 'H'
-  else
-    return ''
-  endif
-endfunction
+set statusline+=%0*\ \ %r%w\ %P\ \                      " Readonly? Top/bot
 
 function! GitBranch()
   return exists('*gitbranch#name') ?  '⎇  ' . gitbranch#name(): ''
 endfunction
 
 " Colors that work nicely with gruvbox theme
-hi User1 ctermfg=223 ctermbg=130
-hi User2 ctermbg=234 ctermfg=243
-hi User3 ctermbg=236 ctermfg=245
-hi User4 ctermfg=234 ctermbg=142 cterm=bold
+" https://github.com/morhetz/gruvbox#palette
+hi User1 ctermfg=223 ctermbg=130 guifg=#ebdbb2 guibg=#af3a03
+hi User2 ctermbg=234 ctermfg=243 guibg=#1d2021 guifg=#7c6f64
+hi User3 ctermbg=236 ctermfg=245 guibg=#32302f guifg=#928374
+hi User4 ctermfg=234 ctermbg=142 cterm=bold guifg=#1d2021 guibg=#b8bb26 gui=bold
 " hi User5
 " hi User7
-hi User8 ctermbg=241 ctermfg=234
+hi User8 ctermbg=241 ctermfg=234 guibg=#665c54 guifg=#1d2021
 " hi User9
-hi User0 ctermbg=245 ctermfg=239 cterm=bold
+hi User0 ctermbg=245 ctermfg=239 cterm=bold guibg=#928374 guifg=#504945 gui=bold
 
 " Strip trailing whitespace
 " TODO: add new line, change tabs to spaces
