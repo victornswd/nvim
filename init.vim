@@ -46,6 +46,9 @@ Plug 'tpope/vim-surround'
 
 call plug#end()
 
+" https://github.com/junegunn/fzf/issues/337
+let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
+
 " Map the leader key to SPACE
 let mapleader="\<SPACE>"
 
