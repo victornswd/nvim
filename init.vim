@@ -83,31 +83,15 @@ match OverLength /\%81v.\+/
 map <leader>s :source ~/.config/nvim/init.vim<CR>
 
 " Statusline
-set statusline=
-set statusline+=%4*\ %{GitBranch()}\                    " Git branch
-set statusline+=%1*\ %t\ %m                             " File+modified
-set statusline+=%2*\ %=\                                " Left/Right separator
-set statusline+=%2*\ %y\                                " FileType
-set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}    " Encoding
-set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\[%{&ff}\] " Encoding2
-set statusline+=%8*\ LN/Col:\ %02l/%02c\                " Rownumber/Colnumber
-set statusline+=%0*\ \ %r%w\ %P\ \                      " Readonly? Top/bot
+source $HOME/nvimrc/statusline.vim
 
-function! GitBranch()
-  return exists('*gitbranch#name') ?  '⎇  ' . gitbranch#name(): ''
-endfunction
+let g:neomake_warning_sign = {
+\ 'texthl': 'User1',
+\ }
 
-" Colors that work nicely with gruvbox theme
-" https://github.com/morhetz/gruvbox#palette
-hi User1 ctermfg=223 ctermbg=130 guifg=#ebdbb2 guibg=#af3a03
-hi User2 ctermbg=234 ctermfg=243 guibg=#1d2021 guifg=#7c6f64
-hi User3 ctermbg=236 ctermfg=245 guibg=#32302f guifg=#928374
-hi User4 ctermfg=234 ctermbg=142 cterm=bold guifg=#1d2021 guibg=#b8bb26 gui=bold
-" hi User5
-" hi User7
-hi User8 ctermbg=241 ctermfg=234 guibg=#665c54 guifg=#1d2021
-" hi User9
-hi User0 ctermbg=245 ctermfg=239 cterm=bold guibg=#928374 guifg=#504945 gui=bold
+let g:neomake_error_sign = {
+\ 'texthl': 'ErrorMsg',
+\ }
 
 " Strip trailing whitespace
 " TODO: add new line, change tabs to spaces
