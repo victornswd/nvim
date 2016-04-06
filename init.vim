@@ -20,7 +20,7 @@ call plug#begin('~/.vim/plugged')
 
 " Commenting and complex aligning
 Plug 'junegunn/vim-easy-align'
-Plug 'tpope/vim-commentary'
+Plug 'tomtom/tcomment_vim'
 
 " Status line and buffer/tab line
 Plug 'ap/vim-buftabline'
