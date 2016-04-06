@@ -103,9 +103,26 @@ let g:neomake_error_sign = {
 " TODO: add new line, change tabs to spaces
 autocmd vimrc BufWritePre * :%s/\s\+$//e
 
-" Tern Stuff
 "enable keyboard shortcuts
 let g:tern_map_keys=1
 "show argument hints
 let g:tern_show_argument_hints='on_hold'
 
+" Keyboard shortcuts
+map <leader>o :Files <CR>
+map gb :TCommentBlock<CR>
+
+" :wq & :q close buffer instead of default actions
+:cnoreabbrev wq w<bar>bd
+:cnoreabbrev q bd
+command! W write
+command! Q quit
+
+" Use system clipboard with <Leader>y & <Leader>p
+" NOTE: nvim needs xsel for this to work
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
