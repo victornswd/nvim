@@ -1,7 +1,13 @@
-set nocompatible
 set t_Co=256
+if &t_Co > 256 || has("gui_running")
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
 set encoding=utf-8
-filetype off
+
+" Tabs are 2 spaces by default
+set expandtab
+set tabstop=2
+set shiftwidth=2
 
 " define a group `vimrc` and initialize.
 " http://rbtnn.hateblo.jp/entry/2014/12/28/010913<Paste>
