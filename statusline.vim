@@ -1,38 +1,111 @@
-set statusline=
-set statusline+=%4*\ %{GitBranch()}\                    " Git branch
-set statusline+=%1*\ %t\ %m                             " File+modified
-set statusline+=%2*\ %=\                                " Left/Right separator
-set statusline+=%2*\ %y\                                " FileType
-set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}    " Encoding
-set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\[%{&ff}\] " Encoding2
-set statusline+=%8*\ LN/Col:\ %02l/%02c\                " Rownumber/Colnumber
-set statusline+=%0*\ \ %r%w\ %P\ \                      " Readonly? Top/bot
-set statusline+=\ %4*\%{Lint()}                             " Linter
-
+"
+"
+"
+" Show Mode
+" function! InsertStatuslineColor(mode)
+"   if a:mode == 'i'
+"     hi statusline ctermbg=magenta
+"   elseif a:mode == 'r'
+"     hi statusline ctermbg=blue
+"   else
+"     hi statusline ctermbg=red
+"   endif
+" endfunction
+"
+" au InsertEnter * call InsertStatuslineColor(v:insertmode)
+" au InsertChange * call InsertStatuslineColor(v:insertmode)
+" au InsertLeave * hi statusline ctermbg=green
+"
+"
+"
 function! GitBranch()
-  return exists('*gitbranch#name') ?  '⎇  ' . gitbranch#name(): ''
-endfunction
-
-function! Lint()
-  if exists('*neomake#statusline#LoclistStatus')
-    if strlen( neomake#statusline#LoclistStatus('') ) <# 2
-      return ' ✔ '
-    else
-      " if str contains E -> red, if W -> orange
-      return neomake#statusline#LoclistStatus('')
-    endif
+  if exists('*gitbranch#name')
+    let branch = '%4*' " color
+    let branch .= ' ⎇  '
+    let branch .= gitbranch#name()
+    let branch .= ' '
+    return branch
   endif
 endfunction
 
-" Colors that work nicely with gruvbox theme
-" https://github.com/morhetz/gruvbox#palette
-hi User1 ctermbg=130 ctermfg=223 guibg=#af3a03 guifg=#ebdbb2
-hi User2 ctermbg=234 ctermfg=243 guibg=#1d2021 guifg=#7c6f64
-hi User3 ctermbg=236 ctermfg=245 guibg=#32302f guifg=#928374
-hi User4 ctermbg=142 ctermfg=234 guibg=#b8bb26 guifg=#1d2021 cterm=bold gui=bold
-hi User5 ctermbg=darkRed ctermfg=white
-" hi User7
-hi User8 ctermbg=241 ctermfg=234 guibg=#665c54 guifg=#1d2021
-" hi User9
-hi User0 ctermbg=245 ctermfg=239 guibg=#928374 guifg=#504945 cterm=bold gui=bold
+function! Linter()
+  if exists ("neomake#statusline#LoclistStatus")
+    let lint = ''
+    let errors = neomake#statusline#LoclistStatus()
+    if errors =~ 'E'
+      let lint .= "%2*"
+      let lint .= errors
+    else
+      let lint .= "%3*"
+      let lint .= errors
+    endif
+    let lint .= "%4*"
+    let lint .= " ✔ "
 
+    return lint
+  endif
+endfunction
+
+function! FileName()
+  let name = ''
+  let name .= '%1* ' " color
+  let name .= '%t ' " filename
+  let name .= '%m' " modified or not
+  return name
+endfunction
+
+function! FileType()
+  return '%2* %y '
+endfunction
+
+function! FileEnc()
+  return '%3* %{(&fenc!=""?&fenc:&enc)}'
+endfunction
+
+function! EncScheme()
+  return '%3* %{(&bomb?",BOM":"")}[%{&ff}]'
+endfunction
+
+function! Encoding()
+  let enc = ''
+  let enc .= FileEnc()
+  let enc .= EncScheme()
+  return enc
+endfunction
+
+function! CursorPosition()
+  return '%8* LN/Col: %02l/%02c ' " Line No./Row No.
+endfunction
+
+function! LeftSide()
+  let left = ''
+  let left .= GitBranch()
+  let left .= FileName()
+
+  return left
+endfunction
+
+function! PositionInFile()
+  return '%0*  %r%w %P  '
+endfunction
+
+function! RightSide()
+  let right = ''
+  let right .= FileType()
+  let right .= Encoding()
+  let right .= CursorPosition()
+  let right .= PositionInFile()
+  let right .= Linter()
+
+  return right
+endfunction
+
+function! StatusLine()
+  let sl = LeftSide()
+  let sl .= '%2* %=' " separator
+  let sl .= RightSide()
+
+  return sl
+endfunction
+
+set statusline=%!StatusLine()

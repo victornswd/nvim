@@ -89,6 +89,7 @@ match OverLength /\%81v.\+/
 map <leader>s :source ~/.config/nvim/init.vim<CR>
 
 " Statusline
+source $HOME/nvimrc/colors.vim
 source $HOME/nvimrc/statusline.vim
 
 let g:neomake_warning_sign = {
