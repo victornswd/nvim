@@ -28,19 +28,36 @@ function! GitBranch()
   endif
 endfunction
 
+function! ParseErrorList(str)
+  let result = ''
+  if a:str =~ '^E'
+    let result .= '%5* '
+    let result .= a:str
+    let result .= ' '
+  elseif a:str =~ '^:' " warnings start with ':' because of the split fn
+    let result .= '%1* '
+    let result .= 'W'
+    let result .= a:str
+    let result .= ' '
+  endif
+  return result
+endfunction
+
 function! Linter()
   let lint = ''
-    let errors = neomake#statusline#LoclistStatus()
-    if errors =~ 'E'
-      let lint .= '%2*'
-      let lint .= errors
-    elseif errors =~ 'W'
-      let lint .= '%1*'
-      let lint .= errors
-    else
-      let lint .= '%4*'
-      let lint .= ' ✔ '
-    endif
+  let errors = neomake#statusline#LoclistStatus()
+  " get output length; if 0 then the file passed linting
+  if strlen(errors) ==# 0
+    let lint .= '%4*'
+    let lint .= ' ✔ '
+  else
+    let errorList = split(errors, 'W')
+
+    for i in errorList
+      let lint .= ParseErrorList(i)
+    endfor
+  endif
+
   return lint
 endfunction
 
