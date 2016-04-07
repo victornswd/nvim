@@ -92,16 +92,16 @@ function! CursorPosition()
   return '%8* LN/Col: %02l/%02c ' " Line No./Row No.
 endfunction
 
+function! PositionInFile()
+  return '%0*  %r%w %P  '
+endfunction
+
 function! LeftSide()
   let left = ''
   let left .= GitBranch()
   let left .= FileName()
 
   return left
-endfunction
-
-function! PositionInFile()
-  return '%0*  %r%w %P  '
 endfunction
 
 function! RightSide()
