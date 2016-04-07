@@ -29,21 +29,19 @@ function! GitBranch()
 endfunction
 
 function! Linter()
-  if exists ("neomake#statusline#LoclistStatus")
-    let lint = ''
+  let lint = ''
     let errors = neomake#statusline#LoclistStatus()
     if errors =~ 'E'
-      let lint .= "%2*"
+      let lint .= '%2*'
+      let lint .= errors
+    elseif errors =~ 'W'
+      let lint .= '%1*'
       let lint .= errors
     else
-      let lint .= "%3*"
-      let lint .= errors
+      let lint .= '%4*'
+      let lint .= ' ✔ '
     endif
-    let lint .= "%4*"
-    let lint .= " ✔ "
-
-    return lint
-  endif
+  return lint
 endfunction
 
 function! FileName()
