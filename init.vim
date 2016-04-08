@@ -78,6 +78,7 @@ colorscheme gruvbox
 
 " Style line numbers, gutter and 80char limit
 set number
+set relativenumber
 set numberwidth=4
 let g:buftabline_numbers=1
 let g:gitgutter_sign_column_always = 1
