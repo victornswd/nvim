@@ -44,8 +44,8 @@ Plug 'benekastah/neomake'
 Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/vim-gitbranch'
 Plug 'heavenshell/vim-jsdoc'
-Plug 'ternjs/tern_for_vim'
-Plug 'Valloric/YouCompleteMe'
+Plug 'shougo/deoplete.nvim'
+Plug 'carlitux/deoplete-ternjs'
 
 " Autoclose braces and surround selection with braces...
 Plug 'cohama/lexima.vim'
@@ -106,10 +106,11 @@ let g:neomake_error_sign = {
 " TODO: add new line, change tabs to spaces
 autocmd vimrc BufWritePre * :%s/\s\+$//e
 
-"enable keyboard shortcuts
-let g:tern_map_keys=1
-"show argument hints
-let g:tern_show_argument_hints='on_hold'
+" Use deoplete.
+set completeopt-=preview " disable definitions
+let g:deoplete#enable_at_startup = 1
+let g:tern_request_timeout = 1
+let g:tern_show_signature_in_pum = 0
 
 " Keyboard shortcuts
 map <leader>o :Files <CR>
