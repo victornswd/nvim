@@ -1,23 +1,3 @@
-"
-"
-"
-" Show Mode
-" function! InsertStatuslineColor(mode)
-"   if a:mode == 'i'
-"     hi statusline ctermbg=magenta
-"   elseif a:mode == 'r'
-"     hi statusline ctermbg=blue
-"   else
-"     hi statusline ctermbg=red
-"   endif
-" endfunction
-"
-" au InsertEnter * call InsertStatuslineColor(v:insertmode)
-" au InsertChange * call InsertStatuslineColor(v:insertmode)
-" au InsertLeave * hi statusline ctermbg=green
-"
-"
-"
 function! GitBranch()
   if exists('*gitbranch#name')
     let branch = '%4*' " color
