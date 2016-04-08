@@ -21,6 +21,7 @@ call plug#begin('~/.vim/plugged')
 " Commenting and complex aligning
 Plug 'junegunn/vim-easy-align'
 Plug 'tomtom/tcomment_vim'
+Plug 'Yggdroot/indentLine'
 
 " Status line and buffer/tab line
 Plug 'ap/vim-buftabline'
