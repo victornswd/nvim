@@ -45,7 +45,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/vim-gitbranch'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'shougo/deoplete.nvim'
-Plug 'carlitux/deoplete-ternjs'
+Plug 'carlitux/deoplete-ternjs', { 'do': 'sudo npm i -g tern' }
+Plug 'flowtype/vim-flow', { 'do': 'sudo npm i -g flow' }
 
 " Autoclose braces and surround selection with braces...
 Plug 'cohama/lexima.vim'
