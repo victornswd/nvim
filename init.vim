@@ -27,7 +27,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'ap/vim-buftabline'
 
 " Fuzzy finder for files, find-in-files...
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all && sudo apt-get install silversearcher-ag' }
 Plug 'junegunn/fzf.vim'
 
 " Theme
