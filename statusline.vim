@@ -1,3 +1,19 @@
+function! Mode()
+  let currmode = ''
+  if mode() ==# 'n'
+    let currmode = '%0* NORMAL  '
+  elseif mode() ==# 'i'
+    let currmode = '%0* INSERT  '
+  elseif mode() ==# 'R'
+    let currmode = '%0* REPLACE '
+  elseif mode() ==# 'v'
+    let currmode = '%0* VISUAL  '
+  elseif mode() ==# 'V'
+    let currmode = '%0* VISUAL  '
+  endif
+  return currmode
+endfunction
+
 function! GitBranch()
   if exists('*gitbranch#name')
     let branch = '%4*' " color
@@ -78,6 +94,7 @@ endfunction
 
 function! LeftSide()
   let left = ''
+  let left .= Mode()
   let left .= GitBranch()
   let left .= FileName()
 
