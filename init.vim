@@ -92,6 +92,7 @@ match OverLength /\%81v.\+/
 map <leader>s :source ~/.config/nvim/init.vim<CR>
 
 " Statusline
+set noshowmode " disable mode because it comes from the custom statusline
 source $HOME/dev/nvimrc/colors.vim
 source $HOME/dev/nvimrc/statusline.vim
 
