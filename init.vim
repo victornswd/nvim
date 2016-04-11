@@ -70,6 +70,7 @@ let g:used_javascript_libs = 'underscore,react,jquery'
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_css_enabled_makers = ['stylelint']
 let g:neomake_javascript_eslint_exe = './node_modules/.bin/eslint'
+let g:neomake_css_stylelint_exe = './node_modules/.bin/stylelint'
 autocmd vimrc BufWritePost,BufEnter * Neomake " run Neomake on load/save
 autocmd vimrc QuitPre * let g:neomake_verbose = 0 " don't run Neomake on :wq
 
