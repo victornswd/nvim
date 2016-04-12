@@ -39,9 +39,9 @@ function! ParseErrorList(str)
   return result
 endfunction
 
-function! Linter()
+function! Linter(lintstatus)
   let lint = ''
-  let errors = neomake#statusline#LoclistStatus()
+  let errors = a:lintstatus
   " get output length; if 0 then the file passed linting
   if strlen(errors) ==# 0
     let lint .= '%4*'
@@ -55,6 +55,10 @@ function! Linter()
   endif
 
   return lint
+endfunction
+
+function! RunLinter()
+  return Linter(neomake#statusline#LoclistStatus())
 endfunction
 
 function! FileName()
@@ -107,7 +111,7 @@ function! RightSide()
   let right .= Encoding()
   let right .= CursorPosition()
   let right .= PositionInFile()
-  let right .= Linter()
+  let right .= RunLinter()
 
   return right
 endfunction
