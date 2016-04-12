@@ -3,13 +3,13 @@ function! Mode()
   if mode() ==# 'n'
     let currmode = '%0* NORMAL  '
   elseif mode() ==# 'i'
-    let currmode = '%0* INSERT  '
+    let currmode = '%7* INSERT  '
   elseif mode() ==# 'R'
-    let currmode = '%0* REPLACE '
+    let currmode = '%4* REPLACE '
   elseif mode() ==# 'v'
-    let currmode = '%0* VISUAL  '
+    let currmode = '%9* visual  '
   elseif mode() ==# 'V'
-    let currmode = '%0* VISUAL  '
+    let currmode = '%9* VISUAL  '
   endif
   return currmode
 endfunction
