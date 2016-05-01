@@ -34,6 +34,7 @@ Plug 'morhetz/gruvbox'
 Plug 'sheerun/vim-polyglot'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'ap/vim-css-color'
+Plug 'elmcast/elm-vim'
 
 " Dev helpers (linting, project spacing...)
 Plug 'editorconfig/editorconfig-vim'
@@ -105,6 +106,10 @@ let g:neomake_error_sign = {
 " Strip trailing whitespace
 " TODO: add new line, change tabs to spaces
 autocmd vimrc BufWritePre * :%s/\s\+$//e
+
+let g:polyglot_disabled = ['elm']
+let g:elm_detailed_complete = 1
+let g:elm_format_autosave = 1
 
 " Use deoplete.
 set completeopt-=preview " disable definitions
