@@ -1,7 +1,4 @@
-set t_Co=256
-if &t_Co > 256 || has("gui_running")
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-endif
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set encoding=utf-8
 
 " Tabs are 2 spaces by default
