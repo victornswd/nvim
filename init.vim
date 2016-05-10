@@ -39,7 +39,7 @@ Plug 'elmcast/elm-vim'
 
 " Dev helpers (linting, project spacing...)
 Plug 'editorconfig/editorconfig-vim'
-Plug 'benekastah/neomake'
+Plug 'scrooloose/syntastic'
 Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/vim-gitbranch'
 Plug 'heavenshell/vim-jsdoc'
@@ -66,12 +66,10 @@ let g:jsx_ext_required = 0
 let g:used_javascript_libs = 'underscore,react,jquery'
 
 " Set up ESLint for JS & JSX files & Style Lint for CSS
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_css_enabled_makers = ['stylelint']
-let g:neomake_javascript_eslint_exe = './node_modules/.bin/eslint'
-let g:neomake_css_stylelint_exe = './node_modules/.bin/stylelint'
-autocmd vimrc BufWritePost,BufEnter * Neomake " run Neomake on load/save
-autocmd vimrc QuitPre * let g:neomake_verbose = 0 " don't run Neomake on :wq
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_css_checkers = ['stylelint']
+let g:syntastic_javascript_eslint_exe = './node_modules/.bin/eslint'
+let g:syntastic_css_stylelint_exe = './node_modules/.bin/stylelint'
 
 " Theme configs
 set background=dark
@@ -96,21 +94,21 @@ set noshowmode " disable mode because it comes from the custom statusline
 source $HOME/dev/nvimrc/colors.vim
 source $HOME/dev/nvimrc/statusline.vim
 
-let g:neomake_warning_sign = {
-\ 'texthl': 'User1',
-\ }
-
-let g:neomake_error_sign = {
-\ 'texthl': 'ErrorMsg',
-\ }
+" Linter
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " Strip trailing whitespace
 " TODO: add new line, change tabs to spaces
 autocmd vimrc BufWritePre * :%s/\s\+$//e
 
+" Elm
 let g:polyglot_disabled = ['elm']
 let g:elm_detailed_complete = 1
 let g:elm_format_autosave = 1
+let g:elm_syntastic_show_warnings = 1
 
 " Use deoplete.
 set completeopt-=preview " disable definitions

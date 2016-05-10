@@ -39,6 +39,7 @@ function! ParseErrorList(str)
   return result
 endfunction
 
+" This function expect text in the form of 'E:1 W:2'
 function! Linter(lintstatus)
   let lint = ''
   let errors = a:lintstatus
@@ -58,7 +59,8 @@ function! Linter(lintstatus)
 endfunction
 
 function! RunLinter()
-  return Linter(neomake#statusline#LoclistStatus())
+  let g:syntastic_stl_format = "%E{E: %e} %W{W: %w}"
+  return Linter(SyntasticStatuslineFlag())
 endfunction
 
 function! FileName()
