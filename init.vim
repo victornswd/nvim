@@ -17,6 +17,7 @@ call plug#begin('~/.vim/plugged')
 
 " Commenting and complex aligning
 Plug 'junegunn/vim-easy-align'
+Plug 'tpope/vim-repeat'
 Plug 'tomtom/tcomment_vim'
 Plug 'Yggdroot/indentLine'
 
