@@ -213,6 +213,7 @@ cmd [[
 ]]
 
 -------------------- TREE-SITTER ---------------------------
+require 'nvim-treesitter.install'.compilers = { "gcc" }
 local ts = require 'nvim-treesitter.configs'
 ts.setup {
   ensure_installed = 'all',
