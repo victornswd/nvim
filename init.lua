@@ -1,13 +1,3 @@
--- TODO:
--- - fix lsp icons
--- - clean up commented stuff
--- - Trouble open/close
--- - Trouble/lsp side flicker
--- - lsp keys
--- - research Neorg
--- - LSP servers installer only one array
--- - null-ls?
-
 -------------------- HELPERS -------------------------------
 local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd')
 local fn = vim.fn    -- to callnged the default  Vim functions e.g. fn.bufnr()
