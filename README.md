@@ -3,6 +3,7 @@
 
 ## Prerequisites
 
+* [Neovim](http://neovim.io/) 0.5+
 * [Silver Searcher](https://github.com/ggreer/the_silver_searcher) for file 
   searching inside FZF
 * [Read this](https://github.com/tree-sitter/tree-sitter-haskell#building-on-macos) 
