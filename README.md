@@ -40,7 +40,6 @@
 
 ## TODO:
 
-* fix lsp icons
 * clean up commented stuff
 * Trouble/lsp side flicker
 * lsp keys
