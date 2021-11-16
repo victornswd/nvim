@@ -161,6 +161,7 @@ require('packer').startup(function()
     run = 'npm install',
     ft = {'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'}
   }
+  use { 'vimwiki/vimwiki', branch = 'dev' }
 
 end)
 -------------------- OPTIONS -------------------------------
