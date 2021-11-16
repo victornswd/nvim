@@ -266,6 +266,13 @@ require'lualine'.setup {
   extensions = {}
 }
 
+----------------------VIMWIKI-------------------------------
+cmd [[
+let g:vimwiki_list = [{'path': '~/Dropbox/wiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_global_ext = 0
+]]
+
 -------------------- COMMANDS ------------------------------
 vim.api.nvim_set_var('jsdoc_formatter', 'tsdoc')
 cmd 'au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=700}'
