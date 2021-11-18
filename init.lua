@@ -64,28 +64,10 @@ require('packer').startup(function()
   -- Autocompletion
   use {'neovim/nvim-lspconfig'}
   use {'williamboman/nvim-lsp-installer'}
-  -- use {'glepnir/lspsaga.nvim'}
-  -- use 'hrsh7th/cmp-nvim-lsp'
-  -- use 'hrsh7th/cmp-buffer'
-  -- use 'hrsh7th/cmp-path'
-  -- use 'hrsh7th/cmp-cmdline'
-  -- use 'hrsh7th/nvim-cmp'
-
-  -- use 'hrsh7th/cmp-vsnip'
-  -- use 'hrsh7th/vim-vsnip'
-  -- use 'L3MON4D3/LuaSnip'
-  -- use 'saadparwaiz1/cmp_luasnip'
-  --
-  -- use 'jose-elias-alvarez/null-ls.nvim'
-
-
-  --- Lsp
   use({
-      -- 'neovim/nvim-lspconfig',
       'ray-x/lsp_signature.nvim',
       'jose-elias-alvarez/nvim-lsp-ts-utils',
   })
-
   use({
       'jose-elias-alvarez/null-ls.nvim',
       requires = {
@@ -115,16 +97,11 @@ require('packer').startup(function()
   })
 
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-  use {'ojroques/nvim-lspfuzzy'}
   use {
     "folke/todo-comments.nvim",
     requires = "nvim-lua/plenary.nvim",
     config = function()
-      require("todo-comments").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
+      require("todo-comments").setup()
     end
   }
   use {
