@@ -60,7 +60,7 @@ require('packer').startup(function()
   -- Autocompletion
   use {'neovim/nvim-lspconfig'}
   use {'williamboman/nvim-lsp-installer'}
-  use {'glepnir/lspsaga.nvim'}
+  -- use {'glepnir/lspsaga.nvim'}
   -- use 'hrsh7th/cmp-nvim-lsp'
   -- use 'hrsh7th/cmp-buffer'
   -- use 'hrsh7th/cmp-path'
@@ -230,7 +230,7 @@ ts.setup {
     enable = true
   },
   matchup = {
-    enable = true,              -- mandatory, false will disable the whole extension
+    enable = true,   -- mandatory, false will disable the whole extension
   }
 }
 
@@ -242,9 +242,9 @@ require'lualine'.setup {
   options = {
     icons_enabled = true,
     theme = 'gruvbox',
-    component_separators = {'', ''},
-    section_separators = {'', ''},
-    disabled_filetypes = {}
+    -- component_separators = {'', ''},
+    -- section_separators = {'', ''},
+    -- disabled_filetypes = {}
   },
   sections = {
     lualine_a = {'mode'},
