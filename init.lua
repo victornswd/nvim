@@ -34,8 +34,12 @@ local use = require('packer').use
 require('packer').startup(function()
   use 'wbthomason/packer.nvim' -- Package manager
 
-  use {'junegunn/fzf', run = function() vim.fn['fzf#install']() end}
-  use {'junegunn/fzf.vim'}
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  use {'ElPiloto/telescope-vimwiki.nvim' }
 
   -- Commenting and complex aligning
   use {'junegunn/vim-easy-align'}
@@ -191,8 +195,13 @@ opt.smartindent = true              -- Insert indents automatically
 -- opt.list = true                     -- Show some invisible characters
 
 -------------------- MAPPINGS ------------------------------
--- https://github.com/junegunn/fzf/issues/337
-cmd [[let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""']]
+require('telescope').load_extension('fzf')
+require('telescope').load_extension('vw')
+require('telescope').setup({
+  defaults = {
+    layout_strategy = 'bottom_pane',
+  },
+})
 
 map('v', '<leader>y', '"+y')       -- Copy to clipboard in visual modes
 map('n', '<leader>p', '"+p')       -- Copy to clipboard in visual modes
@@ -204,8 +213,8 @@ map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
 
 map('n', '<C-l>', '<cmd>noh<CR>')    -- Clear highlights
 map('c', 'W', 'w')
-map('', '<leader>o', ':Files <CR>')
-map('', '<leader>b', ':Buffers <CR>')
+map('', '<leader>o', ':Telescope find_files <CR>')
+map('', '<leader>f', ':Telescope live_grep <CR>')
 map('n', '<leader>s', ':source ~/.config/nvim/init.lua<CR>')
 map('', '<leader>t', ':TroubleToggle<CR>')
 cmd [[
