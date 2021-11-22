@@ -190,7 +190,7 @@ map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
 
 map('n', '<C-l>', '<cmd>noh<CR>')    -- Clear highlights
 map('c', 'W', 'w')
-map('', '<leader>o', ':Telescope find_files <CR>')
+map('', '<leader>o', ':Telescope git_files <CR>')
 map('', '<leader>f', ':Telescope live_grep <CR>')
 map('n', '<leader>s', ':source ~/.config/nvim/init.lua<CR>')
 map('', '<leader>t', ':TroubleToggle<CR>')
