@@ -44,7 +44,7 @@ require('packer').startup(function()
   -- Commenting and complex aligning
   use {'junegunn/vim-easy-align'}
   use {'tpope/vim-repeat'}
-  use {'tomtom/tcomment_vim'}
+  use {'b3nj5m1n/kommentary'}
   use {'Yggdroot/indentLine'}
 
   -- Autoclose braces and surround selection with braces...
@@ -182,6 +182,9 @@ require('telescope').setup({
   defaults = {
     layout_strategy = 'bottom_pane',
   },
+})
+require('kommentary.config').configure_language("rust", {
+    prefer_single_line_comments = true,
 })
 
 map('v', '<leader>y', '"+y')       -- Copy to clipboard in visual modes
