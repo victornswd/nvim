@@ -95,6 +95,9 @@ require('packer').startup(function()
           'rafamadriz/friendly-snippets',
       },
   })
+  use {
+    "benfowler/telescope-luasnip.nvim"
+  }
 
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
   use {
@@ -174,6 +177,7 @@ opt.smartindent = true              -- Insert indents automatically
 -------------------- MAPPINGS ------------------------------
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('vw')
+require('telescope').load_extension('luasnip')
 require('telescope').setup({
   defaults = {
     layout_strategy = 'bottom_pane',

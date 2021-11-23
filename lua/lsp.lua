@@ -184,12 +184,7 @@ cmp.setup({
   },
   sources = {
     { name = 'nvim_lsp' },
-    -- For vsnip user.
-    -- { name = 'vsnip' },
-    -- For luasnip user.
     { name = 'path' },
-    -- For ultisnips user.
-    -- { name = 'ultisnips' },
     { name = 'luasnip' },
     { name = 'buffer', keywork_length = 5 },
     { name = 'npm', keyword_length = 4 },
@@ -222,7 +217,6 @@ cmp.setup({
   }
 })
 
--- icon
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     underline = true,
