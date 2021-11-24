@@ -173,6 +173,7 @@ opt.smartindent = true              -- Insert indents automatically
 -- opt.ignorecase = true               -- Ignore case
 -- opt.joinspaces = false              -- No double spaces with join
 -- opt.list = true                     -- Show some invisible characters
+cmd [[set signcolumn=yes]]
 
 -------------------- MAPPINGS ------------------------------
 require('telescope').load_extension('fzf')
