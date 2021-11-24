@@ -4,8 +4,8 @@
 ## Prerequisites
 
 * [Neovim](http://neovim.io/) 0.5+
-* [Silver Searcher](https://github.com/ggreer/the_silver_searcher) for file 
-  searching inside FZF
+* [ripgrep](https://github.com/BurntSushi/ripgrep) is required for string search
+  in Telescope
 * [Read this](https://github.com/tree-sitter/tree-sitter-haskell#building-on-macos) 
   if you are using this config on a Mac, or just disable `tree-sitter-haskell` 
   in the config
@@ -36,13 +36,3 @@
 * `<Space>t` - open diagnostics list
 * `<Tab>` - navigate autocomplete
 * `<Space>y`/`<Space>p` - copy-paste to global clipboard
-
-
-## TODO:
-
-* clean up commented stuff
-* Trouble/lsp side flicker
-* lsp keys
-* research Neorg
-* LSP servers installer only one array
-* null-ls?
