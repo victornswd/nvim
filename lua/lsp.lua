@@ -202,20 +202,10 @@ cmp.setup({
         buffer = "[Buffer]",
         nvim_lsp = "[LSP]",
         luasnip = "[Snippet]",
-        -- neorg = "[Neorg]",
       })[entry.source.name]
 
       return item
     end,
-    -- format = require('lspkind').cmp_format {
-    --   with_text = true,
-    --   menu = {
-    --     buffer = "[buf]",
-    --     nvim_lsp = "[LSP]",
-    --     path = "[path]",
-    --     luasnip = "[snip]"
-    --   }
-    -- }
   },
   experimental = {
     native_menu = false,
