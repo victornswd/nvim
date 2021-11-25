@@ -107,13 +107,14 @@ require('packer').startup(function()
       require("todo-comments").setup()
     end
   }
-  use {
-    "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("trouble").setup()
-    end
-  }
+  -- TODO: see if Trouble is still required
+  -- use {
+  --   "folke/trouble.nvim",
+  --   requires = "kyazdani42/nvim-web-devicons",
+  --   config = function()
+  --     require("trouble").setup()
+  --   end
+  -- }
 
   -- Syntax
   use {
@@ -201,7 +202,7 @@ map('c', 'W', 'w')
 map('', '<leader>o', ':Telescope git_files <CR>')
 map('', '<leader>f', ':Telescope live_grep <CR>')
 map('n', '<leader>s', ':source ~/.config/nvim/init.lua<CR>')
-map('', '<leader>t', ':TroubleToggle<CR>')
+map('', '<leader>t', ':Telescope lsp_document_diagnostics<CR>')
 cmd [[
 :cnoreabbrev wq w<bar>BufDel
 :cnoreabbrev q BufDel
