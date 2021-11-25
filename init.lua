@@ -237,13 +237,13 @@ require'lualine'.setup {
   options = {
     icons_enabled = true,
     theme = 'gruvbox',
-    -- component_separators = {'', ''},
-    -- section_separators = {'', ''},
-    -- disabled_filetypes = {}
+    disabled_filetypes = {},
+    always_divide_middle = true,
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {'branch'},
+    lualine_b = {'branch',
+                  {'diagnostics', sources={'nvim_lsp'}, colored = true}},
     lualine_c = {'filename'},
     lualine_x = {'encoding', 'fileformat', 'filetype'},
     lualine_y = {'progress'},
