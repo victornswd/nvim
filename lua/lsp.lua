@@ -142,6 +142,12 @@ nvim_lsp['sumneko_lua'].setup {
 -- Setup nvim-cmp.
 local cmp = require'cmp'
 local luasnip = require('luasnip')
+luasnip.snippets = {
+	markdown = {}
+}
+luasnip.snippets.vimwiki = luasnip.snippets.markdown
+
+require('luasnip.loaders.from_vscode').load({include = {'markdown'}})
 require('luasnip.loaders.from_vscode').lazy_load()
 
 cmp.setup({
