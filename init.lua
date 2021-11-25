@@ -184,7 +184,7 @@ require('telescope').setup({
     layout_strategy = 'bottom_pane',
   },
 })
-require('kommentary.config').configure_language("rust", {
+require('kommentary.config').configure_language("default", {
     prefer_single_line_comments = true,
 })
 
