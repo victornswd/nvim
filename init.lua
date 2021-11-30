@@ -174,21 +174,29 @@ opt.smartindent = true              -- Insert indents automatically
 -- opt.ignorecase = true               -- Ignore case
 -- opt.joinspaces = false              -- No double spaces with join
 -- opt.list = true                     -- Show some invisible characters
+opt.list = true
+-- opt.listchars:append("eol:↴")
 cmd [[set signcolumn=yes]]
 
--------------------- MAPPINGS ------------------------------
+-------------------- TELESCOPE ------------------------------
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('vw')
 require('telescope').load_extension('luasnip')
 require('telescope').setup({
   defaults = {
-    layout_strategy = 'bottom_pane',
+    layout_config = {
+      bottom_pane = {
+        preview_cutoff = 0,
+      },
+    },
   },
-})
-require('kommentary.config').configure_language("default", {
-    prefer_single_line_comments = true,
+  pickers = {
+    git_files = { theme = 'ivy' },
+    live_grep = { theme = 'ivy' },
+  }
 })
 
+-------------------- MAPPINGS ------------------------------
 map('v', '<leader>y', '"+y')       -- Copy to clipboard in visual modes
 map('n', '<leader>p', '"+p')       -- Copy to clipboard in visual modes
 
@@ -231,7 +239,7 @@ ts.setup {
 
 -------------------- LSP -----------------------------------
 require('lsp')
-------------------------------------------------------------
+-------------------- LUALINE -------------------------------
 
 require'lualine'.setup {
   options = {
@@ -261,7 +269,7 @@ require'lualine'.setup {
   extensions = {}
 }
 
-----------------------VIMWIKI-------------------------------
+--------------------- VIMWIKI ------------------------------
 cmd [[
 let g:vimwiki_list = [{'path': '~/Dropbox/wiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
