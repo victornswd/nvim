@@ -39,31 +39,31 @@ dlsconfig.setup {
   },
 }
 local lsp_symbols = {
-  Text = "",
-  Method = "",
-  Function = "",
-  Constructor = "",
-  Field = "",
-  Variable = "",
-  Class = "",
-  Interface = "ﰮ",
-  Module = "",
-  Property = "襁",
-  Unit = "",
-  Value = "",
-  Enum = "",
-  Keyword = "",
-  Snippet = "﬌",
-  Color = "",
-  File = "",
-  Reference = "",
-  Folder = "",
-  EnumMember = "",
-  Constant = "",
-  Struct = "",
-  Event = "",
-  Operator = "ﬦ",
-  TypeParameter = "",
+  Text = " ",
+  Method = " ",
+  Function = " ",
+  Constructor = " ",
+  Field = " ",
+  Variable = " ",
+  Class = " ",
+  Interface = "ﰮ ",
+  Module = " ",
+  Property = "襁 ",
+  Unit = " ",
+  Value = " ",
+  Enum = " ",
+  Keyword = " ",
+  Snippet = "﬌ ",
+  Color = " ",
+  File = " ",
+  Reference = " ",
+  Folder = " ",
+  EnumMember = " ",
+  Constant = " ",
+  Struct = " ",
+  Event = " ",
+  Operator = "ﬦ ",
+  TypeParameter = " ",
 }
 
 cmd[[
@@ -75,6 +75,16 @@ nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gR    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent><leader>fo <cmd>lua vim.lsp.buf.formatting()<CR>
+]]
+
+cmd [[
+highlight! CmpItemAbbrMatch guibg=NONE guifg=#fb4934
+highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#fb4934
+highlight! CmpItemKindFunction guibg=NONE guifg=#d3869b
+highlight! CmpItemKindMethod guibg=NONE guifg=#d3869b
+highlight! CmpItemKindVariable guibg=NONE guifg=#83a598
+highlight! CmpItemKindKeyword guibg=NONE guifg=#b8bb26
+highlight! CmpItemKindSnippet guibg=NONE guifg=#d5c4a1
 ]]
 
 local lsp_installer = require("nvim-lsp-installer")
@@ -196,15 +206,9 @@ cmp.setup({
     { name = 'npm', keyword_length = 4 },
   },
   formatting = {
-    format = function(entry, item)
-      item.kind = lsp_symbols[item.kind]
-      item.menu = ({
-        buffer = "[Buffer]",
-        nvim_lsp = "[LSP]",
-        luasnip = "[Snippet]",
-      })[entry.source.name]
-
-      return item
+    format = function(_, vim_item)
+      vim_item.kind = (lsp_symbols[vim_item.kind] or '') .. vim_item.kind
+      return vim_item
     end,
   },
   experimental = {
