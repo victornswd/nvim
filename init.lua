@@ -44,8 +44,22 @@ require('packer').startup(function()
   -- Commenting and complex aligning
   use {'junegunn/vim-easy-align'}
   use {'tpope/vim-repeat'}
-  use {'b3nj5m1n/kommentary'}
-  use {'Yggdroot/indentLine'}
+  use {'b3nj5m1n/kommentary',
+    config = function()
+      require('kommentary.config').configure_language("default", {
+      prefer_single_line_comments = true,
+    })
+    end
+  }
+  use {'lukas-reineke/indent-blankline.nvim',
+    config = function ()
+     require("indent_blankline").setup {
+       space_char_blankline = " ",
+       show_current_context = true,
+       show_current_context_start = true,
+     }
+    end
+  }
 
   -- Autoclose braces and surround selection with braces...
   use {'cohama/lexima.vim'}
@@ -100,6 +114,7 @@ require('packer').startup(function()
   }
 
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+  use {'p00f/nvim-ts-rainbow'}
   use {
     "folke/todo-comments.nvim",
     requires = "nvim-lua/plenary.nvim",
@@ -234,6 +249,11 @@ ts.setup {
   },
   matchup = {
     enable = true,   -- mandatory, false will disable the whole extension
+  },
+  rainbow = {
+    enable = true,
+    extended_mode = true,
+    max_file_lines = nil,
   }
 }
 
