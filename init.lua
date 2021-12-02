@@ -69,31 +69,31 @@ require('packer').startup(function()
       'jose-elias-alvarez/nvim-lsp-ts-utils',
   })
   use({
-      'jose-elias-alvarez/null-ls.nvim',
-      requires = {
-          'nvim-lua/plenary.nvim',
-          'neovim/nvim-lspconfig',
-      },
+    'jose-elias-alvarez/null-ls.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'neovim/nvim-lspconfig',
+    },
   })
 
   -- Completion
   use({
-      'hrsh7th/nvim-cmp',
-      'saadparwaiz1/cmp_luasnip',
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-nvim-lua',
-      'lukas-reineke/cmp-rg',
+    'hrsh7th/nvim-cmp',
+    'saadparwaiz1/cmp_luasnip',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-path',
+    'hrsh7th/cmp-nvim-lua',
+    'lukas-reineke/cmp-rg',
   })
   use 'creativenull/diagnosticls-configs-nvim'
 
   -- Snippets
   use({
-      'L3MON4D3/luasnip',
-      requires = {
-          'rafamadriz/friendly-snippets',
-      },
+    'L3MON4D3/luasnip',
+    requires = {
+      'rafamadriz/friendly-snippets',
+    },
   })
   use {
     "benfowler/telescope-luasnip.nvim"
@@ -119,7 +119,7 @@ require('packer').startup(function()
   -- Syntax
   use {
     'norcalli/nvim-colorizer.lua',
-    ft = { 'css', 'javascript', 'vim', 'html' },
+    -- ft = { 'css', 'javascript', 'vim', 'html' },
     config = [[require('colorizer').setup {'css', 'javascript', 'vim', 'html'}]],
   }
   use {
