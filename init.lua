@@ -67,7 +67,11 @@ require('packer').startup(function()
   use {'andymass/vim-matchup'}
 
   -- Theme
-  use {'morhetz/gruvbox'}
+  use {'rafamadriz/themes.nvim'}
+  use({
+    'rose-pine/neovim',
+    as = 'rose-pine',
+  })
 
   -- Statusline
   use {'hoob3rt/lualine.nvim'}
@@ -165,7 +169,11 @@ require('packer').startup(function()
 
 end)
 -------------------- OPTIONS -------------------------------
-cmd 'colorscheme gruvbox'            -- Put your favorite colorscheme here
+-- cmd 'colorscheme gruvbox'
+vim.g.rose_pine_variant = 'moon'
+-- Load colorscheme after options
+vim.cmd('colorscheme rose-pine')
+
 opt.completeopt = {'menuone', 'noinsert', 'noselect'}  -- Completion options (for deoplete)
 opt.colorcolumn = {80}
 opt.expandtab = true                -- Use spaces instead of tabs
@@ -223,6 +231,7 @@ map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
 map('n', '<C-l>', '<cmd>noh<CR>')    -- Clear highlights
 map('c', 'W', 'w')
 map('', '<leader>o', ':Telescope git_files <CR>')
+map('', '<leader>c', ':Telescope colorscheme <CR>')
 map('', '<leader>f', ':Telescope live_grep <CR>')
 map('n', '<leader>s', ':source ~/.config/nvim/init.lua<CR>')
 map('', '<leader>t', ':Telescope lsp_document_diagnostics<CR>')
@@ -264,7 +273,7 @@ require('lsp')
 require'lualine'.setup {
   options = {
     icons_enabled = true,
-    theme = 'gruvbox',
+    theme = 'rose-pine',
     disabled_filetypes = {},
     always_divide_middle = true,
   },
