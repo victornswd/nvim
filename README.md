@@ -24,15 +24,15 @@
 * open nvim and ignore the errors (for now)
 * run `:PackerInstall` and wait for it to finish
 * restart nvim
-* run `:LspInstallInfo` and select what [LSP](https://microsoft.github.io/language-server-protocol/)
-  you want (navigate menu with `↑, ↓/j, k`, install with `i`, uninstall with `X`)
 * enjoy!
 
 ## Some keybindings
 
-* `<Space>o` - open files
-* `<Space>s` - reload `init.lua`. Useful if you edited your nvim config and don't 
-  want to restart your nvim
-* `<Space>t` - open diagnostics list
-* `<Tab>` - navigate autocomplete
-* `<Space>y`/`<Space>p` - copy-paste to global clipboard
+| Keys                     | Action                           |
+|------------------------- | -------------------------------- |
+| `<Space>o`               | open files                       |
+| `<Space>s`               | reload `init.lua`. Useful if you edited your nvim config and don't 
+want to restart your nvim   |
+| `<Space>t`               | open diagnostics list            |
+| `<Tab>`/`<Shift><Tab>`   | navigate autocomplete            |
+| `<Space>y`/`<Space>p`    | copy-paste to global clipboard   |
