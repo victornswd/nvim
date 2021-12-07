@@ -216,10 +216,17 @@ require('telescope').setup({
   pickers = {
     git_files = { theme = 'ivy' },
     live_grep = { theme = 'ivy' },
+    find_files = { theme = 'ivy' },
   }
 })
 
 -------------------- MAPPINGS ------------------------------
+_G.project_files = function()
+  local opts = {}
+  local ok = pcall(require"telescope.builtin".git_files, opts)
+  if not ok then require"telescope.builtin".find_files(opts) end
+end
+
 map('v', '<leader>y', '"+y')       -- Copy to clipboard in visual modes
 map('n', '<leader>p', '"+p')       -- Copy to clipboard in visual modes
 
@@ -230,7 +237,7 @@ map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
 
 map('n', '<C-l>', '<cmd>noh<CR>')    -- Clear highlights
 map('c', 'W', 'w')
-map('', '<leader>o', ':Telescope git_files <CR>')
+map('', '<leader>o', '<cmd>lua project_files()<CR>')
 map('', '<leader>c', ':Telescope colorscheme <CR>')
 map('', '<leader>f', ':Telescope live_grep <CR>')
 map('n', '<leader>s', ':source ~/.config/nvim/init.lua<CR>')
