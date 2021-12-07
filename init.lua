@@ -245,7 +245,8 @@ cmd [[
 require('treesitter')
 
 -------------------- LSP -----------------------------------
-require('lsp')
+require('lsp.config')
+require('cmp-conf')
 -------------------- LUALINE -------------------------------
 
 require'lualine'.setup {
