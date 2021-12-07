@@ -31,8 +31,7 @@
 | Keys                     | Action                           |
 |------------------------- | -------------------------------- |
 | `<Space>o`               | open files                       |
-| `<Space>s`               | reload `init.lua`. Useful if you edited your nvim config and don't 
-want to restart your nvim   |
+| `<Space>s`               | reload `init.lua`. Useful if you edited your nvim config and don't want to restart your nvim   |
 | `<Space>t`               | open diagnostics list            |
 | `<Tab>`/`<Shift><Tab>`   | navigate autocomplete            |
 | `<Space>y`/`<Space>p`    | copy-paste to global clipboard   |
