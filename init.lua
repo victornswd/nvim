@@ -1,6 +1,5 @@
 -------------------- HELPERS -------------------------------
 local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd')
-local fn = vim.fn    -- to callnged the default  Vim functions e.g. fn.bufnr()
 local g = vim.g      -- a table to access global variables
 local opt = vim.opt  -- to set options
 
@@ -13,170 +12,9 @@ end
 g.mapleader=' '
 
 -------------------- PLUGINS -------------------------------
--- Install packer
-local install_path = fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+require('plugins')
 
-if fn.empty(vim.fn.glob(install_path)) > 0 then
-  fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
-end
-
-vim.api.nvim_exec(
-  [[
-  augroup Packer
-    autocmd!
-    autocmd BufWritePost init.lua PackerCompile
-  augroup end
-]],
-  false
-)
-
-local use = require('packer').use
-require('packer').startup(function()
-  use 'wbthomason/packer.nvim' -- Package manager
-
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} }
-  }
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  use {'ElPiloto/telescope-vimwiki.nvim' }
-
-  -- Commenting and complex aligning
-  use {'junegunn/vim-easy-align'}
-  use {'tpope/vim-repeat'}
-  use {'b3nj5m1n/kommentary',
-    config = function()
-      require('kommentary.config').configure_language("default", {
-      prefer_single_line_comments = true,
-    })
-    end
-  }
-  use {'lukas-reineke/indent-blankline.nvim'}
-
-  -- Autoclose braces and surround selection with braces...
-  use {'cohama/lexima.vim'}
-  use {'tpope/vim-surround'}
-  use {'andymass/vim-matchup'}
-
-  -- Theme
-  use {'rafamadriz/themes.nvim'}
-  use({
-    'rose-pine/neovim',
-    as = 'rose-pine',
-  })
-
-  -- Statusline
-  use {'hoob3rt/lualine.nvim'}
-  use {'kyazdani42/nvim-web-devicons'}
-  use {'ap/vim-buftabline'}
-  use {'ojroques/nvim-bufdel'}
-
-  -- Autocompletion
-  use {'neovim/nvim-lspconfig'}
-  use {'williamboman/nvim-lsp-installer'}
-  use({
-      'ray-x/lsp_signature.nvim',
-      'jose-elias-alvarez/nvim-lsp-ts-utils',
-  })
-  use({
-    'jose-elias-alvarez/null-ls.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim',
-      'neovim/nvim-lspconfig',
-    },
-  })
-
-  -- Completion
-  use({
-    'hrsh7th/nvim-cmp',
-    'saadparwaiz1/cmp_luasnip',
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-buffer',
-    'hrsh7th/cmp-path',
-    'hrsh7th/cmp-nvim-lua',
-    'lukas-reineke/cmp-rg',
-  })
-  use 'creativenull/diagnosticls-configs-nvim'
-
-  -- Snippets
-  use({
-    'L3MON4D3/luasnip',
-    requires = {
-      'rafamadriz/friendly-snippets',
-    },
-  })
-  use {
-    "benfowler/telescope-luasnip.nvim"
-  }
-
-  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-  use {'p00f/nvim-ts-rainbow'}
-  use {
-    "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim",
-    config = function()
-      require("todo-comments").setup()
-    end
-  }
-  -- TODO: see if Trouble is still required
-  -- use {
-  --   "folke/trouble.nvim",
-  --   requires = "kyazdani42/nvim-web-devicons",
-  --   config = function()
-  --     require("trouble").setup()
-  --   end
-  -- }
-
-  -- Syntax
-  use {
-    'norcalli/nvim-colorizer.lua',
-    -- ft = { 'css', 'javascript', 'vim', 'html' },
-    config = [[require('colorizer').setup {'css', 'javascript', 'vim', 'html'}]],
-  }
-  use {
-    'lewis6991/gitsigns.nvim',
-    requires = { 'nvim-lua/plenary.nvim' },
-    config = function () require('gitsigns').setup() end
-  }
-
-  -- Dev helpers (linting, project spacing...)
-  use {'editorconfig/editorconfig-vim'}
-  use {'mattn/emmet-vim'}
-  use {
-    'yardnsm/vim-import-cost',
-    run = 'npm install',
-    ft = {'javascript', 'javascript.jsx','typescript'}
-  }
-  use {
-    'heavenshell/vim-jsdoc',
-    run = 'make install',
-    ft = {'javascript', 'javascript.jsx','typescript'}
-  }
-  use {
-    'prettier/vim-prettier',
-    run = 'npm install',
-    ft = {'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'}
-  }
-  use { 'vimwiki/vimwiki', branch = 'dev' }
-
-end)
 -------------------- OPTIONS -------------------------------
--- cmd 'colorscheme gruvbox'
-vim.g.rose_pine_variant = 'moon'
-
--- Load colorscheme after options
-vim.cmd('colorscheme rose-pine')
-
--- set the colors manually from the rose-pine theme
-vim.cmd [[highlight IndentBlanklineChar guifg=#59546d gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineContextChar guifg=#c4a7e7 gui=nocombine]]
-require("indent_blankline").setup {
-  space_char_blankline = " ",
-  show_current_context = true,
-  show_current_context_start = true,
-  indent_blankline_use_treesitter = true,
-}
-
 opt.completeopt = {'menuone', 'noinsert', 'noselect'}  -- Completion options (for deoplete)
 opt.colorcolumn = {80}
 opt.expandtab = true                -- Use spaces instead of tabs
@@ -257,8 +95,8 @@ require('treesitter')
 -------------------- LSP -----------------------------------
 require('lsp.config')
 require('cmp-conf')
--------------------- LUALINE -------------------------------
 
+-------------------- LUALINE -------------------------------
 require'lualine'.setup {
   options = {
     icons_enabled = true,
