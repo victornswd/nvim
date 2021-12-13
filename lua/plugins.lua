@@ -44,6 +44,7 @@ require('packer').startup(function()
   use {'andymass/vim-matchup'}
 
   -- Theme
+  use {'wbthomason/vim-nazgul'}
   use {'rafamadriz/themes.nvim'}
   use({
     'rose-pine/neovim',
