@@ -37,8 +37,8 @@ opt.smartindent = true              -- Insert indents automatically
 -- opt.hidden = true                  -- Enable background buffers
 -- opt.ignorecase = true               -- Ignore case
 -- opt.joinspaces = false              -- No double spaces with join
--- opt.list = true                     -- Show some invisible characters
 opt.list = true
+opt.fillchars:append { eob = " " }
 -- opt.listchars:append("eol:↴")
 cmd [[set signcolumn=yes]]
 
