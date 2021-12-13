@@ -105,7 +105,7 @@ map('', '<leader>o', '<cmd>lua project_files()<CR>')
 map('', '<leader>c', ':Telescope colorscheme <CR>')
 map('', '<leader>f', ':Telescope live_grep <CR>')
 map('n', '<leader>s', ':source ~/.config/nvim/init.lua<CR>')
-map('', '<leader>t', ':Telescope lsp_document_diagnostics<CR>')
+map('', '<leader>t', ':Telescope diagnostics bufnr=0<CR>')
 cmd [[
 :cnoreabbrev wq w<bar>BufDel
 :cnoreabbrev q BufDel
