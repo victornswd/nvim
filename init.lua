@@ -113,6 +113,9 @@ cmd [[
 :cnoreabbrev q BufDel
 :cnoreabbrev Q q
 ]]
+-- Shift + J/K moves selected lines down/up in visual mode
+map('v', 'J', ":m '>+1<CR>gv=gv")
+map('v', 'K', ":m '<-2<CR>gv=gv")
 
 -------------------- TREE-SITTER ---------------------------
 require('treesitter')
