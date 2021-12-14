@@ -34,7 +34,6 @@ local function init()
     -- Autoclose braces and surround selection with braces...
     use {'cohama/lexima.vim'}
     use {'tpope/vim-surround'}
-    use {'andymass/vim-matchup'}
 
     -- Theme
     use {'wbthomason/vim-nazgul'}
