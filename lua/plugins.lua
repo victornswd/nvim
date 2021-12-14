@@ -9,6 +9,9 @@ local function init()
   require('packer').startup(function()
     use 'wbthomason/packer.nvim' -- Package manager
 
+    use 'lewis6991/impatient.nvim'
+    use 'dstein64/vim-startuptime'
+
     use {
       'nvim-telescope/telescope.nvim',
       requires = { {'nvim-lua/plenary.nvim'} }
