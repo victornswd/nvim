@@ -17,7 +17,7 @@
 
 * clone repo
 * symlink init.lua & lua folder to your nvim config folder, by default:
-  ```
+  ```bash
   ln -s ~/<this repo location>/init.lua ~/.config/nvim/init.lua
   ln -s ~/<this repo location>/lua ~/.config/nvim/lua
   ```
