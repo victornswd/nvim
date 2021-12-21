@@ -33,7 +33,7 @@ cmd [[command! PackerCompile packadd packer.nvim | lua require('plugins').compil
 require('colors')
 
 -------------------- OPTIONS -------------------------------
-opt.completeopt = {'menuone', 'noinsert', 'noselect'}  -- Completion options (for deoplete)
+opt.completeopt = {'menuone', 'noinsert', 'noselect'}
 opt.colorcolumn = {80}
 opt.expandtab = true                -- Use spaces instead of tabs
 opt.number = true                   -- Show line numbers
@@ -112,6 +112,12 @@ cmd [[
 -- Shift + J/K moves selected lines down/up in visual mode
 map('v', 'J', ":m '>+1<CR>gv=gv")
 map('v', 'K', ":m '<-2<CR>gv=gv")
+
+-- Hop
+map("n", "h", "<cmd>lua require'hop'.hint_words()<cr>")
+map("n", "l", "<cmd>lua require'op'.hint_lines()<cr>")
+map("v", "h", "<cmd>lua require'hop'.hint_words()<cr>")
+map("v", "l", "<cmd>lua require'hop'.hint_lines()<cr>")
 
 -------------------- TREE-SITTER ---------------------------
 require('treesitter')
