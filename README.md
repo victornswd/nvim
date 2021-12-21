@@ -21,9 +21,9 @@
   ln -s ~/<this repo location>/init.lua ~/.config/nvim/init.lua
   ln -s ~/<this repo location>/lua ~/.config/nvim/lua
   ```
-* open nvim and ignore the errors (for now)
-* run `:PackerInstall` and wait for it to finish
-* restart nvim
+* run `nvim --headless -u install.lua -c 'autocmd User PackerComplete quitall' -c 'PackerSync'`
+and wait for it to finish installing all the plugins
+* open nvim as normal
 * enjoy!
 
 ## Some keybindings

@@ -14,13 +14,6 @@ end
 g.mapleader=' '
 
 -------------------- PLUGINS -------------------------------
--- Install packer
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
-end
-
 vim.api.nvim_exec(
   [[
   augroup Packer
@@ -62,10 +55,13 @@ opt.smartindent = true              -- Insert indents automatically
 -- opt.hidden = true                  -- Enable background buffers
 -- opt.ignorecase = true               -- Ignore case
 -- opt.joinspaces = false              -- No double spaces with join
+opt.lazyredraw = true
 opt.list = true
 opt.fillchars:append { eob = " " }
 -- opt.listchars:append("eol:↴")
 cmd [[set signcolumn=yes]]
+
+require('packer_compiled')
 
 -------------------- TELESCOPE ------------------------------
 require('telescope').load_extension('fzf')
