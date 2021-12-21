@@ -94,6 +94,7 @@ cmp.setup({
     { name = 'luasnip' },
     { name = 'buffer', keywork_length = 5 },
     { name = 'npm', keyword_length = 4 },
+    { name = 'rg', keyword_length = 4 },
   },
   formatting = {
     format = function(_, vim_item)
