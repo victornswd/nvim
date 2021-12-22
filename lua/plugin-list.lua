@@ -53,9 +53,9 @@ require('packer').startup{function()
 
   -- Statusline
   use {'hoob3rt/lualine.nvim', after = 'rose-pine'}
-  use {'kyazdani42/nvim-web-devicons'}
-  use {'ap/vim-buftabline'}
-  use {'ojroques/nvim-bufdel'}
+  use {'kyazdani42/nvim-web-devicons', event = 'VimEnter'}
+  use {'ap/vim-buftabline', event = 'VimEnter'}
+  use {'ojroques/nvim-bufdel', event = 'VimEnter'}
 
   -- Autocompletion
   use {'neovim/nvim-lspconfig'}
@@ -82,6 +82,7 @@ require('packer').startup{function()
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-nvim-lua',
     'lukas-reineke/cmp-rg',
+    event = 'InsertEnter'
   })
   use 'creativenull/diagnosticls-configs-nvim'
 
@@ -95,12 +96,14 @@ require('packer').startup{function()
 
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
   use {'p00f/nvim-ts-rainbow'}
+  use {'andymass/vim-matchup'}
   use {
     "folke/todo-comments.nvim",
     requires = "nvim-lua/plenary.nvim",
     config = function()
       require("todo-comments").setup()
-    end
+    end,
+    event = 'VimEnter'
   }
   -- TODO: see if Trouble is still required
   -- use {
