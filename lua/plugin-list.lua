@@ -124,7 +124,6 @@ require('packer').startup{function()
 
   -- Dev helpers (linting, project spacing...)
   use {'editorconfig/editorconfig-vim'}
-  -- use {'mattn/emmet-vim'} -- NOTE: is this required if emmet lsp?
   use {
     'yardnsm/vim-import-cost',
     run = 'npm install',

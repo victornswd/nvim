@@ -44,6 +44,9 @@ lsp_installer.on_server_ready(function(server)
       opts.settings = require('lsp.servers.lua').settings
     end
 
+    if server.name == "emmet_ls" then
+      opts.settings = require('lsp.servers.emmet').settings
+    end
 
     -- (How to) Customize the options passed to the server
     -- if server.name == "tsserver" then
