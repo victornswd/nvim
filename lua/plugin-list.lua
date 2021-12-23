@@ -133,9 +133,11 @@ require('packer').startup{function()
     ft = {'javascript', 'javascript.jsx','typescript'}
   }
   use {
-    'heavenshell/vim-jsdoc', -- FIXME: switch to vim-doge
-    run = 'make install',
-    ft = {'javascript', 'javascript.jsx','typescript'}
+    'kkoomen/vim-doge',
+    run = function ()
+      vim.fn['doge#install']()
+    end,
+    ft = {'javascript', 'javascript.jsx','typescript', 'php', 'python'}
   }
   -- use {
   --   'prettier/vim-prettier',
