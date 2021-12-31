@@ -85,25 +85,6 @@ cmd [[set signcolumn=yes]]
 
 require('packer_compiled')
 
--------------------- TELESCOPE ------------------------------
-require('telescope').load_extension('fzf')
-require('telescope').load_extension('vw')
-require('telescope').load_extension('luasnip')
-require('telescope').setup({
-  defaults = {
-    layout_config = {
-      bottom_pane = {
-        preview_cutoff = 0,
-      },
-    },
-  },
-  pickers = {
-    git_files = { theme = 'ivy' },
-    live_grep = { theme = 'ivy' },
-    find_files = { theme = 'ivy' },
-  }
-})
-
 -------------------- MAPPINGS ------------------------------
 _G.project_files = function()
   local opts = {}
@@ -141,41 +122,9 @@ map("n", "l", "<cmd>lua require'op'.hint_lines()<cr>")
 map("v", "h", "<cmd>lua require'hop'.hint_words()<cr>")
 map("v", "l", "<cmd>lua require'hop'.hint_lines()<cr>")
 
--------------------- TREE-SITTER ---------------------------
-require('treesitter')
-
 -------------------- LSP -----------------------------------
 require('lsp.config')
 require('cmp-conf')
-
--------------------- LUALINE -------------------------------
-require'lualine'.setup {
-  options = {
-    icons_enabled = true,
-    theme = 'rose-pine',
-    disabled_filetypes = {},
-    always_divide_middle = true,
-  },
-  sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch',
-                  {'diagnostics', sources={'nvim_diagnostic'}, colored = true}},
-    lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
-    lualine_y = {},
-    lualine_z = {}
-  },
-  tabline = {},
-  extensions = {}
-}
 
 --------------------- VIMWIKI ------------------------------
 cmd [[
@@ -185,7 +134,6 @@ let g:vimwiki_global_ext = 0
 ]]
 
 -------------------- COMMANDS ------------------------------
-vim.api.nvim_set_var('jsdoc_formatter', 'tsdoc')
 cmd 'au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=700}'
 
 -- don't auto commenting new lines

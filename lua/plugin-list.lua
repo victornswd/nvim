@@ -1,3 +1,7 @@
+local function get_config(name)
+  return string.format('require("config/%s")', name)
+end
+
 local use = require('packer').use
 require('packer').startup{function()
   use 'wbthomason/packer.nvim' -- Package manager
@@ -8,6 +12,7 @@ require('packer').startup{function()
   -- Telescope
   use {
     'nvim-telescope/telescope.nvim',
+    config = get_config('telescope'),
     requires = { {'nvim-lua/plenary.nvim'} }
   }
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
@@ -18,28 +23,17 @@ require('packer').startup{function()
   use {'junegunn/vim-easy-align'}
   use {'tpope/vim-repeat'}
   use {'b3nj5m1n/kommentary',
-    config = function()
-      require('kommentary.config').configure_language("default", {
-      prefer_single_line_comments = true,
-    })
-    end
+    config = get_config('kommentary')
   }
   use {
     'phaazon/hop.nvim',
-    config = function()
-      -- you can configure Hop the way you like here; see :h hop-config
-      require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
-    end
+    config = get_config('hop'),
   }
   use {'lukas-reineke/indent-blankline.nvim'}
 
   -- Autoclose braces and surround selection with braces...
   use {'windwp/nvim-autopairs',
-    config = function ()
-      require('nvim-autopairs').setup(
-        { enable_check_bracket_line = false }
-      )
-    end
+    config = get_config('autopairs')
   }
   use {'tpope/vim-surround'}
 
@@ -52,7 +46,10 @@ require('packer').startup{function()
   })
 
   -- Statusline
-  use {'hoob3rt/lualine.nvim', after = 'rose-pine'}
+  use {'hoob3rt/lualine.nvim',
+    config = get_config('lualine'),
+    after = 'rose-pine'
+  }
   use {'kyazdani42/nvim-web-devicons', event = 'VimEnter'}
   use {'ap/vim-buftabline', event = 'VimEnter'}
   use {'ojroques/nvim-bufdel', event = 'VimEnter'}
@@ -94,16 +91,16 @@ require('packer').startup{function()
     },
   })
 
-  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+  use {'nvim-treesitter/nvim-treesitter',
+    config = get_config('treesitter'),
+    run = ':TSUpdate'
+  }
   use {'p00f/nvim-ts-rainbow'}
   use {'andymass/vim-matchup'}
   use {
     "folke/todo-comments.nvim",
     requires = "nvim-lua/plenary.nvim",
-    config = function()
-      require("todo-comments").setup()
-    end,
-    event = 'VimEnter'
+    config = get_config('todo-comments'),
   }
   -- TODO: see if Trouble is still required
   -- use {
@@ -117,13 +114,13 @@ require('packer').startup{function()
   -- Syntax
   use {
     'norcalli/nvim-colorizer.lua',
-    config = [[require('colorizer').setup {'css', 'javascript', 'vim', 'html', lua}]],
+    config = get_config('colorizer'),
   }
   use {
     'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
-    config = function () require('gitsigns').setup() end,
-    event = 'VimEnter'
+    config = get_config('gitsigns'),
+    event = 'BufEnter'
   }
 
   -- Dev helpers (linting, project spacing...)
@@ -145,7 +142,11 @@ require('packer').startup{function()
   --   run = 'npm install',
   --   ft = {'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'}
   -- }
-  use { 'vimwiki/vimwiki', branch = 'dev', event = 'VimEnter' }
+  use { 'vimwiki/vimwiki',
+    config = get_config('vimwiki'),
+    branch = 'dev',
+    event = 'VimEnter'
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
@@ -157,6 +158,7 @@ end,
 config = {
   -- Move to lua dir so impatient.nvim can cache it
   compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
+  max_jobs = 100,
   profile = {
     enable = true,
     threshold = 1
