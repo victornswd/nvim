@@ -21,7 +21,7 @@
   ln -s ~/<this repo location>/init.lua ~/.config/nvim/init.lua
   ln -s ~/<this repo location>/lua ~/.config/nvim/lua
   ```
-* run `nvim --headless -u install.lua -c 'autocmd User PackerComplete quitall' -c 'PackerSync'`
+* run `nvim --headless -u install.lua -c 'autocmd User PackerComplete quitall'`
 and wait for it to finish installing all the plugins
 * open nvim as normal
 * enjoy!
