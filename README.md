@@ -40,7 +40,7 @@
 
 ## Troubleshooting
 
-**Installation failed**
+#### Installation failed
 If the installation failed you can just open nvim with `nvim -u install.lua` and
 just run `:PackerSync` manually. This can also be ran if you currently have a
 Packer based config and don't want to manually delete the plugin folder.
