@@ -21,8 +21,10 @@
   ln -s ~/<this repo location>/init.lua ~/.config/nvim/init.lua
   ln -s ~/<this repo location>/lua ~/.config/nvim/lua
   ```
+* if they exist, remove `packer_compiled.lua` from `~/.config/nvim/plugin` or
+  `~/.config/nvim/plugin` and `~/.local/share/nvim/site/`. If you don't want to 
+  bother with this check the [Troubleshooting](#troubleshooting) section
 * run `nvim --headless -u install.lua -c 'autocmd User PackerComplete quitall'`
-and wait for it to finish installing all the plugins
 * open nvim as normal
 * enjoy!
 
@@ -35,3 +37,10 @@ and wait for it to finish installing all the plugins
 | `<Space>t`               | open diagnostics list            |
 | `<Tab>`/`<Shift><Tab>`   | navigate autocomplete            |
 | `<Space>y`/`<Space>p`    | copy-paste to global clipboard   |
+
+## Troubleshooting
+
+**Installation failed**
+If the installation failed you can just open nvim with `nvim -u install.lua` and
+just run `:PackerSync` manually. This can also be ran if you currently have a
+Packer based config and don't want to manually delete the plugin folder.
