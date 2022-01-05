@@ -143,7 +143,6 @@ require('packer').startup{function()
   --   ft = {'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'}
   -- }
   use { 'vimwiki/vimwiki',
-    config = get_config('vimwiki'),
     branch = 'dev',
     event = 'VimEnter'
   }
