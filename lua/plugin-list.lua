@@ -19,12 +19,13 @@ require('packer').startup{function()
       {'benfowler/telescope-luasnip.nvim', after = 'telescope.nvim'},
       {'nvim-telescope/telescope-fzf-native.nvim' , run ='make', after = 'telescope.nvim'}
     },
-    cmd = {'lua require"telescope.builtin"', 'lua project_files()', 'Telescope'}
+    -- cmd = {'lua require"telescope.builtin"', 'lua project_files()', 'Telescope'}
+    event = 'User ActuallyEditing'
   }
 
   -- Commenting and complex aligning
   use {'junegunn/vim-easy-align', cmd = 'EasyAlign'}
-  use {'tpope/vim-repeat', event = 'BufEnter'}
+  use {'tpope/vim-repeat', event = 'User ActuallyEditing'}
   use {'JoosepAlviste/nvim-ts-context-commentstring',
     after = 'nvim-treesitter'
   }
@@ -35,24 +36,25 @@ require('packer').startup{function()
   use {
     'phaazon/hop.nvim',
     config = get_config('hop'),
-    cmd = {'HopWord', 'HopLine'}
+    event = 'User ActuallyEditing'
   }
   use {
     'lukas-reineke/indent-blankline.nvim',
-    after = 'rose-pine',
+    -- after = 'rose-pine',
     config = get_config('indent-blankline'),
+    event = 'User ActuallyEditing'
   }
 
   -- Autoclose braces and surround selection with braces...
   use {'windwp/nvim-autopairs',
     config = get_config('autopairs'),
-    event = 'BufRead',
+    event = 'User ActuallyEditing'
   }
-  use {'tpope/vim-surround', event = 'BufRead'}
+  use {'tpope/vim-surround', event = 'User ActuallyEditing'}
 
   -- Themes
-  use {'wbthomason/vim-nazgul'}
-  use {'rafamadriz/themes.nvim'}
+  use {'wbthomason/vim-nazgul', event = 'User ActuallyEditing'}
+  use {'rafamadriz/themes.nvim', event = 'User ActuallyEditing'}
   use({
     'rose-pine/neovim',
     as = 'rose-pine',
@@ -64,7 +66,7 @@ require('packer').startup{function()
     after = 'rose-pine'
   }
   use {'kyazdani42/nvim-web-devicons'}
-  use {'ap/vim-buftabline', event = 'BufAdd'} -- FIXME: change w/ lua
+  use {'ap/vim-buftabline', event = 'User ActuallyEditing'} -- FIXME: change w/ lua
   use {'ojroques/nvim-bufdel'}
 
   -- TODO: write an actual config for null-ls
@@ -92,13 +94,19 @@ require('packer').startup{function()
       {'neovim/nvim-lspconfig', config = get_config('lsp.installer')}
     },
     config = get_config('cmp-conf'),
-    -- event = 'InsertEnter'
   })
+  use({
+    'ray-x/lsp_signature.nvim', -- FIXME: set it up
+    'jose-elias-alvarez/nvim-lsp-ts-utils',
+    after = 'nvim-lspconfig'
+  })
+  use { 'creativenull/diagnosticls-configs-nvim', after = 'nvim-lspconfig' }
 
   use {'nvim-treesitter/nvim-treesitter',
     config = get_config('treesitter'),
     run = ':TSUpdate',
     event = 'BufRead'
+    -- event = 'User ActuallyEditing'
   }
   use {'p00f/nvim-ts-rainbow', after = 'nvim-treesitter'}
   use {'andymass/vim-matchup', after = 'nvim-treesitter'}
@@ -106,7 +114,8 @@ require('packer').startup{function()
     "folke/todo-comments.nvim",
     requires = "nvim-lua/plenary.nvim",
     config = get_config('todo-comments'),
-    event = 'BufRead'
+    -- event = 'BufRead'
+    event = 'User ActuallyEditing'
   }
   -- TODO: see if Trouble is still required
   -- use {
@@ -131,7 +140,7 @@ require('packer').startup{function()
   }
 
   -- Dev helpers (linting, project spacing...)
-  use {'editorconfig/editorconfig-vim', event = 'BufRead'}
+  use {'editorconfig/editorconfig-vim', event = 'User ActuallyEditing'}
   use {
     'yardnsm/vim-import-cost',
     run = 'npm install',
@@ -147,7 +156,7 @@ require('packer').startup{function()
   }
   use { 'vimwiki/vimwiki',
     branch = 'dev',
-    event = 'VimEnter'
+    event = 'User ActuallyEditing'
   }
 
   -- Automatically set up your configuration after cloning packer.nvim

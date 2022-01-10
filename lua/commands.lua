@@ -1,3 +1,15 @@
+local function start_screen()
+  if vim.fn.argc() ~= 0 or vim.fn.line2byte '$' ~= -1 or vim.o.insertmode or not vim.o.modifiable then
+    vim.cmd [[ doautocmd User ActuallyEditing ]]
+    return
+  end
+
+  vim.cmd [[set eventignore=all]]
+  vim.cmd [[noautocmd setlocal nomodifiable nomodified]]
+  vim.cmd [[set eventignore=""]]
+  vim.cmd [[ doautocmd User ActuallyEditing ]]
+end
+
 -------------------- PLUGINS -------------------------------
 vim.api.nvim_exec(
   [[
@@ -30,3 +42,5 @@ vim.cmd 'au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch"
 vim.cmd [[au BufEnter * set fo-=c fo-=r fo-=o]]
 -- disable IndentLine for markdown files (avoid concealing)
 vim.cmd [[autocmd FileType markdown let g:indentLine_enabled=0]]
+
+return { start_screen = start_screen }
