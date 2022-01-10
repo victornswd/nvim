@@ -1,7 +1,4 @@
-require('telescope').load_extension('fzf')
-require('telescope').load_extension('vw')
-require('telescope').load_extension('luasnip')
-require('telescope').setup({
+require'telescope'.setup({
   defaults = {
     layout_config = {
       bottom_pane = {
@@ -16,4 +13,9 @@ require('telescope').setup({
   }
 })
 
-
+local extensions = { 'vw', 'luasnip', 'fzf' }
+pcall(function()
+   for _, ext in ipairs(extensions) do
+      require'telescope'.load_extension(ext)
+   end
+end)
