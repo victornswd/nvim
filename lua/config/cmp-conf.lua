@@ -1,5 +1,3 @@
-require('lsp.installer')
-
 local lsp_symbols = {
   Text = " ",
   Method = " ",
@@ -27,17 +25,6 @@ local lsp_symbols = {
   Operator = "ﬦ ",
   TypeParameter = " ",
 }
-
-vim.cmd[[
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> gh    <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gca   <cmd>:Telescope lsp_code_actions<CR>
-nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> gR    <cmd>lua vim.lsp.buf.rename()<CR>
-nnoremap <silent><leader>fo <cmd>lua vim.lsp.buf.formatting()<CR>
-]]
 
 -- Setup nvim-cmp.
 local cmp = require'cmp'

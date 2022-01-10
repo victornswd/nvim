@@ -8,6 +8,3 @@ require('packer_compiled')
 
 require('mappings')
 require('commands')
-
-require('lsp.config')
-require('cmp-conf')

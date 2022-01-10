@@ -35,7 +35,19 @@ map('v', 'J', ":m '>+1<CR>gv=gv")
 map('v', 'K', ":m '<-2<CR>gv=gv")
 
 -- Hop
-map("n", "h", "<cmd>lua require'hop'.hint_words()<cr>")
-map("n", "l", "<cmd>lua require'hop'.hint_lines()<cr>")
-map("v", "h", "<cmd>lua require'hop'.hint_words()<cr>")
-map("v", "l", "<cmd>lua require'hop'.hint_lines()<cr>")
+map("n", "h", "<cmd>:HopWord<cr>")
+map("n", "l", "<cmd>:HopLine<cr>")
+map("v", "h", "<cmd>:HopWord<cr>")
+map("v", "l", "<cmd>:HopLine<cr>")
+
+-- LSP
+vim.cmd[[
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gh    <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gca   <cmd>:Telescope lsp_code_actions<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gR    <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent><leader>fo <cmd>lua vim.lsp.buf.formatting()<CR>
+]]

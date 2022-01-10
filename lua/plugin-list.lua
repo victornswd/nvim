@@ -7,35 +7,48 @@ require('packer').startup{function()
   use 'wbthomason/packer.nvim' -- Package manager
 
   use 'lewis6991/impatient.nvim'
-  use 'tweekmonster/startuptime.vim'
+  use 'nathom/filetype.nvim'
+  use 'nvim-lua/plenary.nvim'
+  use {'tweekmonster/startuptime.vim', cmd = 'StartupTime'}
 
-  -- Telescope
   use {
     'nvim-telescope/telescope.nvim',
     config = get_config('telescope'),
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = {
+      {'ElPiloto/telescope-vimwiki.nvim', after = 'telescope.nvim'},
+      {'benfowler/telescope-luasnip.nvim', after = 'telescope.nvim'},
+      {'nvim-telescope/telescope-fzf-native.nvim' , run ='make', after = 'telescope.nvim'}
+    },
+    cmd = {'lua require"telescope.builtin"', 'lua project_files()', 'Telescope'}
   }
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  use {'ElPiloto/telescope-vimwiki.nvim' }
-  use 'benfowler/telescope-luasnip.nvim'
 
   -- Commenting and complex aligning
-  use {'junegunn/vim-easy-align'}
-  use {'tpope/vim-repeat'}
-  use {'b3nj5m1n/kommentary',
-    config = get_config('kommentary')
+  use {'junegunn/vim-easy-align', cmd = 'EasyAlign'}
+  use {'tpope/vim-repeat', event = 'BufEnter'}
+  use {'JoosepAlviste/nvim-ts-context-commentstring',
+    after = 'nvim-treesitter'
+  }
+  use {'terrortylor/nvim-comment',
+    config = get_config('comment'),
+    after = 'nvim-ts-context-commentstring'
   }
   use {
     'phaazon/hop.nvim',
     config = get_config('hop'),
+    cmd = {'HopWord', 'HopLine'}
   }
-  use {'lukas-reineke/indent-blankline.nvim'}
+  use {
+    'lukas-reineke/indent-blankline.nvim',
+    after = 'rose-pine',
+    config = get_config('indent-blankline'),
+  }
 
   -- Autoclose braces and surround selection with braces...
   use {'windwp/nvim-autopairs',
-    config = get_config('autopairs')
+    config = get_config('autopairs'),
+    event = 'BufRead',
   }
-  use {'tpope/vim-surround'}
+  use {'tpope/vim-surround', event = 'BufRead'}
 
   -- Themes
   use {'wbthomason/vim-nazgul'}
@@ -50,17 +63,10 @@ require('packer').startup{function()
     config = get_config('lualine'),
     after = 'rose-pine'
   }
-  use {'kyazdani42/nvim-web-devicons', event = 'VimEnter'}
-  use {'ap/vim-buftabline', event = 'VimEnter'}
-  use {'ojroques/nvim-bufdel', event = 'VimEnter'}
+  use {'kyazdani42/nvim-web-devicons'}
+  use {'ap/vim-buftabline', event = 'BufAdd'} -- FIXME: change w/ lua
+  use {'ojroques/nvim-bufdel'}
 
-  -- Autocompletion
-  use {'neovim/nvim-lspconfig'}
-  use {'williamboman/nvim-lsp-installer'}
-  use({
-      'ray-x/lsp_signature.nvim', -- FIXME: set it up
-      'jose-elias-alvarez/nvim-lsp-ts-utils', --  FIXME: set it up
-  })
   -- TODO: write an actual config for null-ls
   -- use({
   --   'jose-elias-alvarez/null-ls.nvim',
@@ -68,39 +74,39 @@ require('packer').startup{function()
   --     'nvim-lua/plenary.nvim',
   --     'neovim/nvim-lspconfig',
   --   },
+  --   after="nvim-lspconfig"
   -- })
 
-  -- Completion
   use({
     'hrsh7th/nvim-cmp',
-    'saadparwaiz1/cmp_luasnip',
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-buffer',
-    'hrsh7th/cmp-path',
-    'hrsh7th/cmp-nvim-lua',
-    'lukas-reineke/cmp-rg',
-    event = 'InsertEnter'
-  })
-  use 'creativenull/diagnosticls-configs-nvim'
-
-  -- Snippets
-  use({
-    'L3MON4D3/luasnip',
     requires = {
-      'rafamadriz/friendly-snippets',
+      { 'hrsh7th/cmp-nvim-lua'},
+      { 'hrsh7th/cmp-nvim-lsp'},
+      { 'hrsh7th/cmp-buffer'},
+      { 'L3MON4D3/luasnip'},
+      { 'saadparwaiz1/cmp_luasnip'},
+      { 'rafamadriz/friendly-snippets'},
+      { 'hrsh7th/cmp-path'},
+      {'lukas-reineke/cmp-rg'},
+      {'williamboman/nvim-lsp-installer', config = get_config('lsp.config')},
+      {'neovim/nvim-lspconfig', config = get_config('lsp.installer')}
     },
+    config = get_config('cmp-conf'),
+    -- event = 'InsertEnter'
   })
 
   use {'nvim-treesitter/nvim-treesitter',
     config = get_config('treesitter'),
-    run = ':TSUpdate'
+    run = ':TSUpdate',
+    event = 'BufRead'
   }
-  use {'p00f/nvim-ts-rainbow'}
-  use {'andymass/vim-matchup'}
+  use {'p00f/nvim-ts-rainbow', after = 'nvim-treesitter'}
+  use {'andymass/vim-matchup', after = 'nvim-treesitter'}
   use {
     "folke/todo-comments.nvim",
     requires = "nvim-lua/plenary.nvim",
     config = get_config('todo-comments'),
+    event = 'BufRead'
   }
   -- TODO: see if Trouble is still required
   -- use {
@@ -115,20 +121,22 @@ require('packer').startup{function()
   use {
     'norcalli/nvim-colorizer.lua',
     config = get_config('colorizer'),
+    ft = {'css', 'javascript', 'vim', 'html', 'lua'}
   }
   use {
     'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
     config = get_config('gitsigns'),
-    event = 'BufEnter'
+    after = 'nvim-treesitter'
   }
 
   -- Dev helpers (linting, project spacing...)
-  use {'editorconfig/editorconfig-vim'}
+  use {'editorconfig/editorconfig-vim', event = 'BufRead'}
   use {
     'yardnsm/vim-import-cost',
     run = 'npm install',
-    ft = {'javascript', 'javascript.jsx','typescript'}
+    ft = {'javascript', 'javascript.jsx','typescript'},
+    cmd = 'ImportCost'
   }
   use {
     'kkoomen/vim-doge',
@@ -137,11 +145,6 @@ require('packer').startup{function()
     end,
     ft = {'javascript', 'javascript.jsx','typescript', 'php', 'python'}
   }
-  -- use {
-  --   'prettier/vim-prettier',
-  --   run = 'npm install',
-  --   ft = {'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'}
-  -- }
   use { 'vimwiki/vimwiki',
     branch = 'dev',
     event = 'VimEnter'
