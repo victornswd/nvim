@@ -100,9 +100,9 @@ require('packer').startup{function()
     config = get_config('cmp-conf'),
   })
   use({
-    'ray-x/lsp_signature.nvim', -- FIXME: set it up
+    'ray-x/lsp_signature.nvim', -- NOTE: is this plugin helpful or distracting?
     'jose-elias-alvarez/nvim-lsp-ts-utils',
-    after = 'nvim-lspconfig'
+    after = 'nvim-lspconfig',
   })
   use { 'creativenull/diagnosticls-configs-nvim', after = 'nvim-lspconfig' }
 
