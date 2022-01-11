@@ -66,7 +66,11 @@ require('packer').startup{function()
     after = 'rose-pine'
   }
   use {'kyazdani42/nvim-web-devicons'}
-  use {'ap/vim-buftabline', event = 'User ActuallyEditing'} -- FIXME: change w/ lua
+  use {'akinsho/bufferline.nvim',
+    requires = 'kyazdani42/nvim-web-devicons',
+    event = 'User ActuallyEditing',
+    config = get_config('bufferline'),
+  }
   use {'ojroques/nvim-bufdel'}
 
   -- TODO: write an actual config for null-ls
