@@ -50,7 +50,7 @@ cmp.setup({
     end,
   },
   mapping = {
-    ["<cr>"] = cmp.mapping.confirm({select = true}),
+    ["<cr>"] = cmp.mapping.confirm({select = false}),
     -- ["<s-tab>"] = cmp.mapping.select_prev_item(),
     -- ["<tab>"] = cmp.mapping.select_next_item(),
     ["<Tab>"] = cmp.mapping(function(fallback)
