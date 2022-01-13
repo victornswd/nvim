@@ -25,7 +25,6 @@ require('packer').startup{function()
       {'benfowler/telescope-luasnip.nvim', after = 'telescope.nvim'},
       {'nvim-telescope/telescope-fzf-native.nvim' , run ='make', after = 'telescope.nvim'}
     },
-    -- cmd = {'lua require"telescope.builtin"', 'lua project_files()', 'Telescope'}
     event = 'User ActuallyEditing'
   }
 
