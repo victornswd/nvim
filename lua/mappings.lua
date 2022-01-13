@@ -10,44 +10,95 @@ _G.project_files = function()
   if not ok then require"telescope.builtin".find_files(opts) end
 end
 
-map('v', '<leader>y', '"+y')       -- Copy to clipboard in visual modes
-map('n', '<leader>p', '"+p')       -- Copy to clipboard in visual modes
+function EscapePair()
+    local closers = {")", "]", "}", ">", "'", '"', "`", ","}
+    local line = vim.api.nvim_get_current_line()
+    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+    local after = line:sub(col + 1, -1)
+    local closer_col = #after + 1
+    local closer_i = nil
+    for i, closer in ipairs(closers) do
+        local cur_index, _ = after:find(closer)
+        if cur_index and (cur_index < closer_col) then
+            closer_col = cur_index
+            closer_i = i
+        end
+    end
+    if closer_i then
+        vim.api.nvim_win_set_cursor(0, {row, col + closer_col})
+    else
+        vim.api.nvim_win_set_cursor(0, {row, col + 1})
+    end
+end
 
-map('i', '<C-w>', '<C-g>u<C-w>')  -- Make <C-w> undo-friendly
--- <Tab> to navigate the completion menu
-map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', {expr = true})
-map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
-
-map('n', '<C-l>', '<cmd>noh<CR>')    -- Clear highlights
-map('c', 'W', 'w')
-map('', '<leader>o', '<cmd>lua project_files()<CR>')
-map('', '<leader>c', ':Telescope colorscheme <CR>')
-map('', '<leader>f', ':Telescope live_grep <CR>')
-map('n', '<leader>s', ':source ~/.config/nvim/init.lua<CR>')
-map('', '<leader>t', ':Telescope diagnostics bufnr=0<CR>')
 vim.cmd [[
 :cnoreabbrev wq w<bar>BufDel
 :cnoreabbrev q BufDel
 :cnoreabbrev Q q
+:cnoreabbrev W w
 ]]
--- Shift + J/K moves selected lines down/up in visual mode
-map('v', 'J', ":m '>+1<CR>gv=gv")
-map('v', 'K', ":m '<-2<CR>gv=gv")
+
+local wk = require("which-key")
+
+local map_normal_leader = {
+  y = { '"+y', 'Yank to global clipboard' },
+  p = { '"+p', 'Paste from global clipboard' },
+  o = { '<cmd>lua project_files()<CR>', 'Open file search' },
+  c = { ':Telescope colorscheme <CR>', 'Colorschemes' },
+  f = { ':Telescope live_grep <CR>', 'Search for word in folder' },
+  s = { ':source ~/.config/nvim/init.lua<CR>', 'Reload nvim config' },
+  t = { ':Telescope diagnostics bufnr=0<CR>', 'Show file diagnostics' },
+  ["fo"] = { '<cmd>lua vim.lsp.buf.formatting()<CR>', 'Format buffer with LSP'},
+}
+wk.register({
+  y = { '"+y', 'Yank to global clipboard' }
+}, { prefix = "<leader>", mode = "v" })
+
+local map_normal_g = {
+  c = {
+    a = { "<cmd>Telescope lsp_code_actions<CR>", "Code actions" }
+  },
+  d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition" },
+  h = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Display hover tooltip" },
+  D = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to implementation " },
+  t = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition" },
+  r = { "<cmd>Telescope lsp_references<CR>", "References" },
+  R = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename all references" },
+}
 
 -- Hop
-map("n", "h", "<cmd>:HopWord<cr>")
-map("n", "l", "<cmd>:HopLine<cr>")
-map("v", "h", "<cmd>:HopWord<cr>")
-map("v", "l", "<cmd>:HopLine<cr>")
+local map_hop = {
+  h = { "<cmd>:HopWord<cr>", "Hop Word"},
+  l = { "<cmd>:HopLine<cr>", "Hop Line"},
+}
 
--- LSP
-vim.cmd[[
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> gh    <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gca   <cmd>:Telescope lsp_code_actions<CR>
-nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> gR    <cmd>lua vim.lsp.buf.rename()<CR>
-nnoremap <silent><leader>fo <cmd>lua vim.lsp.buf.formatting()<CR>
-]]
+local misc_normal = {
+  ['<C-l>'] = { '<cmd>noh<CR>', 'Clear highlighted text' },
+  ['<C-k>'] = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Function signature help' },
+}
+
+local misc_visual = {
+  J = { ":m '>+1<CR>gv=gv", "Move down selected line" },
+  K = { ":m '<-2<CR>gv=gv", "Move up selected line" },
+}
+
+local misc_insert = {
+  ['<C-w>'] = { '<C-g>u<C-w>', 'Make <C-w> undo-friendly' },
+  ['<C-c>'] = { '<cmd>lua EscapePair()<CR>', 'Escape pairs while in insert mode' },
+}
+
+wk.register(map_normal_leader, { prefix = "<leader>" })
+wk.register(map_normal_g, { prefix = "g" })
+wk.register(map_hop, { mode = 'n' })
+wk.register(map_hop, { mode = 'v' })
+wk.register(misc_normal, { mode = 'n' })
+wk.register(misc_visual, { mode = 'v' })
+wk.register(misc_insert, { mode = 'i' })
+
+-- Shift + J/K moves selected lines down/up in visual mode
+-- map('v', 'J', ":m '>+1<CR>gv=gv")
+-- map('v', 'K', ":m '<-2<CR>gv=gv")
+-- vim.api.nvim_set_keymap('i', '<C-c>', '<cmd>lua EscapePair()<CR>', { noremap = true, silent = true})
+-- map('i', '<C-w>', '<C-g>u<C-w>')  -- Make <C-w> undo-friendly
+-- map('n', '<C-l>', '<cmd>noh<CR>')    -- Clear highlights
+-- nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>

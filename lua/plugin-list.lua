@@ -10,6 +10,12 @@ require('packer').startup{function()
   use 'nathom/filetype.nvim'
   use 'nvim-lua/plenary.nvim'
   use {'tweekmonster/startuptime.vim', cmd = 'StartupTime'}
+  use {
+    -- FIXME: check if issue is fixed https://github.com/folke/which-key.nvim/issues/226
+    'zeertzjq/which-key.nvim',
+    branch = 'patch-1',
+    event = 'User ActuallyEditing'
+  }
 
   use {
     'nvim-telescope/telescope.nvim',
