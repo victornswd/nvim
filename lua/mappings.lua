@@ -1,9 +1,3 @@
-local function map(mode, lhs, rhs, opts)
-  local options = {noremap = true}
-  if opts then options = vim.tbl_extend('force', options, opts) end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
 _G.project_files = function()
   local opts = {}
   local ok = pcall(require"telescope.builtin".git_files, opts)
