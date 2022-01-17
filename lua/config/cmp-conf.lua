@@ -50,7 +50,10 @@ cmp.setup({
     end,
   },
   mapping = {
-    ["<cr>"] = cmp.mapping.confirm({select = false}),
+    ["<cr>"] = cmp.mapping.confirm({
+      select = false,
+      behavior = cmp.ConfirmBehavior.Replace
+    }),
     -- ["<s-tab>"] = cmp.mapping.select_prev_item(),
     -- ["<tab>"] = cmp.mapping.select_next_item(),
     ["<Tab>"] = cmp.mapping(function(fallback)
