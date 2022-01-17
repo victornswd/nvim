@@ -29,7 +29,7 @@ require('packer').startup{function()
   }
 
   -- Commenting and complex aligning
-  use {'junegunn/vim-easy-align', cmd = 'EasyAlign'}
+  use {'junegunn/vim-easy-align', cmd = {'EasyAlign', 'LiveEasyAlign'}}
   use {'tpope/vim-repeat', event = 'User ActuallyEditing'}
   use {'JoosepAlviste/nvim-ts-context-commentstring',
     after = 'nvim-treesitter'
