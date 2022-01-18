@@ -28,15 +28,40 @@
 * open nvim as normal
 * enjoy!
 
-## Some keybindings
+## Keybindings
 
-| Keys                     | Action                           |
-|------------------------- | -------------------------------- |
-| `<Space>o`               | open files                       |
-| `<Space>s`               | reload `init.lua`. Useful if you edited your nvim config and don't want to restart your nvim   |
-| `<Space>t`               | open diagnostics list            |
-| `<Tab>`/`<Shift><Tab>`   | navigate autocomplete            |
-| `<Space>y`/`<Space>p`    | copy-paste to global clipboard   |
+### Generic actions
+
+| Keys                      | Action                                |
+| ------------------------- | --------------------------------      |
+| `<Space>o`                | Open file search                      |
+| `<Space>s`                | Reload nvim config                    |
+| `<Space>t`                | Show file diagnostics                 |
+| `<Tab>`/`<Shift><Tab>`    | navigate autocomplete                 |
+| `<Space>y`/`<Space>p`     | copy-paste to global clipboard        |
+| `<Space>c`                | Colorschemes                          |
+| `<Space>f`                | Search for word in folder             |
+| `h`                       | Hop to word                           |
+| `l`                       | Hop to line                           |
+| `<Ctrl>l`                 | Clear highlighted text                |
+| `:Q`                      | Close nvim with all open buffers      |
+| `:q`                      | Close current buffer                  |
+| `:W`/`:w`                 | Save current buffer                   |
+| `J`                       | Move down selected line (visual only) |
+| `K`                       | Move up selected line (visual only)   |
+
+### LSP
+| Keys                      | Action                           |
+| ------------------------- | -------------------------------- |
+| `<Space>fo`               | Format buffer with LSP           |
+| `gca`                     | Code actions                     |
+| `gd`                      | Go to definition                 |
+| `gh`                      | Display hover tooltip            |
+| `gD`                      | Go to implementation             |
+| `gt`                      | Go to type definition            |
+| `gr`                      | References                       |
+| `gR`                      | Rename all references            |
+| `<Ctrl>k`                 | Function signature help          |
 
 ## Troubleshooting
 
