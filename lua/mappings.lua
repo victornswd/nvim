@@ -64,6 +64,8 @@ local map_normal_g = {
 local map_hop = {
   h = { "<cmd>:HopWord<cr>", "Hop Word"},
   l = { "<cmd>:HopLine<cr>", "Hop Line"},
+  s = { "<cmd>:HopChar1<cr>", "Hop Line"},
+  S = { "<cmd>:HopChar2<cr>", "Hop Line"},
 }
 
 local misc_normal = {
@@ -76,6 +78,7 @@ local misc_visual = {
   K = { ":m '<-2<CR>gv=gv", "Move up selected line" },
 }
 
+-- TODO: document in README
 local misc_insert = {
   ['<C-w>'] = { '<C-g>u<C-w>', 'Make <C-w> undo-friendly' },
   ['<C-c>'] = { '<cmd>lua EscapePair()<CR>', 'Escape pairs while in insert mode' },
