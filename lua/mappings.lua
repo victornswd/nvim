@@ -91,11 +91,3 @@ wk.register(map_hop, { mode = 'v' })
 wk.register(misc_normal, { mode = 'n' })
 wk.register(misc_visual, { mode = 'v' })
 wk.register(misc_insert, { mode = 'i' })
-
--- Shift + J/K moves selected lines down/up in visual mode
--- map('v', 'J', ":m '>+1<CR>gv=gv")
--- map('v', 'K', ":m '<-2<CR>gv=gv")
--- vim.api.nvim_set_keymap('i', '<C-c>', '<cmd>lua EscapePair()<CR>', { noremap = true, silent = true})
--- map('i', '<C-w>', '<C-g>u<C-w>')  -- Make <C-w> undo-friendly
--- map('n', '<C-l>', '<cmd>noh<CR>')    -- Clear highlights
--- nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
