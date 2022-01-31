@@ -7,5 +7,6 @@ require('bufferline').setup{
     end,
     show_buffer_close_icons = false,
     show_close_icon = false,
+    max_prefix_length = 5,
   }
 }
