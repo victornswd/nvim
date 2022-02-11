@@ -1,6 +1,8 @@
 
 # nvim init.lua
 
+![screenshot](screenshot.png) 
+
 ## Prerequisites
 
 * [Neovim](http://neovim.io/) 0.5+
@@ -10,7 +12,7 @@
   if you are using this config on a Mac, or just disable `tree-sitter-haskell` 
   in the config
 * [NerdFont](https://www.nerdfonts.com/font-downloads) with ligature support for
-  the status line. I use FiraCode ;)
+  the status line. I use [Delugia Code](https://github.com/adam7/delugia-code)
 * `xclip`/`xsel` required on Linux for access to the global clipboard
 
 ## Getting started
