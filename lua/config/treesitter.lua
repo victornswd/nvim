@@ -2,6 +2,8 @@ require 'nvim-treesitter.install'.compilers = { "gcc" }
 local ts = require 'nvim-treesitter.configs'
 ts.setup {
   ensure_installed = 'all',
+  -- FIXME: check this issue https://github.com/claytonrcarter/tree-sitter-phpdoc/issues/15
+  ignore_install = { 'phpdoc' },
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = true
