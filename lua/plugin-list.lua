@@ -56,11 +56,13 @@ require('packer').startup{function()
   use {'tpope/vim-surround', event = 'User ActuallyEditing'}
 
   -- Themes
+  use 'NvChad/nvim-base16.lua'
+  use 'echasnovski/mini.nvim'
   use {'wbthomason/vim-nazgul', event = 'User ActuallyEditing'}
-  use {'rafamadriz/themes.nvim', event = 'User ActuallyEditing'}
   use({
     'rose-pine/neovim',
     as = 'rose-pine',
+    event = 'User ActuallyEditing'
   })
 
   -- Statusline

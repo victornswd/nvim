@@ -1,6 +1,11 @@
--- set the colors manually from the rose-pine theme
-vim.cmd [[highlight IndentBlanklineChar guifg=#59546d gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineContextChar guifg=#c4a7e7 gui=nocombine]]
+-- set the colors manually
+local colors = require("hl_themes.everforest")
+local fg = function(group, col)
+  vim.cmd("hi " .. group .. " guifg=" .. col)
+end
+
+fg("IndentBlanklineChar", colors.one_bg3)
+fg("IndentBlanklineContextChar", colors.dark_purple)
 
 require("indent_blankline").setup {
   space_char_blankline = " ",
