@@ -17,6 +17,9 @@
 
 ## Getting started
 
+***NOTE:*** Use the tagged releases for a more stable version of the config, the
+git branch might be unstable
+
 * clone repo
 * symlink init.lua & lua folder to your nvim config folder, by default:
   ```bash
