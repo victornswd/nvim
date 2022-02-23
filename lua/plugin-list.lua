@@ -66,9 +66,13 @@ require('packer').startup{function()
   })
 
   -- Statusline
-  use {'hoob3rt/lualine.nvim',
-    config = get_config('lualine'),
-    after = 'rose-pine'
+  -- use {'hoob3rt/lualine.nvim',
+  --   config = get_config('lualine'),
+  --   after = 'rose-pine'
+  -- }
+  use {'feline-nvim/feline.nvim',
+    config = get_config('feline'),
+    -- after = 'rose-pine'
   }
   use {'kyazdani42/nvim-web-devicons'}
   use {'akinsho/bufferline.nvim',
