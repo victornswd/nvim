@@ -6,9 +6,11 @@ local black2 = colors.black2
 local blue = colors.blue
 local darker_black = colors.darker_black
 local folder_bg = colors.folder_bg
+local vibrant_green  = colors.vibrant_green
 local green = colors.green
 local grey = colors.grey
 local grey_fg = colors.grey_fg
+local light_grey = colors.light_grey
 local line = colors.line
 local nord_blue = colors.nord_blue
 local one_bg = colors.one_bg
@@ -22,9 +24,6 @@ local orange = colors.orange
 local one_bg3 = colors.one_bg3
 
 -- functions for setting highlights
--- local fg = require("core.utils").fg
--- local fg_bg = require("core.utils").fg_bg
--- local bg = require("core.utils").bg
 local fg = function(group, col)
   cmd("hi " .. group .. " guifg=" .. col)
 end
@@ -70,13 +69,6 @@ fg("NvimInternalError", red)
 fg("VertSplit", one_bg2)
 
 -- [[ Plugin Highlights
-
--- Dashboard
-fg("DashboardCenter", grey_fg)
-fg("DashboardFooter", grey_fg)
-fg("DashboardHeader", grey_fg)
-fg("DashboardShortcut", grey_fg)
-
 -- Git signs
 fg_bg("DiffAdd", blue, "NONE")
 fg_bg("DiffChange", grey_fg, "NONE")
@@ -111,3 +103,5 @@ fg_bg("TelescopeResultsTitle", darker_black, darker_black)
 bg("TelescopeSelection", black2)
 
 vim.cmd "hi Function gui=italic"
+vim.cmd ("hi markdownTSTitle guifg=" .. vibrant_green .. " gui=bold")
+vim.cmd ("hi TSPunctSpecial  guifg=" .. vibrant_green .. " gui=bold")
