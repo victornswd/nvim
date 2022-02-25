@@ -51,15 +51,15 @@ require('packer').startup{function()
   }
 
   -- Autoclose braces and surround selection with braces...
-  use {'windwp/nvim-autopairs',
-    config = get_config('autopairs'),
-    event = 'User ActuallyEditing'
-  }
   use {'tpope/vim-surround', event = 'User ActuallyEditing'}
+  use {
+    'echasnovski/mini.nvim',
+    event= 'InsertEnter',
+    config = get_config('minipairs')
+  }
 
   -- Themes
   use 'NvChad/nvim-base16.lua'
-  use 'echasnovski/mini.nvim'
   use {'wbthomason/vim-nazgul', event = 'User ActuallyEditing'}
   use({
     'rose-pine/neovim',
