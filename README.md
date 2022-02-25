@@ -1,4 +1,3 @@
-
 # nvim init.lua
 
 ![screenshot](screenshot.png) 
