@@ -12,7 +12,7 @@ require('packer').startup{function()
   use {'tweekmonster/startuptime.vim', cmd = 'StartupTime'}
   use {
     'folke/which-key.nvim',
-    -- event = 'User ActuallyEditing'
+    event = 'User ActuallyEditing'
   }
 
   use {
