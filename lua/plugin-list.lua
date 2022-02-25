@@ -15,6 +15,8 @@ require('packer').startup{function()
     event = 'User ActuallyEditing'
   }
 
+  use {'psliwka/termcolors.nvim', cmd='TermcolorsShow'}
+
   use {
     'nvim-telescope/telescope.nvim',
     config = get_config('telescope'),
