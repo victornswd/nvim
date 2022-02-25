@@ -32,62 +32,64 @@ vim.cmd [[
 :cnoreabbrev W w
 ]]
 
-local wk = require("which-key")
+local ok, wk = pcall(require, "which-key")
+-- local wk = require"which-key"
+if ok then
+  local map_normal_leader = {
+    y = { '"+y', 'Yank to global clipboard' },
+    p = { '"+p', 'Paste from global clipboard' },
+    o = { '<cmd>lua project_files()<CR>', 'Open file search' },
+    c = { ':Telescope colorscheme <CR>', 'Colorschemes' },
+    f = { ':Telescope live_grep <CR>', 'Search for word in folder' },
+    s = { ':source ~/.config/nvim/init.lua<CR>', 'Reload nvim config' },
+    t = { ':Telescope diagnostics bufnr=0<CR>', 'Show file diagnostics' },
+    ["fo"] = { '<cmd>lua vim.lsp.buf.formatting()<CR>', 'Format buffer with LSP'},
+  }
+  wk.register({
+    y = { '"+y', 'Yank to global clipboard' }
+  }, { prefix = "<leader>", mode = "v" })
 
-local map_normal_leader = {
-  y = { '"+y', 'Yank to global clipboard' },
-  p = { '"+p', 'Paste from global clipboard' },
-  o = { '<cmd>lua project_files()<CR>', 'Open file search' },
-  c = { ':Telescope colorscheme <CR>', 'Colorschemes' },
-  f = { ':Telescope live_grep <CR>', 'Search for word in folder' },
-  s = { ':source ~/.config/nvim/init.lua<CR>', 'Reload nvim config' },
-  t = { ':Telescope diagnostics bufnr=0<CR>', 'Show file diagnostics' },
-  ["fo"] = { '<cmd>lua vim.lsp.buf.formatting()<CR>', 'Format buffer with LSP'},
-}
-wk.register({
-  y = { '"+y', 'Yank to global clipboard' }
-}, { prefix = "<leader>", mode = "v" })
+  local map_normal_g = {
+    c = {
+      a = { "<cmd>Telescope lsp_code_actions<CR>", "Code actions" }
+    },
+    d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition" },
+    h = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Display hover tooltip" },
+    D = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to implementation " },
+    t = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition" },
+    r = { "<cmd>Telescope lsp_references<CR>", "References" },
+    R = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename all references" },
+  }
 
-local map_normal_g = {
-  c = {
-    a = { "<cmd>Telescope lsp_code_actions<CR>", "Code actions" }
-  },
-  d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition" },
-  h = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Display hover tooltip" },
-  D = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to implementation " },
-  t = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition" },
-  r = { "<cmd>Telescope lsp_references<CR>", "References" },
-  R = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename all references" },
-}
+  -- Hop
+  local map_hop = {
+    h = { "<cmd>:HopWord<cr>", "Hop Word"},
+    l = { "<cmd>:HopLine<cr>", "Hop Line"},
+    s = { "<cmd>:HopChar1<cr>", "Hop Line"},
+    S = { "<cmd>:HopChar2<cr>", "Hop Line"},
+  }
 
--- Hop
-local map_hop = {
-  h = { "<cmd>:HopWord<cr>", "Hop Word"},
-  l = { "<cmd>:HopLine<cr>", "Hop Line"},
-  s = { "<cmd>:HopChar1<cr>", "Hop Line"},
-  S = { "<cmd>:HopChar2<cr>", "Hop Line"},
-}
+  local misc_normal = {
+    ['<C-l>'] = { '<cmd>noh<CR>', 'Clear highlighted text' },
+    ['<C-k>'] = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Function signature help' },
+  }
 
-local misc_normal = {
-  ['<C-l>'] = { '<cmd>noh<CR>', 'Clear highlighted text' },
-  ['<C-k>'] = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Function signature help' },
-}
+  local misc_visual = {
+    J = { ":m '>+1<CR>gv=gv", "Move down selected line" },
+    K = { ":m '<-2<CR>gv=gv", "Move up selected line" },
+  }
 
-local misc_visual = {
-  J = { ":m '>+1<CR>gv=gv", "Move down selected line" },
-  K = { ":m '<-2<CR>gv=gv", "Move up selected line" },
-}
+  -- TODO: document in README
+  local misc_insert = {
+    ['<C-w>'] = { '<C-g>u<C-w>', 'Make <C-w> undo-friendly' },
+    ['<C-c>'] = { '<cmd>lua EscapePair()<CR>', 'Escape pairs while in insert mode' },
+  }
 
--- TODO: document in README
-local misc_insert = {
-  ['<C-w>'] = { '<C-g>u<C-w>', 'Make <C-w> undo-friendly' },
-  ['<C-c>'] = { '<cmd>lua EscapePair()<CR>', 'Escape pairs while in insert mode' },
-}
-
-wk.register(map_normal_leader, { prefix = "<leader>" })
-wk.register(map_normal_g, { prefix = "g" })
-wk.register(map_hop, { mode = 'n' })
-wk.register(map_hop, { mode = 'v' })
-wk.register(misc_normal, { mode = 'n' })
-wk.register(misc_visual, { mode = 'v' })
-wk.register(misc_insert, { mode = 'i' })
+  wk.register(map_normal_leader, { prefix = "<leader>" })
+  wk.register(map_normal_g, { prefix = "g" })
+  wk.register(map_hop, { mode = 'n' })
+  wk.register(map_hop, { mode = 'v' })
+  wk.register(misc_normal, { mode = 'n' })
+  wk.register(misc_visual, { mode = 'v' })
+  wk.register(misc_insert, { mode = 'i' })
+end
