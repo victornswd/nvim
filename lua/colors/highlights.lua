@@ -8,6 +8,7 @@ local darker_black = colors.darker_black
 local folder_bg = colors.folder_bg
 local vibrant_green  = colors.vibrant_green
 local green = colors.green
+local pink = colors.pink
 local grey = colors.grey
 local grey_fg = colors.grey_fg
 local light_grey = colors.light_grey
@@ -17,6 +18,7 @@ local one_bg = colors.one_bg
 local one_bg2 = colors.one_bg2
 local pmenu_bg = colors.pmenu_bg
 local purple = colors.purple
+local dark_purple = colors.dark_purple
 local red = colors.red
 local white = colors.white
 local yellow = colors.yellow
@@ -103,5 +105,7 @@ fg_bg("TelescopeResultsTitle", darker_black, darker_black)
 bg("TelescopeSelection", black2)
 
 vim.cmd "hi Function gui=italic"
+vim.cmd ("hi Error gui=italic guibg=" .. grey)
+bg("MatchParen", grey)
 vim.cmd ("hi markdownTSTitle guifg=" .. vibrant_green .. " gui=bold")
 vim.cmd ("hi TSPunctSpecial  guifg=" .. vibrant_green .. " gui=bold")
