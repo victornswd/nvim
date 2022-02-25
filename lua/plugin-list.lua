@@ -74,7 +74,7 @@ require('packer').startup{function()
   -- }
   use {'feline-nvim/feline.nvim',
     config = get_config('feline'),
-    -- after = 'rose-pine'
+    after = 'nvim-base16.lua'
   }
   use {'kyazdani42/nvim-web-devicons'}
   use {'akinsho/bufferline.nvim',
