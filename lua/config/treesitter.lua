@@ -13,7 +13,7 @@ ts.setup {
   },
   context_commentstring = {
     enable = true,
-    enable_autocmd = false,
+    -- enable_autocmd = false,
   },
   matchup = {
     enable = true,   -- mandatory, false will disable the whole extension

@@ -34,10 +34,6 @@ require('packer').startup{function()
   use {'JoosepAlviste/nvim-ts-context-commentstring',
     after = 'nvim-treesitter'
   }
-  use {'terrortylor/nvim-comment',
-    config = get_config('comment'),
-    after = 'nvim-ts-context-commentstring'
-  }
   use {
     'phaazon/hop.nvim',
     config = get_config('hop'),

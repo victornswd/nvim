@@ -49,4 +49,5 @@ opt.lazyredraw = true
 opt.list = true
 opt.fillchars:append { eob = " " }
 -- opt.listchars:append("eol:↴")
+opt.updatetime = 300
 vim.cmd [[set signcolumn=yes]]
