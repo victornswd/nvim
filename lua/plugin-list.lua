@@ -80,15 +80,15 @@ require('packer').startup{function()
   }
   use {'ojroques/nvim-bufdel'}
 
-  -- TODO: write an actual config for null-ls
-  -- use({
-  --   'jose-elias-alvarez/null-ls.nvim',
-  --   requires = {
-  --     'nvim-lua/plenary.nvim',
-  --     'neovim/nvim-lspconfig',
-  --   },
-  --   after="nvim-lspconfig"
-  -- })
+  use({
+    'jose-elias-alvarez/null-ls.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'neovim/nvim-lspconfig',
+    },
+    after="nvim-lspconfig",
+    config = get_config('null-ls')
+  })
 
   use({
     'hrsh7th/nvim-cmp',
