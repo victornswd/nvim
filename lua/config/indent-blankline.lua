@@ -13,3 +13,5 @@ require("indent_blankline").setup {
   show_current_context_start = true,
   indent_blankline_use_treesitter = true,
 }
+
+vim.cmd("let g:indent_blankline_filetype_exclude = ['starter', 'markdown', 'vimwiki']")

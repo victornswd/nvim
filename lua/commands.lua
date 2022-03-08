@@ -40,7 +40,5 @@ vim.cmd 'au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch"
 
 -- don't auto commenting new lines
 vim.cmd [[au BufEnter * set fo-=c fo-=r fo-=o]]
--- disable IndentLine for markdown files (avoid concealing)
-vim.cmd [[autocmd FileType markdown let g:indentLine_enabled=0]]
 
 return { start_screen = start_screen }
