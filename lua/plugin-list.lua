@@ -50,8 +50,7 @@ require('packer').startup{function()
   use {'tpope/vim-surround', event = 'User ActuallyEditing'}
   use {
     'echasnovski/mini.nvim',
-    event= 'InsertEnter',
-    config = get_config('minipairs')
+    config = get_config('mini')
   }
 
   -- Themes
