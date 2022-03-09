@@ -95,7 +95,8 @@ cmp.setup({
   experimental = {
     native_menu = false,
     ghost_text = true
-  }
+  },
+  preselect = cmp.PreselectMode.None
 })
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
