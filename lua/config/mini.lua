@@ -8,4 +8,5 @@ starter.setup({
     starter.gen_hook.adding_bullet(),
     starter.gen_hook.aligning('center', 'center'),
   },
-})require('mini.comment').setup()
+})
+require('mini.comment').setup()

@@ -11,11 +11,11 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
     'documentation',
     'detail',
     'additionalTextEdits',
-  }
+  },
 }
 
 -- Auto-install
-local lsp_installer_servers = require'nvim-lsp-installer.servers'
+local lsp_installer_servers = require('nvim-lsp-installer.servers')
 
 local ok, tsserver = lsp_installer_servers.get_server('tsserver')
 if ok then
@@ -25,16 +25,18 @@ if ok then
 end
 
 -- npm install -g typescript typescript-language-server
-require'lspconfig'.tsserver.setup({
+require('lspconfig').tsserver.setup({
   capabilities = capabilities,
   on_attach = function(client, bufnr)
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
 
-    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+    local function buf_set_option(...)
+      vim.api.nvim_buf_set_option(bufnr, ...)
+    end
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-    require('nvim-lsp-ts-utils').setup {
+    require('nvim-lsp-ts-utils').setup({
       debug = false,
       disable_commands = false,
       enable_import_on_completion = true,
@@ -49,7 +51,7 @@ require'lspconfig'.tsserver.setup({
       eslint_opts = {
         -- diagnostics_format = "#{m} [#{c}]",
         condition = function(utils)
-          return utils.root_has_file(".eslintrc.js")
+          return utils.root_has_file('.eslintrc.js')
         end,
       },
 
@@ -70,8 +72,8 @@ require'lspconfig'.tsserver.setup({
       -- filter diagnostics
       filter_out_diagnostics_by_severity = { 'hint' },
       filter_out_diagnostics_by_code = {},
-    }
+    })
 
     require('nvim-lsp-ts-utils').setup_client(client)
-  end
+  end,
 })

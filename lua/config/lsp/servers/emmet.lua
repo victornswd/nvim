@@ -2,13 +2,13 @@ local M = {}
 
 -- Auto-install
 
-local lsp_installer_servers = require'nvim-lsp-installer.servers'
+local lsp_installer_servers = require('nvim-lsp-installer.servers')
 
-local ok, emmet = lsp_installer_servers.get_server("emmet_ls")
+local ok, emmet = lsp_installer_servers.get_server('emmet_ls')
 if ok then
-    if not emmet:is_installed() then
-        emmet:install()
-    end
+  if not emmet:is_installed() then
+    emmet:install()
+  end
 end
 
 -- Settings

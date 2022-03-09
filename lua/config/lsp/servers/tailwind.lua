@@ -1,7 +1,7 @@
 -- npm install -g @tailwindcss/language-server
 
 -- Auto-install
-local lsp_installer_servers = require'nvim-lsp-installer.servers'
+local lsp_installer_servers = require('nvim-lsp-installer.servers')
 
 local ok, tailwindcss = lsp_installer_servers.get_server('tailwindcss')
 if ok then
@@ -14,20 +14,63 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.colorProvider = { dynamicRegistration = false }
 
-require'lspconfig'.tailwindcss.setup {
+require('lspconfig').tailwindcss.setup({
   capabilities = capabilities,
-  on_attach = function (client, bufnr)
+  on_attach = function(client, bufnr)
     if client.server_capabilities.colorProvider then
-        require'lsp/documentcolors'.buf_attach(bufnr)
+      require('lsp/documentcolors').buf_attach(bufnr)
     end
   end,
   cmd = { 'tailwindcss-language-server', '--stdio' },
-  filetypes = { "aspnetcorerazor", "astro", "astro-markdown", "blade", "django-html", "edge", "eelixir", "ejs", "erb", "eruby", "gohtml", "haml", "handlebars", "hbs", "html", "html-eex", "jade", "leaf", "liquid", "mdx", "mustache", "njk", "nunjucks", "php", "razor", "slim", "twig", "css", "less", "postcss", "sass", "scss", "stylus", "sugarss", "javascript", "javascriptreact", "reason", "rescript", "typescript", "typescriptreact", "vue", "svelte" },
+  filetypes = {
+    'aspnetcorerazor',
+    'astro',
+    'astro-markdown',
+    'blade',
+    'django-html',
+    'edge',
+    'eelixir',
+    'ejs',
+    'erb',
+    'eruby',
+    'gohtml',
+    'haml',
+    'handlebars',
+    'hbs',
+    'html',
+    'html-eex',
+    'jade',
+    'leaf',
+    'liquid',
+    'mdx',
+    'mustache',
+    'njk',
+    'nunjucks',
+    'php',
+    'razor',
+    'slim',
+    'twig',
+    'css',
+    'less',
+    'postcss',
+    'sass',
+    'scss',
+    'stylus',
+    'sugarss',
+    'javascript',
+    'javascriptreact',
+    'reason',
+    'rescript',
+    'typescript',
+    'typescriptreact',
+    'vue',
+    'svelte',
+  },
   init_options = {
     userLanguages = {
       eelixir = 'html-eex',
-      eruby = 'erb'
-    }
+      eruby = 'erb',
+    },
   },
   on_new_config = function(new_config)
     if not new_config.settings then
@@ -50,18 +93,18 @@ require'lspconfig'.tailwindcss.setup {
         invalidScreen = 'error',
         invalidTailwindDirective = 'error',
         invalidVariant = 'error',
-        recommendedVariantOrder = 'warning'
+        recommendedVariantOrder = 'warning',
       },
       experimental = {
         classRegex = {
-          "tw`([^`]*)",
-          "tw=\"([^\"]*)",
-          "tw={\"([^\"}]*)",
-          "tw\\.\\w+`([^`]*)",
-          "tw\\(.*?\\)`([^`]*)"
-        }
+          'tw`([^`]*)',
+          'tw="([^"]*)',
+          'tw={"([^"}]*)',
+          'tw\\.\\w+`([^`]*)',
+          'tw\\(.*?\\)`([^`]*)',
+        },
       },
-      validate = true
-    }
-  }
-}
+      validate = true,
+    },
+  },
+})
