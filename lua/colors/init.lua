@@ -1,13 +1,10 @@
 local present, base16 = pcall(require, 'base16')
-local theme = 'everforest'
 
 if present then
-  -- first load the base16 theme
-  base16(base16.themes(theme), true)
+  -- NOTE: save the colorscheme name in the global space for easy access in highlights
+  _G.cs = 'everforest-base16'
+  vim.cmd('colorscheme ' .. cs)
 
-  -- unload to force reload
-  -- package.loaded["colors.highlights" or false] = nil
-  -- then load the highlights
   require('colors.highlights')
 end
 

@@ -53,14 +53,14 @@ require('packer').startup{function()
     config = get_config('mini')
   }
 
-  -- Themes
-  use 'NvChad/nvim-base16.lua'
-  use {'wbthomason/vim-nazgul', event = 'User ActuallyEditing'}
-  use({
-    'rose-pine/neovim',
-    as = 'rose-pine',
-    event = 'User ActuallyEditing'
-  })
+    -- Themes
+    use('victornswd/nvim-base16.lua')
+    use({ 'wbthomason/vim-nazgul', event = 'User ActuallyEditing' })
+    use({
+      'rose-pine/neovim',
+      as = 'rose-pine',
+      event = 'User ActuallyEditing',
+    })
 
   -- Statusline
   -- use {'hoob3rt/lualine.nvim',
