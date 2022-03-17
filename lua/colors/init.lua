@@ -1,6 +1,6 @@
 local M = {}
 
-M.theme = 'everforest-NvChad'
+M.theme = "everforest-NvChad"
 
 -- if theme given, load given theme if given, otherwise nvchad_theme
 M.init = function(theme)
@@ -40,6 +40,15 @@ M.get = function(theme)
 
   -- FIXME: deal with non-base16 themes (highlights, feline, indent-blankline)
   return false
+end
+
+M.reload_theme = function(theme)
+  package.loaded['config.feline' or false] = nil
+  package.loaded['config.indent-blankline' or false] = nil
+
+  require('colors').init(theme)
+  require('config.feline')
+  require('config.indent-blankline')
 end
 
 return M
