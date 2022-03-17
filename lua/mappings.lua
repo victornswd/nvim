@@ -41,7 +41,7 @@ if ok then
     y = { '"+y', 'Yank to global clipboard' },
     p = { '"+p', 'Paste from global clipboard' },
     o = { '<cmd>lua project_files()<CR>', 'Open file search' },
-    c = { ':Telescope colorscheme <CR>', 'Colorschemes' },
+    c = { ':Telescope themes <CR>', 'Colorschemes' },
     f = { ':Telescope live_grep <CR>', 'Search for word in folder' },
     s = { ':source ~/.config/nvim/init.lua<CR>', 'Reload nvim config' },
     t = { ':Telescope diagnostics bufnr=0<CR>', 'Show file diagnostics' },

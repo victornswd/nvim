@@ -50,3 +50,4 @@ require('telescope').setup({
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('vw')
 require('telescope').load_extension('luasnip')
+require('telescope').load_extension('themes')
