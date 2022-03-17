@@ -3,14 +3,14 @@ if not present then
   return
 end
 
-local i, j = string.find(cs, '-base16')
-local th = cs
-if i then
-  th = string.sub(cs, 1, (i - 1))
-end
+-- local i, j = string.find(cs, '-base16')
+-- local th = cs
+-- if i then
+--   th = string.sub(cs, 1, (i - 1))
+-- end
 
 local default = {
-  colors = require('hl_themes.' .. th),
+  colors = require('colors').get(),
   lsp = require('feline.providers.lsp'),
   lsp_severity = vim.diagnostic.severity,
   config = {

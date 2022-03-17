@@ -1,13 +1,48 @@
-local present, base16 = pcall(require, 'base16')
+local M = {}
 
-if present then
-  -- NOTE: save the colorscheme name in the global space for easy access in highlights
-  _G.cs = 'everforest-base16'
-  vim.cmd('colorscheme ' .. cs)
+M.theme = 'everforest-NvChad'
 
-  require('colors.highlights')
+-- if theme given, load given theme if given, otherwise nvchad_theme
+M.init = function(theme)
+  if not theme then
+    theme = M.theme
+  end
+
+  -- set the global theme, used at various places like theme switcher, highlights
+  vim.g.theme = theme
+
+  local present, base16 = pcall(require, 'base16')
+
+  if present then
+    -- first load the base16 theme
+    -- base16(base16.themes(theme), true)
+    vim.cmd('colorscheme ' .. theme)
+
+    -- unload to force reload
+    package.loaded['colors.highlights' or false] = nil
+    -- then load the highlights
+    require('colors.highlights')
+  end
 end
 
+-- returns a table of colors for given or current theme
+M.get = function(theme)
+  if not theme then
+    theme = vim.g.theme
+  end
+
+  local i, j = string.find(theme, '-NvChad')
+  local th = theme
+  if i then
+    th = string.sub(theme, 1, (i - 1))
+    return require('hl_themes.' .. th)
+  end
+
+  -- FIXME: deal with non-base16 themes (highlights, feline, indent-blankline)
+  return false
+end
+
+return M
 -- vim.g.rose_pine_variant = 'moon'
 --
 -- -- Load colorscheme after options

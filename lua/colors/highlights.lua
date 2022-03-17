@@ -1,11 +1,6 @@
 local cmd = vim.cmd
 
-local i, j = string.find(cs, '-base16')
-local th = cs
-if i then
-  th = string.sub(cs, 1, (i - 1))
-end
-local colors = require('hl_themes.' .. th)
+local colors = require('colors').get()
 
 local black = colors.black
 local black2 = colors.black2

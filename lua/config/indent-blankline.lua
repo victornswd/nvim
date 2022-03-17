@@ -1,10 +1,7 @@
 -- set the colors manually
-local i, j = string.find(cs, '-base16')
-local th = cs
-if i then
-  th = string.sub(cs, 1, (i - 1))
-end
-local colors = require('hl_themes.' .. th)
+
+-- TODO: check for "-NvChad" and then run this, else, skip
+local colors = require('colors').get()
 
 local fg = function(group, col)
   vim.cmd('hi ' .. group .. ' guifg=' .. col)
@@ -12,6 +9,7 @@ end
 
 fg('IndentBlanklineChar', colors.one_bg3)
 fg('IndentBlanklineContextChar', colors.dark_purple)
+-- TODO: end
 
 require('indent_blankline').setup({
   space_char_blankline = ' ',

@@ -6,7 +6,7 @@ end
 
 vim.g.mapleader = ' '
 require('options')
-require('colors')
+require('colors').init()
 
 require('packer_compiled')
 
