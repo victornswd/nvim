@@ -4,6 +4,11 @@ if not present then
 end
 
 local default = {
+  --[[
+    NOTE: The colors are set up using the NvChad colors. If you use a non-NvChad
+    theme you will have to update all color definitions in this file. More info
+    on themes here: https://github.com/feline-nvim/feline.nvim/blob/master/USAGE.md#themes
+  ]]
   colors = require('colors').get(),
   lsp = require('feline.providers.lsp'),
   lsp_severity = vim.diagnostic.severity,

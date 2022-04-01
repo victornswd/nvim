@@ -20,8 +20,12 @@ M.init = function(theme)
 
     -- unload to force reload
     package.loaded['colors.highlights' or false] = nil
-    -- then load the highlights
-    require('colors.highlights')
+    -- then load the highlights if required
+
+    local i, j = string.find(theme, '-NvChad')
+    if i then
+      require('colors.highlights')
+    end
   end
 end
 
@@ -39,7 +43,7 @@ M.get = function(theme)
   end
 
   -- FIXME: deal with non-base16 themes (highlights, feline, indent-blankline)
-  return false
+  return require('hl_themes.onejelly')
 end
 
 M.reload_theme = function(theme)
