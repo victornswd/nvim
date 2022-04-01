@@ -46,12 +46,16 @@ require('packer').startup{function()
     event = 'User ActuallyEditing'
   }
 
-  -- Autoclose braces and surround selection with braces...
-  use {'tpope/vim-surround', event = 'User ActuallyEditing'}
-  use {
-    'echasnovski/mini.nvim',
-    config = get_config('mini')
-  }
+    -- Autoclose braces and surround selection with braces...
+    use({ 'tpope/vim-surround', event = 'User ActuallyEditing' })
+    use({
+      'echasnovski/mini.nvim',
+      config = function()
+        require('config.mini-comment')
+        require('config.mini-starter')
+        require('config.mini-pairs')
+      end,
+    })
 
     -- Themes
     use('victornswd/nvim-base16.lua')
