@@ -6,14 +6,14 @@ local use = require('packer').use
 require('packer').startup{function()
   use 'wbthomason/packer.nvim' -- Package manager
 
-  use 'lewis6991/impatient.nvim'
-  use 'nathom/filetype.nvim'
-  use 'nvim-lua/plenary.nvim'
-  use {'tweekmonster/startuptime.vim', cmd = 'StartupTime'}
-  use {
-    'folke/which-key.nvim',
-    event = 'User ActuallyEditing'
-  }
+    use('lewis6991/impatient.nvim')
+    -- use 'nathom/filetype.nvim'
+    use('nvim-lua/plenary.nvim')
+    use({ 'tweekmonster/startuptime.vim', cmd = 'StartupTime' })
+    use({
+      'folke/which-key.nvim',
+      event = 'User ActuallyEditing',
+    })
 
   use {'psliwka/termcolors.nvim', cmd='TermcolorsShow'}
 

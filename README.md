@@ -4,7 +4,7 @@
 
 ## Prerequisites
 
-- [Neovim](http://neovim.io/) 0.5+
+- [Neovim](http://neovim.io/) 0.7+
 - [ripgrep](https://github.com/BurntSushi/ripgrep) is required for string search
   in Telescope
 - [Read this](https://github.com/tree-sitter/tree-sitter-haskell#building-on-macos)

@@ -1,5 +1,8 @@
-local opt = vim.opt  -- to set options
-local g = vim.g      -- a table to access global variables
+local opt = vim.opt -- to set options
+local g = vim.g -- a table to access global variables
+
+g.do_filetype_lua = 1
+g.did_load_filetypes = 0
 
 g.loaded_gzip = 1
 g.loaded_zip = 1
