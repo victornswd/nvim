@@ -46,13 +46,15 @@ require('packer').startup({
     })
 
     -- Autoclose braces and surround selection with braces...
-    use({ 'tpope/vim-surround', event = 'User ActuallyEditing' })
+    -- use({ 'tpope/vim-surround', event = 'User ActuallyEditing' })
     use({
       'echasnovski/mini.nvim',
       config = function()
         require('config.mini-comment')
         require('config.mini-starter')
         require('config.mini-pairs')
+        require('config.mini-surround')
+        require('config.mini-session')
       end,
     })
 
