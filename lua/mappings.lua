@@ -43,7 +43,8 @@ if ok then
     o = { '<cmd>lua project_files()<CR>', 'Open file search' },
     c = { ':Telescope themes <CR>', 'Colorschemes' },
     f = { ':Telescope live_grep <CR>', 'Search for word in folder' },
-    s = { ':source ~/.config/nvim/init.lua<CR>', 'Reload nvim config' },
+    r = { ':source ~/.config/nvim/init.lua<CR>', 'Reload nvim config' },
+    s = { ':mksession<CR>', 'Save current files as a session' },
     t = { ':Telescope diagnostics bufnr=0<CR>', 'Show file diagnostics' },
     ['fo'] = { '<cmd>lua vim.lsp.buf.formatting()<CR>', 'Format buffer with LSP' },
   }
