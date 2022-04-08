@@ -26,22 +26,22 @@ g.loaded_rrhelper = 1
 -- g.loaded_netrwSettings = 1
 -- g.loaded_netrwFileHandlers = 1
 
-opt.completeopt = {'menuone', 'noinsert', 'noselect'}
-opt.colorcolumn = {80}
-opt.expandtab = true                -- Use spaces instead of tabs
-opt.number = true                   -- Show line numbers
-opt.relativenumber = true           -- Relative line numbers
+opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
+opt.colorcolumn = { 80 }
+opt.expandtab = true -- Use spaces instead of tabs
+opt.number = true -- Show line numbers
+opt.relativenumber = true -- Relative line numbers
 opt.fileformat = 'unix'
 opt.mouse = 'a'
-opt.shiftwidth = 2                  -- Size of an indent
-opt.tabstop = 2                     -- Number of spaces tabs count for
-opt.termguicolors = true            -- True color support
+opt.shiftwidth = 2 -- Size of an indent
+opt.tabstop = 2 -- Number of spaces tabs count for
+opt.termguicolors = true -- True color support
 opt.wrap = true
 -- opt.scrolloff = 4                   -- Lines of context
 -- opt.shiftround = true               -- Round indent
 -- opt.sidescrolloff = 8               -- Columns of context
 -- opt.smartcase = true                -- Do not ignore case with capitals
-opt.smartindent = true              -- Insert indents automatically
+opt.smartindent = true -- Insert indents automatically
 -- opt.splitbelow = true               -- Put new windows below current
 -- opt.splitright = true               -- Put new windows right of current
 -- opt.wildmode = {'list', 'longest'}  -- Command-line completion mode
@@ -50,7 +50,12 @@ opt.smartindent = true              -- Insert indents automatically
 -- opt.joinspaces = false              -- No double spaces with join
 opt.lazyredraw = true
 opt.list = true
-opt.fillchars:append { eob = " " }
+opt.fillchars:append({ eob = ' ' })
 -- opt.listchars:append("eol:↴")
 opt.updatetime = 300
-vim.cmd [[set signcolumn=yes]]
+opt.laststatus = 3
+vim.cmd([[
+set signcolumn=yes
+set noshowmode
+set noru
+]])
