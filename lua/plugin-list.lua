@@ -156,12 +156,18 @@ require('packer').startup({
       ft = { 'javascript', 'javascript.jsx', 'typescript' },
       cmd = 'ImportCost',
     })
+    -- use({
+    --   'kkoomen/vim-doge',
+    --   run = function()
+    --     vim.fn['doge#install']()
+    --   end,
+    --   ft = { 'javascript', 'javascript.jsx', 'typescript', 'php', 'python' },
+    -- })
     use({
-      'kkoomen/vim-doge',
-      run = function()
-        vim.fn['doge#install']()
-      end,
-      ft = { 'javascript', 'javascript.jsx', 'typescript', 'php', 'python' },
+      'danymat/neogen',
+      config = get_config('neogen'),
+      requires = 'nvim-treesitter/nvim-treesitter',
+      after = 'nvim-treesitter',
     })
     use({ 'vimwiki/vimwiki', branch = 'dev', event = 'User ActuallyEditing' })
 

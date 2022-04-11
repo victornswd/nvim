@@ -38,6 +38,7 @@ local ok, wk = pcall(require, 'which-key')
 -- local wk = require"which-key"
 if ok then
   local map_normal_leader = {
+    d = { ':Neogen<CR>', 'Generate function documentation' },
     y = { '"+y', 'Yank to global clipboard' },
     p = { '"+p', 'Paste from global clipboard' },
     o = { '<cmd>lua project_files()<CR>', 'Open file search' },
