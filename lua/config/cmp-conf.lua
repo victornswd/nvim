@@ -32,7 +32,7 @@ local luasnip = require('luasnip')
 luasnip.snippets = {
   markdown = {},
 }
-luasnip.snippets.vimwiki = luasnip.snippets.markdown
+luasnip.filetype_extend('vimwiki', { 'markdown' })
 
 require('luasnip.loaders.from_vscode').load({ include = { 'markdown' } })
 require('luasnip.loaders.from_vscode').lazy_load()
