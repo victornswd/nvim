@@ -156,13 +156,6 @@ require('packer').startup({
       ft = { 'javascript', 'javascript.jsx', 'typescript' },
       cmd = 'ImportCost',
     })
-    -- use({
-    --   'kkoomen/vim-doge',
-    --   run = function()
-    --     vim.fn['doge#install']()
-    --   end,
-    --   ft = { 'javascript', 'javascript.jsx', 'typescript', 'php', 'python' },
-    -- })
     use({
       'danymat/neogen',
       config = get_config('neogen'),
