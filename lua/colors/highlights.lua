@@ -110,3 +110,5 @@ vim.cmd('hi Error gui=italic guibg=' .. grey)
 bg('MatchParen', grey)
 vim.cmd('hi markdownTSTitle guifg=' .. vibrant_green .. ' gui=bold')
 vim.cmd('hi TSPunctSpecial  guifg=' .. vibrant_green .. ' gui=bold')
+
+bg('SpecsHL', white)
