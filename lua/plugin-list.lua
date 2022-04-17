@@ -170,6 +170,7 @@ require('packer').startup({
       after = 'nvim-treesitter',
     })
     use({ 'vimwiki/vimwiki', branch = 'dev', event = 'User ActuallyEditing' })
+    use({ 'edluffy/specs.nvim', config = get_config('specs') })
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
