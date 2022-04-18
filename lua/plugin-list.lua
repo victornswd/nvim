@@ -10,11 +10,13 @@ require('packer').startup({
     use('lewis6991/impatient.nvim')
     -- use 'nathom/filetype.nvim'
     use('nvim-lua/plenary.nvim')
+    use({ 'stevearc/dressing.nvim' })
     use({ 'tweekmonster/startuptime.vim', cmd = 'StartupTime' })
     use({
       'folke/which-key.nvim',
       event = 'User ActuallyEditing',
     })
+    use({ 'mrjones2014/legendary.nvim' })
 
     use({ 'psliwka/termcolors.nvim', cmd = 'TermcolorsShow' })
 
