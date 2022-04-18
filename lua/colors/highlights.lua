@@ -112,3 +112,4 @@ vim.cmd('hi markdownTSTitle guifg=' .. vibrant_green .. ' gui=bold')
 vim.cmd('hi TSPunctSpecial  guifg=' .. vibrant_green .. ' gui=bold')
 
 bg('SpecsHL', white)
+bg('QuickFixLine', black)
