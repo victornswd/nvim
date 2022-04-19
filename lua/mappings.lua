@@ -46,6 +46,7 @@ local keys = {
   { '<leader>r', ':source ~/.config/nvim/init.lua<CR>', description = 'Reload nvim config' },
   { '<leader>s', ':mksession<CR>', description = 'Save current files as a session' },
   { '<leader>t', ':Telescope diagnostics bufnr=0<CR>', description = 'Show file diagnostics' },
+  { '<leader>h', ':Telescope keymaps<CR>', description = 'Show key maps' },
   { '<leader>fo', '<cmd>lua vim.lsp.buf.formatting()<CR>', description = 'Format buffer with LSP' },
 
   -- g
