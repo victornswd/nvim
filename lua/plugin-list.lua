@@ -57,6 +57,7 @@ require('packer').startup({
         require('config.mini-pairs')
         require('config.mini-surround')
         require('config.mini-session')
+        require('config.mini-tabline')
       end,
     })
 
@@ -72,12 +73,6 @@ require('packer').startup({
     -- Statusline
     use({ 'feline-nvim/feline.nvim', config = get_config('feline') })
     use({ 'kyazdani42/nvim-web-devicons' })
-    use({
-      'akinsho/bufferline.nvim',
-      requires = 'kyazdani42/nvim-web-devicons',
-      event = 'User ActuallyEditing',
-      config = get_config('bufferline'),
-    })
     use({ 'ojroques/nvim-bufdel' })
 
     use({

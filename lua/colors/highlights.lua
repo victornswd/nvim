@@ -9,6 +9,8 @@ local darker_black = colors.darker_black
 local folder_bg = colors.folder_bg
 local vibrant_green = colors.vibrant_green
 local green = colors.green
+local cyan = colors.cyan
+local lightbg = colors.lightbg
 local pink = colors.pink
 local grey = colors.grey
 local grey_fg = colors.grey_fg
@@ -113,3 +115,9 @@ vim.cmd('hi TSPunctSpecial  guifg=' .. vibrant_green .. ' gui=bold')
 
 bg('SpecsHL', white)
 bg('QuickFixLine', black)
+
+-- Mini Tabline
+bg('MiniTablineFill', darker_black)
+fg_bg('MiniTablineCurrent', white, black)
+fg_bg('MiniTablineModifiedCurrent', dark_purple, black)
+fg_bg('MiniTablineModifiedHidden', dark_purple, one_bg)
