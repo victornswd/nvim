@@ -37,6 +37,7 @@ starter.setup({
   header = donut,
   items = {
     telescope(),
+    starter.sections.sessions(5, true),
   },
   content_hooks = {
     starter.gen_hook.adding_bullet(),
