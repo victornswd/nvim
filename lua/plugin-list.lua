@@ -8,7 +8,6 @@ require('packer').startup({
     use('wbthomason/packer.nvim') -- Package manager
 
     use('lewis6991/impatient.nvim')
-    -- use 'nathom/filetype.nvim'
     use('nvim-lua/plenary.nvim')
     use({ 'stevearc/dressing.nvim' })
     use({ 'tweekmonster/startuptime.vim', cmd = 'StartupTime' })
