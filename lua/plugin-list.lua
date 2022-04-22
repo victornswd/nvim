@@ -16,7 +16,6 @@ require('packer').startup({
       'folke/which-key.nvim',
       event = 'User ActuallyEditing',
     })
-    use({ 'mrjones2014/legendary.nvim' })
 
     use({ 'psliwka/termcolors.nvim', cmd = 'TermcolorsShow' })
 

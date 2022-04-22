@@ -34,47 +34,43 @@ vim.cmd([[
 :cnoreabbrev W w
 ]])
 
-local h = require('legendary.helpers')
-local keys = {
-  -- LEADER
-  { '<leader>d', ':Neogen<CR>', description = 'Generate function documentation' },
-  { '<leader>y', '"+y', description = 'Yank to global clipboard', mode = { 'n', 'v' } },
-  { '<leader>p', '"+p', description = 'Paste from global clipboard' },
-  { '<leader>o', '<cmd>lua project_files()<CR>', description = 'Open file search' },
-  { '<leader>c', ':Telescope themes <CR>', description = 'Colorschemes' },
-  { '<leader>f', ':Telescope live_grep <CR>', description = 'Search for word in folder' },
-  { '<leader>r', ':source ~/.config/nvim/init.lua<CR>', description = 'Reload nvim config' },
-  { '<leader>s', ':mksession<CR>', description = 'Save current files as a session' },
-  { '<leader>t', ':Telescope diagnostics bufnr=0<CR>', description = 'Show file diagnostics' },
-  { '<leader>h', ':Telescope keymaps<CR>', description = 'Show key maps' },
-  { '<leader>fo', '<cmd>lua vim.lsp.buf.formatting()<CR>', description = 'Format buffer with LSP' },
+-- KEYS
+-- LEADER
+vim.keymap.set('n', '<leader>f', require('telescope.builtin').live_grep, { desc = 'Search for word in folder' })
+vim.keymap.set('n', '<leader>h', require('telescope.builtin').keymaps, { desc = 'Show key maps' })
+vim.keymap.set('n', '<leader>c', require('telescope').extensions.themes.themes, { desc = 'Colorschemes' })
+vim.keymap.set('n', '<leader>d', require('neogen').generate, { desc = 'Generate function documentation' })
+vim.keymap.set('n', '<leader>t', function()
+  require('telescope.builtin').diagnostics({ bufnr = 0 })
+end, { desc = 'Show file diagnostics' })
+vim.keymap.set('n', '<leader>o', project_files, { desc = 'Open file search' })
+vim.keymap.set('n', '<leader>fo', vim.lsp.buf.formatting, { desc = 'Format buffer with LSP' })
+vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { desc = 'Yank to global clipboard' })
+vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p', { desc = 'Paste from global clipboard' })
+vim.keymap.set('n', '<leader>r', ':source ~/.config/nvim/init.lua<CR>', { desc = 'Reload nvim config' })
+vim.keymap.set('n', '<leader>s', ':mksession<CR>', { desc = 'Save current files as a session' })
 
-  -- g
-  { 'gca', '<cmd>Telescope lsp_code_actions<CR>', description = 'Code actions' },
-  { 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', description = 'Go to definition' },
-  { 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>', description = 'Display hover tooltip' },
-  { 'gD', '<cmd>lua vim.lsp.buf.implementation()<CR>', description = 'Go to implementation ' },
-  { 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', description = 'Go to type definition' },
-  { 'gr', '<cmd>Telescope lsp_references<CR>', description = 'References' },
-  { 'gR', '<cmd>lua vim.lsp.buf.rename()<CR>', description = 'Rename all references' },
+-- g
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition' })
+vim.keymap.set('n', 'gh', vim.lsp.buf.hover, { desc = 'Display hover tooltip' })
+vim.keymap.set('n', 'gD', vim.lsp.buf.implementation, { desc = 'Go to implementation' })
+vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, { desc = 'Go to type definition' })
+vim.keymap.set('n', 'gR', vim.lsp.buf.rename, { desc = 'Rename all references' })
+vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, { desc = 'References' })
+vim.keymap.set('n', 'gca', require('telescope.builtin').lsp_code_actions, { desc = 'Code actions' })
 
-  -- HOP
-  { 'h', '<cmd>:HopWord<cr>', description = 'Hop Word' },
-  { 'l', '<cmd>:HopLine<cr>', description = 'Hop Line' },
-  { 's', '<cmd>:HopChar1<cr>', description = 'Hop 1 Char' },
-  { 'S', '<cmd>:HopChar2<cr>', description = 'Hop 2 Char' },
+-- CTRL
+vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { desc = 'Function signature help' })
+-- TODO: document in README
+vim.keymap.set('i', '<C-c>', EscapePair, { desc = 'Escape pairs while in insert mode' })
+vim.keymap.set('i', '<C-w>', EscapePair, { desc = 'Escape pairs while in insert mode' })
+vim.keymap.set('n', '<C-l>', '<cmd>noh<CR>', { desc = 'Clear highlighted text' })
 
-  -- MISC
-  { '<C-l>', '<cmd>noh<CR>', description = 'Clear highlighted text' },
-  { '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', description = 'Function signature help' },
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move down selected line' })
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move up selected line' })
 
-  { 'J', ":m '>+1<CR>gv=gv", description = 'Move down selected line', mode = { 'v' } },
-  { 'K', ":m '<-2<CR>gv=gv", description = 'Move up selected line', mode = { 'v' } },
-
-  -- TODO: document in README
-  { '<C-c>', '<cmd>lua EscapePair()<CR>', description = 'Escape pairs while in insert mode', mode = { 'i' } },
-  { '<C-w>', '<cmd>lua EscapePair()<CR>', description = 'Escape pairs while in insert mode', mode = { 'i' } },
-}
-require('legendary').setup({
-  keymaps = keys,
-})
+-- HOP
+vim.keymap.set('n', 'h', require('hop').hint_words, { desc = 'Hop Word' })
+vim.keymap.set('n', 'l', require('hop').hint_lines, { desc = 'Hop Line' })
+vim.keymap.set('n', 's', require('hop').hint_char1, { desc = 'Hop 1 Char' })
+vim.keymap.set('n', 'S', require('hop').hint_char2, { desc = 'Hop 2 Char' })
