@@ -11,22 +11,38 @@ local function start_screen()
 end
 
 -------------------- PLUGINS -------------------------------
-vim.api.nvim_exec(
-  [[
-  augroup Packer
-    autocmd!
-    autocmd BufWritePost init.lua PackerCompile
-  augroup end
-  ]],
-  false
+local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
+vim.api.nvim_create_autocmd(
+  'BufWritePost',
+  { command = 'source <afile> | PackerCompile', group = packer_group, pattern = 'init.lua' }
 )
 
-vim.cmd([[command! PackerInstall packadd packer.nvim | lua require('plugins').install()]])
-vim.cmd([[command! PackerUpdate packadd packer.nvim | lua require('plugins').update()]])
-vim.cmd([[command! PackerSync packadd packer.nvim | lua require('plugins').sync()]])
-vim.cmd([[command! PackerStatus packadd packer.nvim | lua require('plugins').status()]])
-vim.cmd([[command! PackerClean packadd packer.nvim | lua require('plugins').clean()]])
-vim.cmd([[command! PackerCompile packadd packer.nvim | lua require('plugins').compile()]])
+vim.api.nvim_create_user_command(
+  'PackerInstall',
+  "packadd packer.nvim | lua require('plugins').install()",
+  { bang = false }
+)
+vim.api.nvim_create_user_command(
+  'PackerUpdate',
+  "packadd packer.nvim | lua require('plugins').update(()",
+  { bang = false }
+)
+vim.api.nvim_create_user_command('PackerSync', "packadd packer.nvim | lua require('plugins').sync()", { bang = false })
+vim.api.nvim_create_user_command(
+  'PackerStatus',
+  "packadd packer.nvim | lua require('plugins').status()",
+  { bang = false }
+)
+vim.api.nvim_create_user_command(
+  'PackerClean',
+  "packadd packer.nvim | lua require('plugins').clean()",
+  { bang = false }
+)
+vim.api.nvim_create_user_command(
+  'PackerCompile',
+  "packadd packer.nvim | lua require('plugins').compile()",
+  { bang = false }
+)
 
 --------------------- VIMWIKI ------------------------------
 vim.cmd([[
@@ -36,9 +52,21 @@ let g:vimwiki_global_ext = 0
 ]])
 
 -------------------- COMMANDS ------------------------------
-vim.cmd('au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=700}')
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 700 })
+  end,
+  group = highlight_group,
+  pattern = '*',
+})
 
 -- don't auto commenting new lines
-vim.cmd([[au BufEnter * set fo-=c fo-=r fo-=o]])
+local cmnt_group = vim.api.nvim_create_augroup('CommentLine', { clear = true })
+vim.api.nvim_create_autocmd('BufEnter', {
+  command = 'set fo-=c fo-=r fo-=o',
+  group = cmnt_group,
+  pattern = '*',
+})
 
 return { start_screen = start_screen }
