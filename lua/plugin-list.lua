@@ -14,6 +14,7 @@ require('packer').startup({
     use({ 'tweekmonster/startuptime.vim', cmd = 'StartupTime' })
     use({
       'folke/which-key.nvim',
+      config = get_config('which-key'),
       event = 'User ActuallyEditing',
     })
 
