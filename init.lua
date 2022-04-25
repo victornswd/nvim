@@ -8,10 +8,7 @@ vim.g.mapleader = ' '
 require('options')
 require('colors').init()
 
-local ok, _ = pcall(require, 'packer_compiled')
-if not ok then
-  print('no packer_compiled')
-end
+pcall(require('packer_compiled'))
 
 vim.defer_fn(function()
   require('mappings')
