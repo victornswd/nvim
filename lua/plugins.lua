@@ -1,3 +1,5 @@
+vim.cmd([[packadd packer.nvim]])
+
 local packer = nil
 local function init()
   if packer == nil then

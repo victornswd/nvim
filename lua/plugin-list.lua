@@ -2,10 +2,12 @@ local function get_config(name)
   return string.format('require("config/%s")', name)
 end
 
+vim.cmd([[packadd packer.nvim]])
+
 local use = require('packer').use
 require('packer').startup({
   function()
-    use('wbthomason/packer.nvim') -- Package manager
+    use({ 'wbthomason/packer.nvim', opt = true }) -- Package manager
 
     use('lewis6991/impatient.nvim')
     use('nvim-lua/plenary.nvim')
@@ -170,10 +172,9 @@ require('packer').startup({
   config = {
     -- Move to lua dir so impatient.nvim can cache it
     compile_path = vim.fn.stdpath('config') .. '/lua/packer_compiled.lua',
-    max_jobs = 100,
-    profile = {
-      enable = true,
-      threshold = 1,
+    max_jobs = 20,
+    git = {
+      clone_timeout = 100, -- Timeout, in seconds, for git clones
     },
   },
 })
