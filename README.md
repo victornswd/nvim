@@ -25,10 +25,10 @@ git branch might be unstable
   ln -s ~/<this repo location>/init.lua ~/.config/nvim/init.lua
   ln -s ~/<this repo location>/lua ~/.config/nvim/lua
   ```
-- if they exist, remove `packer_compiled.lua` from `~/.config/nvim/plugin` or
-  `~/.config/nvim/plugin` and `~/.local/share/nvim/site/`. If you don't want to
-  bother with this check the [Troubleshooting](#troubleshooting) section
-- run `nvim --headless -u install.lua -c 'autocmd User PackerComplete quitall'`
+- if they exist, remove `packer_compiled.lua` from `~/.config/nvim/plugin` and
+  `~/.local/share/nvim/site/`. If you don't want to bother with this check the
+  [Troubleshooting](#troubleshooting) section
+- run `nvim -c 'autocmd User PackerComplete quitall'`
 - open nvim as normal
 - enjoy!
 
@@ -77,9 +77,9 @@ checkers to be installed globally.
 
 #### Installation failed
 
-If the installation failed you can just open nvim with `nvim -u install.lua` and
-just run `:PackerSync` manually. This can also be ran if you currently have a
-Packer based config and don't want to manually delete the plugin folder.
+If the installation failed you can just open nvim run `:PackerSync` manually.
+This can also be ran if you currently have a Packer based config and don't want
+to manually delete the plugin folder.
 
 ## Special Thanks
 
