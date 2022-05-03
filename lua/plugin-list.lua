@@ -161,6 +161,7 @@ require('packer').startup({
       after = 'nvim-treesitter',
     })
     use({ 'vimwiki/vimwiki', branch = 'dev', event = 'User ActuallyEditing' })
+    use({ 'ThePrimeagen/harpoon', requires = 'nvim-lua/plenary.nvim' })
     use({ 'edluffy/specs.nvim', config = get_config('specs') })
 
     -- Automatically set up your configuration after cloning packer.nvim
