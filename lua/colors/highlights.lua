@@ -114,7 +114,9 @@ vim.cmd('hi markdownTSTitle guifg=' .. vibrant_green .. ' gui=bold')
 vim.cmd('hi TSPunctSpecial  guifg=' .. vibrant_green .. ' gui=bold')
 
 bg('SpecsHL', white)
-bg('QuickFixLine', black)
+vim.api.nvim_set_hl(0, 'QuickFixLine', {
+  bg = black,
+})
 
 -- Mini Tabline
 bg('MiniTablineFill', darker_black)
