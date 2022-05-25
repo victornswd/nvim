@@ -41,15 +41,15 @@ local function change_theme(current_theme, new_theme)
     return
   end
 
-  local file = vim.fn.stdpath('config') .. '/lua/colors/' .. 'init.lua'
+  local file = vim.fn.stdpath('config') .. '/init.lua'
 
   -- store in data variable
   local data = assert(file_fn('r', file))
   -- escape characters which can be parsed as magic chars
   current_theme = current_theme:gsub('%p', '%%%0')
   new_theme = new_theme:gsub('%p', '%%%0')
-  local find = 'theme = .?' .. current_theme .. '.?'
-  local replace = 'theme = "' .. new_theme .. '"'
+  local find = 'theme = .?' .. current_theme .. '.?,'
+  local replace = 'theme = "' .. new_theme .. '",'
   local content = string.gsub(data, find, replace)
   -- see if the find string exists in file
   if content == data then

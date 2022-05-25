@@ -6,7 +6,38 @@ end
 
 vim.g.mapleader = ' '
 require('options')
-require('colors').init()
+
+vim.g.ui = {
+  theme = 'everforest-NvChad',
+  changed_themes = {},
+  theme_toggle = { 'everforest', 'everforest_light' },
+  hl_override = {
+    SpecsHL = { bg = 'white' },
+    MiniTablineFill = { bg = 'darker_black' },
+    MiniTablineCurrent = { fg = 'white', bg = 'black' },
+    MiniTablineModifiedCurrent = { fg = 'dark_purple', bg = 'black' },
+    MiniTablineModifiedHidden = { fg = 'dark_purple', bg = 'one_bg' },
+    MiniTablineVisible = { fg = 'light_grey', bg = 'one_bg' },
+    MiniTablineHidden = { fg = 'light_grey', bg = 'one_bg' },
+    Function = { italic = true },
+    Error = { italic = true, bg = 'grey' },
+    MatchParen = { bg = 'grey' },
+    Comment = { italic = true },
+    markdownTSTitle = { bold = true, fg = 'vibrant_green' },
+    TSPunctSpecial = { bold = true, fg = 'vibrant_green' },
+    QuickFixLine = { bg = 'black' },
+    IndentBlanklineChar = { fg = 'one_bg3' },
+    IndentBlanklineContextChar = { fg = 'dark_purple' },
+  },
+}
+vim.g.theme = vim.g.ui.theme
+
+local i, j = string.find(vim.g.theme, '-NvChad')
+if i then
+  require('base46').load_theme()
+else
+  vim.cmd('colo ' .. vim.g.theme)
+end
 
 local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/opt/packer.nvim'

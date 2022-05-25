@@ -63,7 +63,7 @@ require('packer').startup({
     })
 
     -- Themes
-    use('victornswd/nvim-base16.lua')
+    use({ 'victornswd/base46' })
     use({ 'wbthomason/vim-nazgul', event = 'User ActuallyEditing' })
     use({
       'rose-pine/neovim',

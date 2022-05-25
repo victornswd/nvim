@@ -1,15 +1,3 @@
--- set the colors manually
-
-if vim.g.theme:find('NvChad') then
-  local colors = require('colors').get()
-  local fg = function(group, col)
-    vim.cmd('hi ' .. group .. ' guifg=' .. col)
-  end
-
-  fg('IndentBlanklineChar', colors.one_bg3)
-  fg('IndentBlanklineContextChar', colors.dark_purple)
-end
-
 require('indent_blankline').setup({
   space_char_blankline = ' ',
   show_current_context = true,
