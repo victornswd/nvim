@@ -9,9 +9,10 @@ require('options')
 
 vim.g.ui = {
   theme = 'everforest-NvChad',
+  -- theme = 'slate',
   changed_themes = {},
   theme_toggle = { 'everforest', 'everforest_light' },
-  hl_override = {
+  hl_add = {
     SpecsHL = { bg = 'white' },
     MiniTablineFill = { bg = 'darker_black' },
     MiniTablineCurrent = { fg = 'white', bg = 'black' },
@@ -19,15 +20,17 @@ vim.g.ui = {
     MiniTablineModifiedHidden = { fg = 'dark_purple', bg = 'one_bg' },
     MiniTablineVisible = { fg = 'light_grey', bg = 'one_bg' },
     MiniTablineHidden = { fg = 'light_grey', bg = 'one_bg' },
-    Function = { italic = true },
-    Error = { italic = true, bg = 'grey' },
     MatchParen = { bg = 'grey' },
-    Comment = { italic = true },
     markdownTSTitle = { bold = true, fg = 'vibrant_green' },
     TSPunctSpecial = { bold = true, fg = 'vibrant_green' },
     QuickFixLine = { bg = 'black' },
     IndentBlanklineChar = { fg = 'one_bg3' },
     IndentBlanklineContextChar = { fg = 'dark_purple' },
+  },
+  hl_override = {
+    Comment = { italic = true },
+    Function = { italic = true },
+    Error = { italic = true, bg = 'grey' },
   },
 }
 vim.g.theme = vim.g.ui.theme

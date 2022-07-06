@@ -6,7 +6,7 @@ end
 local function colorFn()
   local i, j = string.find(vim.g.theme, '-NvChad')
   if i then
-    return require('base46').get_colors('base_30')
+    return require('base46').get_theme_tb('base_30')
   else
     -- FIXME: make it into a monochrome washed out theme
     return {

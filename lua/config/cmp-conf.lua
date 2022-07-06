@@ -1,3 +1,5 @@
+require('base46').load_highlight('cmp')
+
 local lsp_symbols = {
   Text = ' ',
   Method = ' ',

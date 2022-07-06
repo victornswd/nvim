@@ -1,3 +1,5 @@
+require('base46').load_highlight('telescope')
+
 require('telescope').setup({
   defaults = {
     vimgrep_arguments = {

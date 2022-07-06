@@ -1,6 +1,9 @@
-require 'nvim-treesitter.install'.compilers = { "gcc" }
-local ts = require 'nvim-treesitter.configs'
-ts.setup {
+require('base46').load_highlight('syntax')
+require('base46').load_highlight('treesitter')
+
+require('nvim-treesitter.install').compilers = { 'gcc' }
+local ts = require('nvim-treesitter.configs')
+ts.setup({
   ensure_installed = 'all',
   -- FIXME: check this issue https://github.com/claytonrcarter/tree-sitter-phpdoc/issues/15
   ignore_install = { 'phpdoc' },

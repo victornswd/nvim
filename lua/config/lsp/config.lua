@@ -12,3 +12,5 @@ require('config.lsp.servers.lua')
 require('config.lsp.servers.tsserver')
 require('config.lsp.servers.tailwind')
 require('config.lsp.servers.emmet')
+
+require('base46').load_highlight('lsp')
