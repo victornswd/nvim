@@ -13,4 +13,7 @@ require('config.lsp.servers.tsserver')
 require('config.lsp.servers.tailwind')
 require('config.lsp.servers.emmet')
 
-require('base46').load_highlight('lsp')
+local i, j = string.find(vim.g.theme, '-NvChad')
+if i then
+  require('base46').load_highlight('lsp')
+end
