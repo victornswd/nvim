@@ -1,18 +1,8 @@
-local M = {}
+local lspconfig = require('lspconfig')
+local conf = require('config.lsp.helpers')
 
--- Auto-install
-
-local lsp_installer_servers = require('nvim-lsp-installer.servers')
-
-local ok, bashls = lsp_installer_servers.get_server('bashls')
-if ok then
-  if not bashls:is_installed() then
-    bashls:install()
-  end
-end
-
--- Settings
-
-M.settings = {}
-
-return M
+lspconfig['bashls'].setup({
+  capabilities = conf.capabilities,
+  on_attach = conf.on_attach,
+  settings = {},
+})

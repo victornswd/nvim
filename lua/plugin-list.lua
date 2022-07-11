@@ -87,8 +87,8 @@ require('packer').startup({
         { 'rafamadriz/friendly-snippets' },
         { 'hrsh7th/cmp-path' },
         { 'lukas-reineke/cmp-rg' },
-        { 'williamboman/nvim-lsp-installer', config = get_config('lsp.config') },
-        { 'neovim/nvim-lspconfig', config = get_config('lsp.installer') },
+        { 'williamboman/nvim-lsp-installer', config = get_config('lsp.installer') },
+        { 'neovim/nvim-lspconfig', config = get_config('lsp.config') },
       },
       config = get_config('cmp-conf'),
     })
@@ -104,7 +104,7 @@ require('packer').startup({
         'nvim-lua/plenary.nvim',
         'neovim/nvim-lspconfig',
       },
-      after = 'nvim-lspconfig',
+      -- after = 'neovim/nvim-lspconfig',
       config = get_config('null-ls'),
     })
 

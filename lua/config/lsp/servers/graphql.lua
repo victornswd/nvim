@@ -1,18 +1,8 @@
-local M = {}
+local lspconfig = require('lspconfig')
+local conf = require('config.lsp.helpers')
 
--- Auto-install
-
-local lsp_installer_servers = require('nvim-lsp-installer.servers')
-
-local ok, graphql = lsp_installer_servers.get_server('graphql')
-if ok then
-  if not graphql:is_installed() then
-    graphql:install()
-  end
-end
-
--- Settings
-
-M.settings = {}
-
-return M
+lspconfig['graphql'].setup({
+  capabilities = conf.capabilities,
+  on_attach = conf.on_attach,
+  settings = {},
+})

@@ -1,24 +1,12 @@
--- npm install -g @tailwindcss/language-server
-
--- Auto-install
-local lsp_installer_servers = require('nvim-lsp-installer.servers')
-
-local ok, tailwindcss = lsp_installer_servers.get_server('tailwindcss')
-if ok then
-  if not tailwindcss:is_installed() then
-    tailwindcss:install()
-  end
-end
-
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+local conf = require('config.lsp.helpers')
+local capabilities = conf.capabilities
 capabilities.textDocument.colorProvider = { dynamicRegistration = false }
 
 require('lspconfig').tailwindcss.setup({
   capabilities = capabilities,
   on_attach = function(client, bufnr)
     if client.server_capabilities.colorProvider then
-      require('lsp/documentcolors').buf_attach(bufnr)
+      require('config.lsp.documentcolors').buf_attach(bufnr)
     end
   end,
   cmd = { 'tailwindcss-language-server', '--stdio' },

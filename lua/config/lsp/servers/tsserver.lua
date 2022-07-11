@@ -1,40 +1,28 @@
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.preselectSupport = true
-capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
-capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
-capabilities.textDocument.completion.completionItem.deprecatedSupport = true
-capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
-capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = {
-    'documentation',
-    'detail',
-    'additionalTextEdits',
-  },
-}
+local conf = require('config.lsp.helpers')
 
--- Auto-install
-local lsp_installer_servers = require('nvim-lsp-installer.servers')
-
-local ok, tsserver = lsp_installer_servers.get_server('tsserver')
-if ok then
-  if not tsserver:is_installed() then
-    tsserver:install()
-  end
-end
-
--- npm install -g typescript typescript-language-server
 require('lspconfig').tsserver.setup({
-  capabilities = capabilities,
+  capabilities = conf.capabilities,
   on_attach = function(client, bufnr)
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
+    local vim_version = vim.version()
+
+    if vim_version.minor > 7 then
+      -- nightly
+      client.server_capabilities.documentFormattingProvider = false
+      client.server_capabilities.documentRangeFormattingProvider = false
+    else
+      -- stable
+      client.resolved_capabilities.document_formatting = false
+      client.resolved_capabilities.document_range_formatting = false
+    end
 
     local function buf_set_option(...)
       vim.api.nvim_buf_set_option(bufnr, ...)
     end
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    if client.server_capabilities.signatureHelpProvider then
+      require('lsp_signature').on_attach()
+    end
 
     require('nvim-lsp-ts-utils').setup({
       debug = false,

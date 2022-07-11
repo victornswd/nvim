@@ -47,7 +47,38 @@ local has_words_before = function()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
 end
 
+local function border(hl_name)
+  return {
+    { '╭', hl_name },
+    { '─', hl_name },
+    { '╮', hl_name },
+    { '│', hl_name },
+    { '╯', hl_name },
+    { '─', hl_name },
+    { '╰', hl_name },
+    { '│', hl_name },
+  }
+end
+
+local cmp_window = require('cmp.utils.window')
+
+cmp_window.info_ = cmp_window.info
+cmp_window.info = function(self)
+  local info = self:info_()
+  info.scrollable = false
+  return info
+end
+
 cmp.setup({
+  window = {
+    completion = {
+      border = border('CmpBorder'),
+      winhighlight = 'Normal:CmpPmenu,CursorLine:PmenuSel,Search:None',
+    },
+    documentation = {
+      border = border('CmpDocBorder'),
+    },
+  },
   auto_select = false,
   snippet = {
     expand = function(args)
@@ -55,6 +86,12 @@ cmp.setup({
     end,
   },
   mapping = {
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
     ['<cr>'] = cmp.mapping.confirm({
       select = false,
       behavior = cmp.ConfirmBehavior.Replace,
@@ -103,16 +140,3 @@ cmp.setup({
   },
   preselect = cmp.PreselectMode.None,
 })
-
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-  underline = true,
-  -- This sets the spacing and the prefix, obviously.
-  virtual_text = false,
-  update_in_insert = true,
-})
-
-local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' }
-for type, icon in pairs(signs) do
-  local hl = 'DiagnosticSign' .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end

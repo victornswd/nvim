@@ -1,23 +1,14 @@
-local M = {}
+local lspconfig = require('lspconfig')
+local conf = require('config.lsp.helpers')
 
--- Auto-install
-local lsp_installer_servers = require('nvim-lsp-installer.servers')
-
-local ok, lua = lsp_installer_servers.get_server('sumneko_lua')
-if ok then
-  if not lua:is_installed() then
-    lua:install()
-  end
-end
-
--- Settings
-
-M.settings = {
-  Lua = {
-    diagnostics = {
-      globals = { 'vim' },
+lspconfig['sumneko_lua'].setup({
+  capabilities = conf.capabilities,
+  on_attach = conf.on_attach,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { 'vim' },
+      },
     },
   },
-}
-
-return M
+})

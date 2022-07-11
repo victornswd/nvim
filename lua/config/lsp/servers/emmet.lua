@@ -1,23 +1,8 @@
-local M = {}
+local lspconfig = require('lspconfig')
+local conf = require('config.lsp.helpers')
 
--- Auto-install
-
-local lsp_installer_servers = require('nvim-lsp-installer.servers')
-
-local ok, emmet = lsp_installer_servers.get_server('emmet_ls')
-if ok then
-  if not emmet:is_installed() then
-    emmet:install()
-  end
-end
-
--- Settings
-
--- -- Enable (broadcasting) snippet capability for completion
--- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
--- capabilities.textDocument.completion.completionItem.snippetSupport = true
-
--- M.capabilities = capabilities
-M.settings = {}
-
-return M
+lspconfig['emmet_ls'].setup({
+  capabilities = conf.capabilities,
+  on_attach = conf.on_attach,
+  settings = {},
+})
