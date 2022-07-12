@@ -1,25 +1,31 @@
 local M = {}
+
+local lsp_format = function(bufnr)
+  vim.lsp.buf.format({
+    filter = function(clients)
+      return clients.name == 'null-ls'
+    end,
+    bufnr = bufnr,
+  })
+end
+
+local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
+
 M.on_attach = function(client, bufnr)
-  local vim_version = vim.version()
-
-  if vim_version.minor > 7 then
-    -- nightly
-    client.server_capabilities.documentFormattingProvider = false
-    client.server_capabilities.documentRangeFormattingProvider = false
-  else
-    -- stable
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
+  if client.supports_method('textDocument/formatting') then
+    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      group = augroup,
+      buffer = bufnr,
+      callback = function()
+        lsp_format(bufnr)
+      end,
+    })
   end
 
-  local function buf_set_option(...)
-    vim.api.nvim_buf_set_option(bufnr, ...)
-  end
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  if client.server_capabilities.signatureHelpProvider then
-    require('lsp_signature').on_attach()
-  end
+  require('lsp_signature').on_attach()
 end
 
 M.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
