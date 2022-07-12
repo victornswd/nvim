@@ -98,6 +98,7 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move up selected line' })
 -- HOP
 local iz, hop = pcall(require, 'hop')
 if iz then
+  vim.keymap.set('n', '<leader>/', hop.hint_patterns, { desc = 'Hop Pattern' })
   vim.keymap.set('n', 'h', hop.hint_words, { desc = 'Hop Word' })
   vim.keymap.set('n', 'l', hop.hint_lines, { desc = 'Hop Line' })
   vim.keymap.set('n', 's', hop.hint_char1, { desc = 'Hop 1 Char' })
