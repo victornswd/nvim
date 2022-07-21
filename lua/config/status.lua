@@ -59,139 +59,142 @@ local is_current = function()
 end
 local icon_cache = {}
 
-vim.api.nvim_set_hl(0, 'StatusLineGitAdd', {
-  fg = colors.vibrant_green,
-  bg = colors.statusline_bg,
-})
-vim.api.nvim_set_hl(0, 'StatusLineGitRemoved', {
-  fg = colors.red,
-  bg = colors.statusline_bg,
-})
-vim.api.nvim_set_hl(0, 'StatusLineGitChanged', {
-  fg = colors.sun,
-  bg = colors.statusline_bg,
-})
-vim.api.nvim_set_hl(0, 'StatusLineGitBranch', {
-  fg = colors.grey_fg2,
-  bg = colors.statusline_bg,
-})
-vim.api.nvim_set_hl(0, 'StatusLineLocation', {
-  fg = colors.cyan,
-  bg = colors.grey,
-})
-vim.api.nvim_set_hl(0, 'StatusLinePosition', {
-  fg = colors.green,
-  bg = colors.grey,
-})
-vim.api.nvim_set_hl(0, 'StatusLine', {
-  bg = colors.statusline_bg,
-  fg = colors.fg,
-})
+local hl_groups = {
+  StatusLineGitAdd = {
+    fg = colors.vibrant_green,
+    bg = colors.statusline_bg,
+  },
+  StatusLineGitRemoved = {
+    fg = colors.red,
+    bg = colors.statusline_bg,
+  },
+  StatusLineGitChanged = {
+    fg = colors.sun,
+    bg = colors.statusline_bg,
+  },
+  StatusLineGitBranch = {
+    fg = colors.grey_fg2,
+    bg = colors.statusline_bg,
+  },
+  StatusLineLocation = {
+    fg = colors.cyan,
+    bg = colors.grey,
+  },
+  StatusLinePosition = {
+    fg = colors.green,
+    bg = colors.grey,
+  },
+  StatusLine = {
+    bg = colors.statusline_bg,
+    fg = colors.fg,
+  },
+  StatusLineFile = {
+    fg = colors.white,
+    bg = colors.lightbg,
+  },
+  StatusLineFileSep = {
+    bg = colors.statusline_bg,
+    fg = colors.lightbg,
+  },
+  StatusLinePositionIcon = {
+    fg = colors.black,
+    bg = colors.green,
+  },
+  StatusLinePositionIconSep = {
+    bg = colors.grey,
+    fg = colors.green,
+  },
+  StatusLineLocationSep = {
+    fg = colors.grey,
+    bg = colors.statusline_bg,
+  },
+  StatusLineError = {
+    fg = colors.red,
+  },
+  StatusLineInfo = {
+    fg = colors.green,
+  },
+  StatusLineHint = {
+    fg = colors.dark_purple,
+  },
+  StatusLineWarn = {
+    fg = colors.yellow,
+  },
+  MainSep = {
+    fg = colors.cyan,
+    bg = colors.lightbg,
+    bold = true,
+  },
+  Main = {
+    bg = colors.cyan,
+    fg = colors.lightbg,
+    bold = true,
+  },
+  ModeCSep = {
+    fg = colors.green,
+    bg = colors.lightbg,
+    bold = true,
+  },
+  ModeC = {
+    bg = colors.green,
+    fg = colors.lightbg,
+    bold = true,
+  },
+  ModeISep = {
+    fg = colors.dark_purple,
+    bg = colors.lightbg,
+    bold = true,
+  },
+  ModeI = {
+    bg = colors.dark_purple,
+    fg = colors.lightbg,
+    bold = true,
+  },
+  ModeTSep = {
+    fg = colors.green,
+    bg = colors.lightbg,
+    bold = true,
+  },
+  ModeT = {
+    bg = colors.green,
+    fg = colors.lightbg,
+    bold = true,
+  },
+  ModeNSep = {
+    fg = colors.red,
+    bg = colors.lightbg,
+    bold = true,
+  },
+  ModeN = {
+    bg = colors.red,
+    fg = colors.lightbg,
+    bold = true,
+  },
+  ModeVSep = {
+    fg = colors.cyan,
+    bg = colors.lightbg,
+    bold = true,
+  },
+  ModeV = {
+    bg = colors.cyan,
+    fg = colors.lightbg,
+    bold = true,
+  },
+  ModeRSep = {
+    fg = colors.orange,
+    bg = colors.lightbg,
+    bold = true,
+  },
+  ModeR = {
+    bg = colors.orange,
+    fg = colors.lightbg,
+    bold = true,
+  },
+}
 
-vim.api.nvim_set_hl(0, 'MainSep', {
-  fg = colors.cyan,
-  bg = colors.lightbg,
-  bold = true,
-})
-vim.api.nvim_set_hl(0, 'Main', {
-  bg = colors.cyan,
-  fg = colors.lightbg,
-  bold = true,
-})
-vim.api.nvim_set_hl(0, 'ModeCSep', {
-  fg = colors.green,
-  bg = colors.lightbg,
-  bold = true,
-})
-vim.api.nvim_set_hl(0, 'ModeC', {
-  bg = colors.green,
-  fg = colors.lightbg,
-  bold = true,
-})
-vim.api.nvim_set_hl(0, 'ModeISep', {
-  fg = colors.dark_purple,
-  bg = colors.lightbg,
-  bold = true,
-})
-vim.api.nvim_set_hl(0, 'ModeI', {
-  bg = colors.dark_purple,
-  fg = colors.lightbg,
-  bold = true,
-})
-vim.api.nvim_set_hl(0, 'ModeTSep', {
-  fg = colors.green,
-  bg = colors.lightbg,
-  bold = true,
-})
-vim.api.nvim_set_hl(0, 'ModeT', {
-  bg = colors.green,
-  fg = colors.lightbg,
-  bold = true,
-})
-vim.api.nvim_set_hl(0, 'ModeNSep', {
-  fg = colors.red,
-  bg = colors.lightbg,
-  bold = true,
-})
-vim.api.nvim_set_hl(0, 'ModeN', {
-  bg = colors.red,
-  fg = colors.lightbg,
-  bold = true,
-})
-vim.api.nvim_set_hl(0, 'ModeVSep', {
-  fg = colors.cyan,
-  bg = colors.lightbg,
-  bold = true,
-})
-vim.api.nvim_set_hl(0, 'ModeV', {
-  bg = colors.cyan,
-  fg = colors.lightbg,
-  bold = true,
-})
-vim.api.nvim_set_hl(0, 'ModeRSep', {
-  fg = colors.orange,
-  bg = colors.lightbg,
-  bold = true,
-})
-vim.api.nvim_set_hl(0, 'ModeR', {
-  bg = colors.orange,
-  fg = colors.lightbg,
-  bold = true,
-})
-
-vim.api.nvim_set_hl(0, 'StatusLineFile', {
-  fg = colors.white,
-  bg = colors.lightbg,
-})
-vim.api.nvim_set_hl(0, 'StatusLineFileSep', {
-  bg = colors.statusline_bg,
-  fg = colors.lightbg,
-})
-
-vim.api.nvim_set_hl(0, 'StatusLinePositionIcon', {
-  fg = colors.black,
-  bg = colors.green,
-})
-vim.api.nvim_set_hl(0, 'StatusLinePositionIconSep', {
-  bg = colors.grey,
-  fg = colors.green,
-})
-vim.api.nvim_set_hl(0, 'StatusLineLocationSep', {
-  fg = colors.grey,
-  bg = colors.statusline_bg,
-})
-vim.api.nvim_set_hl(0, 'StatusLineError', {
-  fg = colors.red,
-})
-vim.api.nvim_set_hl(0, 'StatusLineInfo', {
-  fg = colors.green,
-})
-vim.api.nvim_set_hl(0, 'StatusLineHint', {
-  fg = colors.dark_purple,
-})
-vim.api.nvim_set_hl(0, 'StatusLineWarn', {
-  fg = colors.yellow,
-})
+for hl, col in pairs(hl_groups) do
+  vim.api.nvim_set_hl(0, hl, col)
+end
 
 -- ['s'] = { 'SELECT', default.colors.nord_blue },
 -- ['S'] = { 'S-LINE', default.colors.nord_blue },
