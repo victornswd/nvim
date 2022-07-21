@@ -68,6 +68,7 @@ end
 vim.defer_fn(function()
   require('mappings')
   require('commands')
+  require('config.status')
 end, 10)
 
 local group = vim.api.nvim_create_augroup('start_screen', { clear = true })

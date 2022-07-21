@@ -72,7 +72,6 @@ require('packer').startup({
     })
 
     -- Statusline
-    use({ 'feline-nvim/feline.nvim', config = get_config('feline') })
     use({ 'kyazdani42/nvim-web-devicons' })
     use({ 'ojroques/nvim-bufdel' })
 
