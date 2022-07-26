@@ -6,6 +6,9 @@ lspconfig['sumneko_lua'].setup({
   on_attach = conf.on_attach,
   settings = {
     Lua = {
+      runtime = {
+        version = 'LuaJIT',
+      },
       diagnostics = {
         globals = { 'vim' },
       },
