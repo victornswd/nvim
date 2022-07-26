@@ -35,7 +35,7 @@ vim.g.ui = {
 }
 vim.g.theme = vim.g.ui.theme
 
-local i, j = string.find(vim.g.theme, '-NvChad')
+local i, _ = string.find(vim.g.theme, '-NvChad')
 if i then
   require('base46').load_theme()
 else
