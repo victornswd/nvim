@@ -106,6 +106,11 @@ require('packer').startup({
       -- after = 'neovim/nvim-lspconfig',
       config = get_config('null-ls'),
     })
+    use({
+      'SmiteshP/nvim-navic',
+      config = get_config('navic'),
+      requires = 'neovim/nvim-lspconfig',
+    })
 
     use({
       'nvim-treesitter/nvim-treesitter',
