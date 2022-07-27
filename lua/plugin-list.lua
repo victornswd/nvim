@@ -49,7 +49,6 @@ require('packer').startup({
     })
 
     -- Autoclose braces and surround selection with braces...
-    -- use({ 'tpope/vim-surround', event = 'User ActuallyEditing' })
     use({
       'echasnovski/mini.nvim',
       config = function()
@@ -65,11 +64,11 @@ require('packer').startup({
     -- Themes
     use({ 'victornswd/base46' })
     use({ 'wbthomason/vim-nazgul', event = 'User ActuallyEditing' })
-    use({
-      'rose-pine/neovim',
-      as = 'rose-pine',
-      event = 'User ActuallyEditing',
-    })
+    -- use({
+    --   'rose-pine/neovim',
+    --   as = 'rose-pine',
+    --   event = 'User ActuallyEditing',
+    -- })
 
     -- Statusline
     use({ 'kyazdani42/nvim-web-devicons' })
@@ -128,14 +127,6 @@ require('packer').startup({
       -- event = 'BufRead'
       event = 'User ActuallyEditing',
     })
-    -- TODO: see if Trouble is still required
-    -- use {
-    --   "folke/trouble.nvim",
-    --   requires = "kyazdani42/nvim-web-devicons",
-    --   config = function()
-    --     require("trouble").setup()
-    --   end
-    -- }
 
     -- Syntax
     use({

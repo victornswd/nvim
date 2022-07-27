@@ -478,6 +478,7 @@ local winbar_filetype_exclude = {
   [''] = true,
   ['NvimTree'] = true,
   ['Outline'] = true,
+  ['starter'] = true,
   ['Trouble'] = true,
   ['alpha'] = true,
   ['dashboard'] = true,
@@ -508,13 +509,11 @@ M.get_winbar = function()
     -- real files do not have buftypes
     if isempty(buftype) then
       return table.concat({
-        -- '%{%v:lua.status.get_mode()%}',
-        '%{%v:lua.status.get_filename()%}',
-        '%<',
         '%{%v:lua.status.get_location()%}',
         '%=',
         '%{%v:lua.status.get_diag()%}',
         '%{%v:lua.status.get_git_dirty()%}',
+        '%{%v:lua.status.get_filename()%}',
       })
     else
       -- Meant for quickfix, help, etc
@@ -534,7 +533,6 @@ M.get_statusline = function()
     '%{%v:lua.status.get_git_added()%}',
     '%{%v:lua.status.get_git_changed()%}',
     '%{%v:lua.status.get_git_removed()%}',
-    -- '%#StatusLineMod#%{IsBuffersModified()}%*',
     '%=',
     '%#StatusLineGitBranch# %{%v:lua.status.lsp_connected()%}%*',
     '%#StatusLineGitAdd# %{%v:lua.status.lsp_loading()%}%*',
@@ -587,15 +585,6 @@ M.get_location = function()
   end
   return result
 end
-
-vim.cmd([[
-  " [+] if only current modified, [+3] if 3 modified including current buffer.
-  " [3] if 3 modified and current not, "" if none modified.
-  function! IsBuffersModified()
-      let cnt = len(filter(getbufinfo(), 'v:val.changed == 1'))
-      return cnt == 0 ? "" : ( &modified ? "[+". (cnt>1?cnt:"") ."]" : "[".cnt."]" )
-  endfunction
-]])
 
 _G.status = M
 vim.o.winbar = '%{%v:lua.status.get_winbar()%}'
