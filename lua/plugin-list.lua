@@ -115,7 +115,7 @@ require('packer').startup({
       -- event = 'User ActuallyEditing'
     })
     use({ 'p00f/nvim-ts-rainbow', after = 'nvim-treesitter' })
-    use({ 'andymass/vim-matchup', after = 'nvim-treesitter' })
+    use({ 'andymass/vim-matchup', config = get_config('matchup'), after = 'nvim-treesitter' })
     use({
       'folke/todo-comments.nvim',
       requires = 'nvim-lua/plenary.nvim',
