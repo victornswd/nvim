@@ -1,12 +1,5 @@
-require('nvim-lsp-installer').setup({
+require('mason-lspconfig').setup({
   automatic_installation = true,
-  ui = {
-    icons = {
-      server_installed = '✓',
-      server_pending = '➜',
-      server_uninstalled = '✗',
-    },
-  },
 })
 
 --   if server.name == 'html' then

@@ -85,7 +85,11 @@ require('packer').startup({
         { 'rafamadriz/friendly-snippets' },
         { 'hrsh7th/cmp-path' },
         { 'lukas-reineke/cmp-rg' },
-        { 'williamboman/nvim-lsp-installer', config = get_config('lsp.installer') },
+        {
+          'williamboman/mason.nvim',
+          config = get_config('mason'),
+        },
+        { 'williamboman/mason-lspconfig.nvim', config = get_config('lsp.mason-config') },
         { 'neovim/nvim-lspconfig', config = get_config('lsp.config') },
       },
       config = get_config('cmp-conf'),
