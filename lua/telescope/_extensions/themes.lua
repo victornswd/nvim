@@ -6,7 +6,7 @@ local sorters = require('telescope.sorters')
 
 local function clear_cmdline()
   vim.defer_fn(function()
-    vim.cmd('echo')
+    vim.cmd.echo()
   end, 0)
 end
 
@@ -67,6 +67,8 @@ local function next_color(prompt_bufnr)
   vim.cmd(cmd)
 end
 
+_G.base_color = vim.g.ui.theme
+
 local function prev_color(prompt_bufnr)
   actions.move_selection_previous(prompt_bufnr)
   local selected = action_state.get_selected_entry()
@@ -75,23 +77,25 @@ local function prev_color(prompt_bufnr)
 end
 
 local function enter(prompt_bufnr)
-  local current_theme = vim.g.theme
+  local current_theme = _G.base_color
+
   local selected = action_state.get_selected_entry()
   local final_theme = selected[1]
-  -- local cmd = 'colorscheme ' .. final_theme
-  -- vim.cmd(cmd)
 
   -- ask for confirmation to set as default theme
   local ans = string.lower(vim.fn.input('Set ' .. final_theme .. ' as default theme ? [y/N] ')) == 'y'
   clear_cmdline()
   if ans then
     change_theme(current_theme, final_theme)
+    _G.base_color = final_theme
   else
     -- will be used in restoring nvchad theme var
     final_theme = current_theme
   end
-  require('colors').reload_theme(final_theme)
-  vim.g.theme = final_theme
+  local i, _ = string.find(final_theme, '-NvChad')
+  if i then
+    require('base46').load_all_highlights()
+  end
 
   actions.close(prompt_bufnr)
 end
@@ -103,7 +107,7 @@ local opts = {
   finder = finders.new_table(colors),
   sorter = sorters.get_generic_fuzzy_sorter({}),
 
-  attach_mappings = function(prompt_bufnr, map)
+  attach_mappings = function(_, map)
     map('i', '<CR>', enter)
     map('i', '<Down>', next_color)
     map('i', '<Up>', prev_color)
