@@ -57,6 +57,7 @@ vim.g.ui = {
     ModeR = { bg = 'orange', fg = 'lightbg', bold = true },
   },
   hl_override = {
+    NonText = { bg = 'black' },
     Comment = { italic = true },
     Function = { italic = true },
     Error = { italic = true, bg = 'grey' },
