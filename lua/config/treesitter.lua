@@ -29,6 +29,7 @@ ts.setup({
   },
   matchup = {
     enable = true, -- mandatory, false will disable the whole extension
+    matchparen = { offscreen = {} },
   },
   rainbow = {
     enable = true,
