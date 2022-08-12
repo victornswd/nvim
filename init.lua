@@ -63,14 +63,9 @@ vim.g.ui = {
     Error = { italic = true, bg = 'grey' },
   },
 }
-vim.g.theme = vim.g.ui.theme
 
-local i, _ = string.find(vim.g.theme, '-NvChad')
-if i then
-  require('base46').load_theme()
-else
-  vim.cmd.colorscheme(vim.g.theme)
-end
+vim.g.theme = vim.g.ui.theme
+vim.cmd.colorscheme(vim.g.theme)
 
 local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/opt/packer.nvim'
