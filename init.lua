@@ -91,7 +91,7 @@ if not _G.packer_bootstrap then
 end
 
 vim.defer_fn(function()
-  require('mappings')
+  require('keymaps')
   require('commands')
   require('config.status')
 end, 10)
