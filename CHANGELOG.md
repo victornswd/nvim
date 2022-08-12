@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.2] - 2022-08-12
+
+### Removed
+
+- Removed support for Neovim 0.7 due to the enhancements on the 0.8 branch
+
+### Changed
+
+- Changed to the overhauled NvChad themes. Updated the theme switcher as well
+- Switched LSP installer to the new [mason.nvim](https://github.com/williamboman/mason.nvim)
+- Changed some LSP & completion settings
+- Updated LSP settings to the default lspconfig behavior
+- Changed feline status to a custom statusline
+
+### Added
+
+- [Harpoon](https://github.com/ThePrimeagen/harpoon) to better manage "marks"
+- Configured the winbar. Still a WIP
+- [nvim-navic](https://github.com/SmiteshP/nvim-navic) to show code context in the winbar
+
 ## [0.2.1] - 2022-04-26
 
 ### Changed
