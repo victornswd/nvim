@@ -73,9 +73,10 @@ vim.keymap.set('n', '<leader>r', ':source ~/.config/nvim/init.lua<CR>', { desc =
 vim.keymap.set('n', '<leader>s', ':mksession<CR>', { desc = 'Save current files as a session' })
 
 -- g
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'LSP - Go to declaration' })
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'LSP - Go to definition' })
 vim.keymap.set('n', 'gh', vim.lsp.buf.hover, { desc = 'LSP - Display hover tooltip' })
-vim.keymap.set('n', 'gD', vim.lsp.buf.implementation, { desc = 'LSP - Go to implementation' })
+vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { desc = 'LSP - Go to implementation' })
 vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, { desc = 'LSP - Go to type definition' })
 vim.keymap.set('n', 'gR', vim.lsp.buf.rename, { desc = 'LSP - Rename all references' })
 vim.keymap.set('n', 'gr', function()
