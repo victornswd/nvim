@@ -9,17 +9,19 @@ require('packer').startup({
   function()
     use({ 'wbthomason/packer.nvim', opt = true }) -- Package manager
 
-    use('lewis6991/impatient.nvim')
-    use('nvim-lua/plenary.nvim')
+    use({ 'lewis6991/impatient.nvim' })
+    use({ 'kyazdani42/nvim-web-devicons' })
+    use({ 'nvim-lua/plenary.nvim' })
     use({ 'stevearc/dressing.nvim' })
+
     use({ 'tweekmonster/startuptime.vim', cmd = 'StartupTime' })
+    use({ 'psliwka/termcolors.nvim', cmd = 'TermcolorsShow' })
+
     use({
       'folke/which-key.nvim',
       config = get_config('which-key'),
       event = 'User ActuallyEditing',
     })
-
-    use({ 'psliwka/termcolors.nvim', cmd = 'TermcolorsShow' })
 
     use({
       'nvim-telescope/telescope.nvim',
@@ -43,7 +45,6 @@ require('packer').startup({
     })
     use({
       'lukas-reineke/indent-blankline.nvim',
-      -- after = 'rose-pine',
       config = get_config('indent-blankline'),
       event = 'User ActuallyEditing',
     })
@@ -64,14 +65,7 @@ require('packer').startup({
     -- Themes
     use({ 'victornswd/base46' })
     use({ 'wbthomason/vim-nazgul', event = 'User ActuallyEditing' })
-    -- use({
-    --   'rose-pine/neovim',
-    --   as = 'rose-pine',
-    --   event = 'User ActuallyEditing',
-    -- })
 
-    -- Statusline
-    use({ 'kyazdani42/nvim-web-devicons' })
     use({ 'ojroques/nvim-bufdel' })
 
     use({
@@ -106,7 +100,6 @@ require('packer').startup({
         'nvim-lua/plenary.nvim',
         'neovim/nvim-lspconfig',
       },
-      -- after = 'neovim/nvim-lspconfig',
       config = get_config('null-ls'),
     })
     use({
@@ -119,17 +112,16 @@ require('packer').startup({
       'nvim-treesitter/nvim-treesitter',
       config = get_config('treesitter'),
       run = ':TSUpdate',
-      event = 'BufRead',
-      -- event = 'User ActuallyEditing'
+      event = 'User ActuallyEditing',
     })
     use({ 'p00f/nvim-ts-rainbow', after = 'nvim-treesitter' })
     use({ 'andymass/vim-matchup', config = get_config('matchup'), after = 'nvim-treesitter' })
     use({
       'folke/todo-comments.nvim',
       requires = 'nvim-lua/plenary.nvim',
+      after = 'nvim-treesitter',
       config = get_config('todo-comments'),
-      -- event = 'BufRead'
-      event = 'User ActuallyEditing',
+      -- event = 'User ActuallyEditing',
     })
 
     -- Syntax
