@@ -69,7 +69,7 @@ local i, _ = string.find(vim.g.theme, '-NvChad')
 if i then
   require('base46').load_theme()
 else
-  vim.cmd('colo ' .. vim.g.theme)
+  vim.cmd.colorscheme(vim.g.theme)
 end
 
 local fn = vim.fn

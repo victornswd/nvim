@@ -2,7 +2,7 @@ local function get_config(name)
   return string.format('require("config/%s")', name)
 end
 
-vim.cmd([[packadd packer.nvim]])
+vim.cmd.packadd('packer.nvim')
 
 local use = require('packer').use
 require('packer').startup({
