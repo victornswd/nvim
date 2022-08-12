@@ -31,7 +31,8 @@ if i then
   -- vim.api.nvim_set_hl(0, 'NavicIconsEvent', { fg = '#ffffff' })
   vim.api.nvim_set_hl(0, 'NavicIconsOperator', { fg = base16.base05 })
   vim.api.nvim_set_hl(0, 'NavicIconsTypeParameter', { fg = base16.base08 })
-  vim.api.nvim_set_hl(0, 'NavicText', { bold = true, fg = colors.baby_pink })
+  -- vim.api.nvim_set_hl(0, 'NavicText', { bold = true, fg = colors.baby_pink })
+  vim.api.nvim_set_hl(0, 'NavicText', { bold = true, fg = colors.base05 })
   -- vim.api.nvim_set_hl(0, 'NavicText', { bold = true })
 end
 
