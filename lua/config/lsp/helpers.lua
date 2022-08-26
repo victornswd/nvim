@@ -26,8 +26,13 @@ M.on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   require('lsp_signature').on_attach()
+
   if client.supports_method('textDocument/documentSymbol') then
     require('nvim-navic').attach(client, bufnr)
+  end
+
+  if client.server_capabilities.colorProvider then
+    require('document-color').buf_attach(bufnr)
   end
 end
 
@@ -49,6 +54,10 @@ capabilities.textDocument.completion.completionItem = {
       'additionalTextEdits',
     },
   },
+}
+
+capabilities.textDocument.colorProvider = {
+  dynamicRegistration = true,
 }
 
 M.capabilities = capabilities

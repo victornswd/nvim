@@ -93,6 +93,7 @@ require('packer').startup({
       'jose-elias-alvarez/nvim-lsp-ts-utils',
       after = 'nvim-lspconfig',
     })
+    use({ 'mrshmllow/document-color.nvim' }, get_config('document-color'))
 
     use({
       'jose-elias-alvarez/null-ls.nvim',
