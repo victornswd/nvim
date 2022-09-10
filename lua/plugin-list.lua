@@ -90,12 +90,15 @@ require('packer').startup({
       config = get_config('cmp-conf'),
     })
     use({
+      'github/copilot.vim',
+      config = get_config('copilot'),
+    })
+    use({
       'ray-x/lsp_signature.nvim', -- NOTE: is this plugin helpful or distracting?
       'jose-elias-alvarez/nvim-lsp-ts-utils',
       after = 'nvim-lspconfig',
     })
     use({ 'mrshmllow/document-color.nvim' }, get_config('document-color'))
-
     use({
       'jose-elias-alvarez/null-ls.nvim',
       requires = {

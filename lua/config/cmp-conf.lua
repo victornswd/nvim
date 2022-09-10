@@ -1,4 +1,4 @@
-local i, j = string.find(vim.g.theme, '-NvChad')
+local i, _ = string.find(vim.g.theme, '-NvChad')
 if i then
   require('base46').load_highlight('cmp')
 end
@@ -29,11 +29,20 @@ local lsp_symbols = {
   Event = ' ',
   Operator = 'ﬦ ',
   TypeParameter = ' ',
+  Copilot = ' ',
 }
 
--- Setup nvim-cmp.
-local cmp = require('cmp')
-local luasnip = require('luasnip')
+-- -- Setup nvim-cmp.
+local cmp_status_ok, cmp = pcall(require, 'cmp')
+if not cmp_status_ok then
+  return
+end
+
+local snip_status_ok, luasnip = pcall(require, 'luasnip')
+if not snip_status_ok then
+  return
+end
+
 luasnip.snippets = {
   markdown = {},
 }
@@ -71,6 +80,11 @@ end
 
 cmp.setup({
   window = {
+    confirm_opts = {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = false,
+    },
+
     completion = {
       border = border('CmpBorder'),
       winhighlight = 'Normal:CmpPmenu,CursorLine:PmenuSel,Search:None',
@@ -121,10 +135,11 @@ cmp.setup({
     end, { 'i', 's' }),
   },
   sources = {
+    -- { name = 'copilot' },
     { name = 'nvim_lsp' },
     { name = 'path' },
     { name = 'luasnip' },
-    { name = 'buffer', keywork_length = 5 },
+    { name = 'buffer', keywork_length = 3 },
     { name = 'npm', keyword_length = 4 },
     { name = 'rg', keyword_length = 4 },
   },
@@ -134,9 +149,13 @@ cmp.setup({
       return vim_item
     end,
   },
+
+  confirm_opts = {
+    behavior = cmp.ConfirmBehavior.Replace,
+    select = false,
+  },
   experimental = {
-    native_menu = false,
-    ghost_text = true,
+    ghost_text = false,
   },
   preselect = cmp.PreselectMode.None,
 })
