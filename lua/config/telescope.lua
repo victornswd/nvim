@@ -56,3 +56,28 @@ require('telescope').load_extension('fzf')
 require('telescope').load_extension('vw')
 require('telescope').load_extension('luasnip')
 require('telescope').load_extension('themes')
+
+-- keymap
+
+_G.project_files = function()
+  local opts = {}
+  local ok = pcall(require('telescope.builtin').git_files, opts)
+  if not ok then
+    pcall(require('telescope.builtin').find_files, opts)
+  end
+end
+
+vim.keymap.set('n', '<leader>f', function()
+  pcall(require('telescope.builtin').live_grep)
+end, { desc = 'Search for word in folder' })
+vim.keymap.set('n', '<leader>h', function()
+  pcall(require('telescope.builtin').keymaps)
+end, { desc = 'Show key maps' })
+vim.keymap.set('n', '<leader>c', function()
+  pcall(require('telescope').extensions.themes.themes)
+end, { desc = 'Colorschemes' })
+
+vim.keymap.set('n', '<leader>t', function()
+  pcall(require('telescope.builtin').diagnostics(), { bufnr = 0 })
+end, { desc = 'Show file diagnostics' })
+vim.keymap.set('n', '<leader>o', project_files, { desc = 'Open file search' })

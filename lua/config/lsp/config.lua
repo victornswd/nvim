@@ -1,4 +1,4 @@
-local i, j = string.find(vim.g.theme, '-NvChad')
+local i, _ = string.find(vim.g.theme, '-NvChad')
 if i then
   require('base46').load_highlight('lsp')
 end
@@ -17,7 +17,15 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagn
   underline = true,
   -- This sets the spacing and the prefix, obviously.
   virtual_text = false,
-  update_in_insert = true,
+  -- update_in_insert = true,
+  float = {
+    focusable = true,
+    style = 'minimal',
+    border = 'rounded',
+    source = 'always',
+    header = '',
+    prefix = '',
+  },
 })
 
 local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' }
@@ -32,7 +40,7 @@ vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'LSP - Go to definiti
 vim.keymap.set('n', 'gh', vim.lsp.buf.hover, { desc = 'LSP - Display hover tooltip' })
 vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { desc = 'LSP - Go to implementation' })
 vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, { desc = 'LSP - Go to type definition' })
--- vim.keymap.set('n', 'gR', vim.lsp.buf.rename, { desc = 'LSP - Rename all references' })
+vim.keymap.set('n', 'gR', vim.lsp.buf.rename, { desc = 'LSP - Rename all references' })
 vim.keymap.set('n', 'gr', function()
   pcall(require('telescope.builtin').lsp_references)
 end, { desc = 'LSP - References' })
