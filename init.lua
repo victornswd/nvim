@@ -61,6 +61,8 @@ vim.g.ui = {
     Comment = { italic = true },
     Function = { italic = true },
     Error = { italic = true, bg = 'grey' },
+    Search = { fg = 'white', bg = 'grey' },
+    CopilotSuggestion = { fg = 'grey' },
   },
 }
 

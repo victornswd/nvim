@@ -126,7 +126,7 @@ require('packer').startup({
 
     -- Syntax
     use({
-      'norcalli/nvim-colorizer.lua',
+      'NvChad/nvim-colorizer.lua',
       config = get_config('colorizer'),
       ft = { 'css', 'javascript', 'vim', 'html', 'lua' },
     })
@@ -142,7 +142,7 @@ require('packer').startup({
     })
 
     -- Dev helpers (linting, project spacing...)
-    use({ 'editorconfig/editorconfig-vim', event = 'User ActuallyEditing' })
+    use({ 'gpanders/editorconfig.nvim', event = 'User ActuallyEditing' })
     use({
       'yardnsm/vim-import-cost',
       run = 'npm install',
