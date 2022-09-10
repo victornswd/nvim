@@ -59,6 +59,7 @@ require('packer').startup({
         require('config.mini-surround')
         require('config.mini-session')
         require('config.mini-tabline')
+        require('config.mini-ai')
       end,
     })
 
