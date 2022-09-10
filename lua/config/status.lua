@@ -328,7 +328,7 @@ M.get_winbar = function()
     -- real files do not have buftypes
     if isempty(buftype) then
       return table.concat({
-        '%{%v:lua.status.get_location()%}',
+        '%{%v:lua.status.aerial()%}',
         '%=',
         '%{%v:lua.status.get_diag()%}',
         '%{%v:lua.status.get_git_dirty()%}',
@@ -381,31 +381,47 @@ M.get_git_dirty = function()
   end
 end
 
-M.get_location = function()
-  local success, result = pcall(function()
-    if not is_current() then
-      return ''
+M.gotoSymbolName = function(minwid, no, mouse)
+  if no == 2 and mouse == 'l' then
+    local t = {}
+    for w in string.format(minwid):gmatch('([^000]+)') do
+      table.insert(t, w)
     end
-    local provider = require('nvim-navic')
-    if not provider.is_available() then
-      return ''
-    end
-
-    local location = provider.get_location({})
-    if not isempty(location) and location ~= 'error' then
-      return '%#WinBarLocation#  ' .. location .. '%*'
-    else
-      return ''
-    end
-  end)
-
-  if not success then
-    return ''
+    print(vim.inspect(t))
+    vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { tonumber(t[1]), tonumber(t[2]) })
   end
-  return result
+end
+
+M.aerial = function()
+  local aerial = require('aerial')
+
+  local function format_status(symbols)
+    local parts = {}
+    for _, symbol in ipairs(symbols) do
+      table.insert(
+        parts,
+        '%'
+          .. symbol.lnum
+          .. '000'
+          .. symbol.col
+          .. '@v:lua.status.gotoSymbolName@%#Aerial'
+          .. symbol.kind
+          .. 'Icon#'
+          .. symbol.icon
+          .. symbol.name
+          .. '%*%X'
+      )
+    end
+    return table.concat(parts, ' ▶ ')
+  end
+
+  local symbols = aerial.get_location(true)
+  local symbols_structure = format_status(symbols)
+  return symbols_structure
 end
 
 _G.status = M
+
 vim.o.winbar = '%{%v:lua.status.get_winbar()%}'
 vim.o.statusline = '%{%v:lua.status.get_statusline()%}'
 

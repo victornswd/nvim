@@ -27,9 +27,7 @@ M.on_attach = function(client, bufnr)
 
   require('lsp_signature').on_attach()
 
-  if client.supports_method('textDocument/documentSymbol') then
-    require('nvim-navic').attach(client, bufnr)
-  end
+  require('aerial').on_attach(client, bufnr)
 
   if client.server_capabilities.colorProvider then
     require('document-color').buf_attach(bufnr)

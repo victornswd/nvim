@@ -104,11 +104,6 @@ require('packer').startup({
       },
       config = get_config('null-ls'),
     })
-    use({
-      'SmiteshP/nvim-navic',
-      config = get_config('navic'),
-      requires = 'neovim/nvim-lspconfig',
-    })
 
     use({
       'nvim-treesitter/nvim-treesitter',
@@ -137,6 +132,10 @@ require('packer').startup({
       requires = { 'nvim-lua/plenary.nvim' },
       config = get_config('gitsigns'),
       after = 'nvim-treesitter',
+    })
+    use({
+      'stevearc/aerial.nvim',
+      config = get_config('aerial'),
     })
 
     -- Dev helpers (linting, project spacing...)
