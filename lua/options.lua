@@ -48,7 +48,7 @@ opt.smartindent = true -- Insert indents automatically
 opt.lazyredraw = true
 opt.list = true
 opt.fillchars:append({ eob = ' ' })
--- opt.listchars:append("eol:↴")
+-- opt.listchars:append('eol:↴')
 opt.updatetime = 300
 opt.laststatus = 3
 opt.signcolumn = 'yes'
