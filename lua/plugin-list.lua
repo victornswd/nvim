@@ -7,107 +7,19 @@ vim.cmd.packadd('packer.nvim')
 local use = require('packer').use
 require('packer').startup({
   function()
-    use({ 'wbthomason/packer.nvim', opt = true }) -- Package manager
+    -- Package manager and internal dependencies
+    use({ 'wbthomason/packer.nvim', opt = true })
 
     use({ 'lewis6991/impatient.nvim' })
     use({ 'kyazdani42/nvim-web-devicons' })
     use({ 'nvim-lua/plenary.nvim' })
     use({ 'stevearc/dressing.nvim' })
 
-    use({ 'tweekmonster/startuptime.vim', cmd = 'StartupTime' })
-    use({ 'psliwka/termcolors.nvim', cmd = 'TermcolorsShow' })
-
-    use({
-      'folke/which-key.nvim',
-      config = get_config('which-key'),
-      event = 'User ActuallyEditing',
-    })
-
-    use({
-      'nvim-telescope/telescope.nvim',
-      config = get_config('telescope'),
-      requires = {
-        { 'ElPiloto/telescope-vimwiki.nvim' },
-        { 'benfowler/telescope-luasnip.nvim' },
-        { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-      },
-      event = 'User ActuallyEditing',
-    })
-
-    -- Commenting and complex aligning
-    use({ 'junegunn/vim-easy-align', cmd = { 'EasyAlign', 'LiveEasyAlign' } })
-    use({ 'tpope/vim-repeat', event = 'User ActuallyEditing' })
-    use({ 'JoosepAlviste/nvim-ts-context-commentstring', after = 'nvim-treesitter' })
-    use({
-      'phaazon/hop.nvim',
-      config = get_config('hop'),
-      event = 'User ActuallyEditing',
-    })
-    use({
-      'lukas-reineke/indent-blankline.nvim',
-      config = get_config('indent-blankline'),
-      event = 'User ActuallyEditing',
-    })
-
-    -- Autoclose braces and surround selection with braces...
-    use({
-      'echasnovski/mini.nvim',
-      config = function()
-        require('config.mini-comment')
-        require('config.mini-starter')
-        require('config.mini-pairs')
-        require('config.mini-surround')
-        require('config.mini-session')
-        require('config.mini-tabline')
-        require('config.mini-ai')
-      end,
-    })
-
     -- Themes
     use({ 'victornswd/base46' })
-    use({ 'wbthomason/vim-nazgul', event = 'User ActuallyEditing' })
+    use({ 'cranberry-clockworks/coal.nvim', event = 'User ActuallyEditing' })
 
-    use({ 'ojroques/nvim-bufdel' })
-
-    use({
-      'hrsh7th/nvim-cmp',
-      requires = {
-        { 'hrsh7th/cmp-nvim-lua' },
-        { 'hrsh7th/cmp-nvim-lsp' },
-        { 'hrsh7th/cmp-buffer' },
-        { 'L3MON4D3/luasnip' },
-        { 'saadparwaiz1/cmp_luasnip' },
-        { 'rafamadriz/friendly-snippets' },
-        { 'hrsh7th/cmp-path' },
-        { 'lukas-reineke/cmp-rg' },
-        {
-          'williamboman/mason.nvim',
-          config = get_config('mason'),
-        },
-        { 'williamboman/mason-lspconfig.nvim', config = get_config('lsp.mason-config') },
-        { 'neovim/nvim-lspconfig', config = get_config('lsp.config') },
-      },
-      config = get_config('cmp-conf'),
-    })
-    use({
-      'github/copilot.vim',
-      config = get_config('copilot'),
-    })
-    use({
-      'ray-x/lsp_signature.nvim', -- NOTE: is this plugin helpful or distracting?
-      'jose-elias-alvarez/nvim-lsp-ts-utils',
-      after = 'nvim-lspconfig',
-    })
-    use({ 'mrshmllow/document-color.nvim' }, get_config('document-color'))
-    use({
-      'jose-elias-alvarez/null-ls.nvim',
-      requires = {
-        'nvim-lua/plenary.nvim',
-        'neovim/nvim-lspconfig',
-      },
-      config = get_config('null-ls'),
-    })
-
+    -- Treesitter
     use({
       'nvim-treesitter/nvim-treesitter',
       config = get_config('treesitter'),
@@ -121,14 +33,42 @@ require('packer').startup({
       requires = 'nvim-lua/plenary.nvim',
       after = 'nvim-treesitter',
       config = get_config('todo-comments'),
-      -- event = 'User ActuallyEditing',
+    })
+    use({
+      'JoosepAlviste/nvim-ts-context-commentstring',
+      after = 'nvim-treesitter',
     })
 
-    -- Syntax
+    -- Dev helpers (documentation, pickers, editor config, etc)
+    use({
+      'nvim-telescope/telescope.nvim',
+      config = get_config('telescope'),
+      requires = {
+        { 'ElPiloto/telescope-vimwiki.nvim' },
+        { 'benfowler/telescope-luasnip.nvim' },
+        { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+      },
+      event = 'User ActuallyEditing',
+    })
+    use({ 'gpanders/editorconfig.nvim', event = 'User ActuallyEditing' })
+    use({
+      'danymat/neogen',
+      config = get_config('neogen'),
+      requires = 'nvim-treesitter/nvim-treesitter',
+      after = 'nvim-treesitter',
+    })
+    use({ 'vimwiki/vimwiki', branch = 'dev', event = 'User ActuallyEditing' })
+
+    -- UI flourishes
+    use({
+      'lukas-reineke/indent-blankline.nvim',
+      config = get_config('indent-blankline'),
+      event = 'User ActuallyEditing',
+    })
     use({
       'NvChad/nvim-colorizer.lua',
       config = get_config('colorizer'),
-      ft = { 'css', 'javascript', 'vim', 'html', 'lua' },
+      ft = { 'css', 'javascript', 'vim', 'html', 'lua', 'typescript', 'typescriptreact', 'react', 'astro' },
     })
     use({
       'lewis6991/gitsigns.nvim',
@@ -140,24 +80,87 @@ require('packer').startup({
       'stevearc/aerial.nvim',
       config = get_config('aerial'),
     })
+    use({ 'edluffy/specs.nvim', config = get_config('specs') })
 
-    -- Dev helpers (linting, project spacing...)
-    use({ 'gpanders/editorconfig.nvim', event = 'User ActuallyEditing' })
+    -- UX flourishes
+    use({ 'ThePrimeagen/harpoon', requires = 'nvim-lua/plenary.nvim' })
+    use({ 'ojroques/nvim-bufdel' })
+    use({
+      'phaazon/hop.nvim',
+      config = get_config('hop'),
+      event = 'User ActuallyEditing',
+    })
+    use({
+      'echasnovski/mini.nvim',
+      config = function()
+        require('config.mini-comment')
+        require('config.mini-starter')
+        require('config.mini-pairs')
+        require('config.mini-surround')
+        require('config.mini-session')
+        require('config.mini-tabline')
+        require('config.mini-ai')
+      end,
+    })
+    use({
+      'folke/which-key.nvim',
+      config = get_config('which-key'),
+      event = 'User ActuallyEditing',
+    })
+    -- use({ 'tpope/vim-repeat', event = 'User ActuallyEditing' })
+
+    -- Command loaded plugins
+    use({ 'tweekmonster/startuptime.vim', cmd = 'StartupTime' })
+    use({ 'psliwka/termcolors.nvim', cmd = 'TermcolorsShow' })
+    use({ 'junegunn/vim-easy-align', cmd = { 'EasyAlign', 'LiveEasyAlign' } })
     use({
       'yardnsm/vim-import-cost',
       run = 'npm install',
       ft = { 'javascript', 'javascript.jsx', 'typescript' },
       cmd = 'ImportCost',
     })
+
     use({
-      'danymat/neogen',
-      config = get_config('neogen'),
-      requires = 'nvim-treesitter/nvim-treesitter',
-      after = 'nvim-treesitter',
+      'hrsh7th/nvim-cmp',
+      requires = {
+        { 'hrsh7th/cmp-nvim-lua' },
+        { 'hrsh7th/cmp-nvim-lsp' },
+        { 'hrsh7th/cmp-buffer' },
+        { 'L3MON4D3/luasnip' },
+        { 'saadparwaiz1/cmp_luasnip' },
+        { 'rafamadriz/friendly-snippets' },
+        { 'hrsh7th/cmp-path' },
+        { 'lukas-reineke/cmp-rg' },
+      },
+      config = get_config('cmp-conf'),
     })
-    use({ 'vimwiki/vimwiki', branch = 'dev', event = 'User ActuallyEditing' })
-    use({ 'ThePrimeagen/harpoon', requires = 'nvim-lua/plenary.nvim' })
-    use({ 'edluffy/specs.nvim', config = get_config('specs') })
+    use({
+      'neovim/nvim-lspconfig',
+      config = get_config('lsp.config'),
+      requires = {
+        { 'williamboman/mason.nvim', config = get_config('mason') },
+        { 'williamboman/mason-lspconfig.nvim', config = get_config('lsp.mason-config') },
+      },
+    })
+    use({
+      'ray-x/lsp_signature.nvim', -- NOTE: is this plugin helpful or distracting?
+      'jose-elias-alvarez/nvim-lsp-ts-utils',
+      after = 'nvim-lspconfig',
+    })
+    -- use({ 'mrshmllow/document-color.nvim' }, get_config('document-color'))
+    use({
+      'jose-elias-alvarez/null-ls.nvim',
+      requires = {
+        'nvim-lua/plenary.nvim',
+        'neovim/nvim-lspconfig',
+      },
+      config = get_config('null-ls'),
+    })
+    use({
+      'github/copilot.vim',
+      config = get_config('copilot'),
+      event = 'InsertEnter',
+    })
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
