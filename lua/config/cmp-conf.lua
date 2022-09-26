@@ -110,6 +110,13 @@ cmp.setup({
       select = false,
       behavior = cmp.ConfirmBehavior.Replace,
     }),
+    ['<C-a>'] = cmp.mapping(function(fallback)
+      vim.api.nvim_feedkeys(
+        vim.fn['copilot#Accept'](vim.api.nvim_replace_termcodes('<Tab>', true, true, true)),
+        'n',
+        true
+      )
+    end),
     -- ["<s-tab>"] = cmp.mapping.select_prev_item(),
     -- ["<tab>"] = cmp.mapping.select_next_item(),
     ['<Tab>'] = cmp.mapping(function(fallback)
