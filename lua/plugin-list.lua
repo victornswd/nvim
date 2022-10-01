@@ -120,20 +120,23 @@ require('packer').startup({
       cmd = 'ImportCost',
     })
 
+    -- Autocompletion
+    use({ 'rafamadriz/friendly-snippets', module = { 'cmp', 'cmp_nvim_lsp' }, event = 'InsertEnter' })
     use({
       'hrsh7th/nvim-cmp',
-      requires = {
-        { 'hrsh7th/cmp-nvim-lua' },
-        { 'hrsh7th/cmp-nvim-lsp' },
-        { 'hrsh7th/cmp-buffer' },
-        { 'L3MON4D3/luasnip' },
-        { 'saadparwaiz1/cmp_luasnip' },
-        { 'rafamadriz/friendly-snippets' },
-        { 'hrsh7th/cmp-path' },
-        { 'lukas-reineke/cmp-rg' },
-      },
+      after = 'friendly-snippets',
       config = get_config('cmp-conf'),
     })
+    use({ 'L3MON4D3/luasnip', wants = 'friendly-snippets', after = 'nvim-cmp' })
+
+    use({ 'saadparwaiz1/cmp_luasnip', after = 'luasnip' })
+    use({ 'hrsh7th/cmp-nvim-lua', after = 'cmp_luasnip' })
+    use({ 'hrsh7th/cmp-nvim-lsp', after = 'cmp-nvim-lua' })
+    use({ 'hrsh7th/cmp-buffer', after = 'cmp-nvim-lsp' })
+    use({ 'hrsh7th/cmp-path', after = 'cmp-buffer' })
+    use({ 'lukas-reineke/cmp-rg', after = 'cmp-path' })
+
+    -- LSP
     use({
       'neovim/nvim-lspconfig',
       config = get_config('lsp.config'),
