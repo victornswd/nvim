@@ -11,12 +11,15 @@ require('config.lsp.servers.json')
 require('config.lsp.servers.lua')
 require('config.lsp.servers.tsserver')
 require('config.lsp.servers.tailwind')
+require('config.lsp.servers.prisma')
+require('config.lsp.servers.astro')
+require('config.lsp.servers.sql')
 require('config.lsp.servers.emmet')
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
   underline = true,
   -- This sets the spacing and the prefix, obviously.
-  virtual_text = false,
+  -- virtual_text = false,
   -- update_in_insert = true,
   float = {
     focusable = true,
@@ -26,6 +29,10 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagn
     header = '',
     prefix = '',
   },
+})
+
+vim.diagnostic.config({
+  -- virtual_text = false,
 })
 
 local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' }
