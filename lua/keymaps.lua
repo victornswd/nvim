@@ -50,3 +50,16 @@ vim.keymap.set('i', '<C-w>', EscapePair, { desc = 'Escape pairs while in insert 
 
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move down selected line' })
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move up selected line' })
+
+function HL_search()
+  local ns = vim.api.nvim_create_namespace('search')
+  vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
+
+  local sc = vim.fn.searchcount()
+  vim.api.nvim_buf_set_extmark(0, ns, vim.api.nvim_win_get_cursor(0)[1] - 1, 0, {
+    virt_text = { { '[' .. sc.current .. '/' .. sc.total .. ']', 'Comment' } },
+    virt_text_pos = 'eol',
+  })
+end
+vim.keymap.set('n', 'n', 'nzz:lua HL_search()<CR>', { desc = 'Inline search occurence' })
+vim.keymap.set('n', 'N', 'Nzz:lua HL_search()<CR>', { desc = 'Inline search occurence' })
