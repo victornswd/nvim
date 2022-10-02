@@ -47,7 +47,6 @@ vim.keymap.set('n', '<leader>s', ':mksession<CR>', { desc = 'Save current files 
 -- TODO: document in README
 vim.keymap.set('i', '<C-c>', EscapePair, { desc = 'Escape pairs while in insert mode' })
 vim.keymap.set('i', '<C-w>', EscapePair, { desc = 'Escape pairs while in insert mode' })
-vim.keymap.set('n', '<C-l>', '<cmd>noh<CR>', { desc = 'Clear highlighted text' })
 
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move down selected line' })
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move up selected line' })
