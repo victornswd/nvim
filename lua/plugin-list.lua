@@ -17,7 +17,6 @@ require('packer').startup({
 
     -- Themes
     use({ 'victornswd/base46' })
-    use({ 'cranberry-clockworks/coal.nvim', event = 'User ActuallyEditing' })
 
     -- Treesitter
     use({
