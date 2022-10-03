@@ -96,7 +96,6 @@ require('packer').startup({
         require('config.mini-starter')
         require('config.mini-pairs')
         require('config.mini-surround')
-        require('config.mini-session')
         require('config.mini-tabline')
         require('config.mini-ai')
       end,
