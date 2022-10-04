@@ -1,4 +1,5 @@
 local present, impatient = pcall(require, 'impatient')
+local ok, _ = pcall(require, 'base46')
 
 if present then
   impatient.enable_profile()
@@ -67,7 +68,14 @@ vim.g.ui = {
 }
 
 vim.g.theme = vim.g.ui.theme
-vim.cmd.colorscheme(vim.g.theme)
+local i, _ = string.find(vim.g.theme, '-NvChad')
+if i then
+  if ok then
+    vim.cmd.colorscheme(vim.g.theme)
+  end
+else
+  vim.cmd.colorscheme(vim.g.theme)
+end
 
 local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/opt/packer.nvim'
