@@ -162,6 +162,27 @@ require('packer').startup({
       event = 'InsertEnter',
     })
 
+    -- Debugging
+    use({
+      'mfussenegger/nvim-dap',
+    })
+    use({
+      'mxsdev/nvim-dap-vscode-js',
+      wants = 'vscode-js-debug',
+      requires = { 'mfussenegger/nvim-dap' },
+      after = { 'nvim-dap' },
+    })
+    use({
+      'rcarriga/nvim-dap-ui',
+      config = get_config('dap'),
+      keys = '<Leader>db',
+    })
+    use({
+      'microsoft/vscode-js-debug',
+      opt = true,
+      run = 'npm install --legacy-peer-deps && npm run compile',
+    })
+
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if _G.packer_bootstrap then
