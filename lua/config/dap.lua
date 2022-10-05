@@ -54,13 +54,28 @@ require('dapui').setup({
   },
 })
 
-vim.keymap.set('n', '<Leader>db', ':lua require("dapui").toggle()<CR>')
--- nnoremap <silent> <F5> <Cmd>lua require'dap'.continue()<CR>
--- nnoremap <silent> <F10> <Cmd>lua require'dap'.step_over()<CR>
--- nnoremap <silent> <F11> <Cmd>lua require'dap'.step_into()<CR>
--- nnoremap <silent> <F12> <Cmd>lua require'dap'.step_out()<CR>
--- nnoremap <silent> <Leader>b <Cmd>lua require'dap'.toggle_breakpoint()<CR>
--- nnoremap <silent> <Leader>B <Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
--- nnoremap <silent> <Leader>lp <Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
--- nnoremap <silent> <Leader>dr <Cmd>lua require'dap'.repl.open()<CR>
--- nnoremap <silent> <Leader>dl <Cmd>lua require'dap'.run_last()<CR>
+vim.keymap.set('n', '<Leader>db', ':lua require("dapui").toggle()<CR>', { silent = true, desc = 'Toggle DAP UI' })
+vim.keymap.set('n', '<F5>', ':lua require"dap".continue()<CR>', { silent = true, desc = 'DAP Continue' })
+vim.keymap.set('n', '<F10>', ':lua require"dap".step_over()<CR>', { silent = true, desc = 'DAP Step Over' })
+vim.keymap.set('n', '<F11>', ':lua require"dap".step_into()<CR>', { silent = true, desc = 'DAP Step OInto' })
+vim.keymap.set('n', '<F12>', ':lua require"dap".step_out()<CR>', { silent = true, desc = 'DAP Step Out' })
+vim.keymap.set(
+  'n',
+  '<Leader>b',
+  ':lua require"dap".toggle_breakpoint()<CR>',
+  { silent = true, desc = 'DAP Toggle Breakpoint' }
+)
+vim.keymap.set(
+  'n',
+  '<Leader>B',
+  ':lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>',
+  { silent = true, desc = 'DAP Set Breakpoint' }
+)
+vim.keymap.set(
+  'n',
+  '<Leader>lp',
+  ':lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>',
+  { silent = true, desc = 'DAP Set Breakpoint w/ Log Point' }
+)
+vim.keymap.set('n', '<Leader>dr', ':lua require"dap".repl.open()<CR>', { silent = true, desc = 'DAP Open REPL' })
+vim.keymap.set('n', '<Leader>dl', ':lua require"dap".run_last()<CR>', { silent = true, desc = 'DAP Run Last' })
