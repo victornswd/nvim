@@ -28,14 +28,15 @@ git branch might be unstable
 - if they exist, remove `packer_compiled.lua` from `~/.config/nvim/plugin` and
   `~/.local/share/nvim/site/`. If you don't want to bother with this check the
   [Troubleshooting](#troubleshooting) section
-- run `nvim -c 'autocmd User PackerComplete quitall'`
 - open nvim as normal
 - enjoy!
 
 **_NOTE:_** there is a config for null-ls that covers my personal needs, please
-check the documentation on [null-ls builtins](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md)
+check the documentation on
+[null-ls builtins](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md)
 on how to expand. For null-ls to work you also need the majority of linters &
-checkers to be installed globally.
+checkers to be installed globally. `:Mason` might help with installing these,
+but I don't have experience with this.
 
 ## Keybindings
 

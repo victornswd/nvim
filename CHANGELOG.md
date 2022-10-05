@@ -3,7 +3,34 @@
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+and this project adheres to
+[Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [0.3.0] - 2022-10-05
+
+### Removed
+
+- Removed `document-colors` in favor of the new & maintained `colorizer.lua`
+- Removed the keymap for <C-l> because it is default behavior
+- Removed `mini.session` in favor of `harpoon`
+
+### Changed
+
+- Simplified install procedure
+- Switch navic to [aerial.nvim](https://github.com/stevearc/aerial.nvim)
+- Move keymaps to each individual config file
+- Indent-blankline updates
+- Rearrange and clean up the plugin list
+
+### Added
+
+- [DAP](https://github.com/mfussenegger/nvim-dap),
+  [DAP ui](https://github.com/rcarriga/nvim-dap-ui) & DAP for node
+- Copilot. Requires account and setting up with `:Copilot setup`
+- LSP for Astro, Prisma and SQL
+- Show search occurence at the end of the line
+- LSP diagnostic on hover
+- LSP virtual text at the end of the line
 
 ## [0.2.2] - 2022-08-12
 
@@ -14,7 +41,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Changed to the overhauled NvChad themes. Updated the theme switcher as well
-- Switched LSP installer to the new [mason.nvim](https://github.com/williamboman/mason.nvim)
+- Switched LSP installer to the new
+  [mason.nvim](https://github.com/williamboman/mason.nvim)
 - Changed some LSP & completion settings
 - Updated LSP settings to the default lspconfig behavior
 - Changed feline status to a custom statusline
@@ -23,7 +51,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - [Harpoon](https://github.com/ThePrimeagen/harpoon) to better manage "marks"
 - Configured the winbar. Still a WIP
-- [nvim-navic](https://github.com/SmiteshP/nvim-navic) to show code context in the winbar
+- [nvim-navic](https://github.com/SmiteshP/nvim-navic) to show code context in
+  the winbar
 
 ## [0.2.1] - 2022-04-26
 
@@ -37,16 +66,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Themes now use [NvChad](https://github.com/NvChad/NvChad) Base16 colorscheme and highlights
+- Themes now use [NvChad](https://github.com/NvChad/NvChad) Base16 colorscheme
+  and highlights
 - Statusline plugin is now [Feline](https://github.com/feline-nvim/feline.nvim)
   instead of [Lualine](https://github.com/nvim-lualine/lualine.nvim) due to
   better color support from the theme
 - [Mini.pairs](https://github.com/echasnovski/mini.nvim#minipairs) now handles
   auto-pairing brackets, parentheses etc.
-- [Mini.comment](https://github.com/echasnovski/mini.nvim#minicomment) now handles commenting
-- [Mini.tabline](https://github.com/echasnovski/mini.nvim#minitabline) now handles the buferlist
+- [Mini.comment](https://github.com/echasnovski/mini.nvim#minicomment) now
+  handles commenting
+- [Mini.tabline](https://github.com/echasnovski/mini.nvim#minitabline) now
+  handles the buferlist
 - Switched to [Neogen](https://github.com/danymat/neogen) for code annotations
-- Changed mappings to the nvim default way. **which-key** is now used only for prompts
+- Changed mappings to the nvim default way. **which-key** is now used only for
+  prompts
 
 ### Added
 
@@ -55,9 +88,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [null-ls](https://github.com/jose-elias-alvarez/null-ls.nvim) now handles
   formatting and linting with configs for JS, TS, lua, elm, bash. Formatters and
   linters need to be installed globally
-- [Mini.Starter](https://github.com/echasnovski/mini.nvim#ministarter) for a startup dashboard
-- [Mini.Sessions](https://github.com/echasnovski/mini.nvim#minisessions) for a session manager
-- Added [Specs.nvim](https://github.com/edluffy/specs.nvim) for a visual nod on cursor jumps
+- [Mini.Starter](https://github.com/echasnovski/mini.nvim#ministarter) for a
+  startup dashboard
+- [Mini.Sessions](https://github.com/echasnovski/mini.nvim#minisessions) for a
+  session manager
+- Added [Specs.nvim](https://github.com/edluffy/specs.nvim) for a visual nod on
+  cursor jumps
 
 ## [0.1.1] - 2022-02-11
 
