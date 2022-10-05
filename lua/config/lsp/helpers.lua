@@ -12,6 +12,22 @@ end
 local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
 
 M.on_attach = function(client, bufnr)
+  -- keymap
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'LSP - Go to declaration' })
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'LSP - Go to definition' })
+  vim.keymap.set('n', 'gh', vim.lsp.buf.hover, { desc = 'LSP - Display hover tooltip' })
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { desc = 'LSP - Go to implementation' })
+  vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, { desc = 'LSP - Go to type definition' })
+  vim.keymap.set('n', 'gR', vim.lsp.buf.rename, { desc = 'LSP - Rename all references' })
+  vim.keymap.set('n', 'gr', function()
+    pcall(require('telescope.builtin').lsp_references)
+  end, { desc = 'LSP - References' })
+  vim.keymap.set('n', 'gca', function()
+    pcall(require('telescope.builtin').lsp_code_actions)
+  end, { desc = 'LSP - Code actions' })
+
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { desc = 'LSP - Function signature help' })
+
   vim.api.nvim_create_autocmd('CursorHold', {
     buffer = bufnr,
     callback = function()
