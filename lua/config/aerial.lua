@@ -1,6 +1,8 @@
 require('aerial').setup({
-  backends = { 'lsp', 'treesitter', 'markdown' },
-  min_width = 28,
+  backends = { 'lsp', 'treesitter', 'markdown', 'man' },
+  layout = {
+    min_width = 30,
+  },
   show_guides = true,
   filter_kind = false,
   guides = {
