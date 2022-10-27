@@ -26,6 +26,28 @@ vim.cmd([[
 :cnoreabbrev W w
 ]])
 
+-- Harpoon
+vim.keymap.set('n', '<C-1>', function()
+  pcall(function()
+    require('harpoon.ui').nav_file(1)
+  end)
+end, { desc = 'Go to first Harpoon' })
+vim.keymap.set('n', '<C-2>', function()
+  pcall(function()
+    require('harpoon.ui').nav_file(2)
+  end)
+end, { desc = 'Go to second Harpoon' })
+vim.keymap.set('n', '<C-3>', function()
+  pcall(function()
+    require('harpoon.ui').nav_file(3)
+  end)
+end, { desc = 'Go to third Harpoon' })
+vim.keymap.set('n', '<C-4>', function()
+  pcall(function()
+    require('harpoon.ui').nav_file(4)
+  end)
+end, { desc = 'Go to fourth Harpoon' })
+
 vim.keymap.set('n', '<leader>ma', function()
   pcall(require('harpoon.mark').add_file)
 end, { desc = 'Add file to harpoon' })
