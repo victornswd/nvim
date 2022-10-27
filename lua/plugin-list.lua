@@ -81,7 +81,7 @@ require('packer').startup({
     })
     use({ 'edluffy/specs.nvim', config = get_config('specs') })
 
-    -- UX flourishes
+    -- DX flourishes
     use({ 'ThePrimeagen/harpoon', requires = 'nvim-lua/plenary.nvim' })
     use({ 'ojroques/nvim-bufdel' })
     use({
@@ -104,6 +104,10 @@ require('packer').startup({
       'folke/which-key.nvim',
       config = get_config('which-key'),
       event = 'User ActuallyEditing',
+    })
+    use({
+      'nat-418/boole.nvim',
+      config = get_config('boole'),
     })
     -- use({ 'tpope/vim-repeat', event = 'User ActuallyEditing' })
 
