@@ -39,7 +39,7 @@ local function telescope()
   }
 end
 starter.setup({
-  header = donut,
+  header = blackHole,
   items = {
     telescope(),
   },
