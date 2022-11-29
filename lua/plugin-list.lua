@@ -161,7 +161,7 @@ require('packer').startup({
       config = get_config('null-ls'),
     })
     use({
-      'github/copilot.vim',
+      'zbirenbaum/copilot.lua',
       config = get_config('copilot'),
       event = 'InsertEnter',
     })
