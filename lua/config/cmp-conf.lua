@@ -110,12 +110,8 @@ cmp.setup({
       select = false,
       behavior = cmp.ConfirmBehavior.Replace,
     }),
-    ['<C-a>'] = cmp.mapping(function(fallback)
-      vim.api.nvim_feedkeys(
-        vim.fn['copilot#Accept'](vim.api.nvim_replace_termcodes('<Tab>', true, true, true)),
-        'n',
-        true
-      )
+    ['<C-a>'] = cmp.mapping(function(_)
+      require('copilot.suggestion').accept()
     end),
     -- ["<s-tab>"] = cmp.mapping.select_prev_item(),
     -- ["<tab>"] = cmp.mapping.select_next_item(),
