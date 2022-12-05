@@ -92,12 +92,15 @@ require('packer').startup({
     use({
       'echasnovski/mini.nvim',
       config = function()
-        require('config.mini-comment')
         require('config.mini-starter')
-        require('config.mini-pairs')
-        require('config.mini-surround')
-        require('config.mini-tabline')
-        require('config.mini-ai')
+        vim.defer_fn(function()
+          require('config.mini-comment')
+          require('config.mini-pairs')
+          require('config.mini-surround')
+          require('config.mini-tabline')
+          require('config.mini-ai')
+          require('config.mini-align')
+        end, 10)
       end,
     })
     use({
@@ -114,7 +117,6 @@ require('packer').startup({
     -- Command loaded plugins
     use({ 'tweekmonster/startuptime.vim', cmd = 'StartupTime' })
     use({ 'psliwka/termcolors.nvim', cmd = 'TermcolorsShow' })
-    use({ 'junegunn/vim-easy-align', cmd = { 'EasyAlign', 'LiveEasyAlign' } })
     use({
       'yardnsm/vim-import-cost',
       run = 'npm install',
