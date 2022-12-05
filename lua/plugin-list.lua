@@ -112,17 +112,10 @@ require('packer').startup({
       'nat-418/boole.nvim',
       config = get_config('boole'),
     })
-    -- use({ 'tpope/vim-repeat', event = 'User ActuallyEditing' })
 
     -- Command loaded plugins
     use({ 'tweekmonster/startuptime.vim', cmd = 'StartupTime' })
     use({ 'psliwka/termcolors.nvim', cmd = 'TermcolorsShow' })
-    use({
-      'yardnsm/vim-import-cost',
-      run = 'npm install',
-      ft = { 'javascript', 'javascript.jsx', 'typescript' },
-      cmd = 'ImportCost',
-    })
 
     -- Autocompletion
     use({ 'rafamadriz/friendly-snippets', module = { 'cmp', 'cmp_nvim_lsp' }, event = 'InsertEnter' })
