@@ -383,12 +383,13 @@ end
 
 M.gotoSymbolName = function(minwid, no, mouse)
   if no == 2 and mouse == 'l' then
-    local t = {}
-    for w in string.format(minwid):gmatch('([^000]+)') do
-      table.insert(t, w)
+    local function split_string(str)
+      local first, second = string.match(str, '^(.*)000(.*)$')
+      return first, second
     end
-    print(vim.inspect(t))
-    vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { tonumber(t[1]), tonumber(t[2]) })
+
+    local first, second = split_string(minwid)
+    vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { tonumber(first), tonumber(second) })
   end
 end
 
