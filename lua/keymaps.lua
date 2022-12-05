@@ -26,6 +26,9 @@ vim.cmd([[
 :cnoreabbrev W w ++p
 ]])
 
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Jump down 1/2 screen' })
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Jump up 1/2 screen' })
+
 -- Harpoon
 vim.keymap.set('n', '<C-1>', function()
   pcall(function()
