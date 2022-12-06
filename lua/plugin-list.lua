@@ -54,7 +54,7 @@ require('packer').startup({
       'danymat/neogen',
       config = get_config('neogen'),
       requires = 'nvim-treesitter/nvim-treesitter',
-      after = 'nvim-treesitter',
+      keys = '<Leader>dd',
     })
     use({ 'vimwiki/vimwiki', branch = 'dev', event = 'User ActuallyEditing' })
 
