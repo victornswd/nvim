@@ -2,20 +2,20 @@
 -- Most of the code is copied from telescope colorscheme plugin, mostly for preview creation
 local function theme_switcher(opts)
   local pickers, finders, previewers, actions, action_state, utils, conf
-  if pcall(require, 'telescope') then
-    pickers = require('telescope.pickers')
-    finders = require('telescope.finders')
-    previewers = require('telescope.previewers')
+  if pcall(require, "telescope") then
+    pickers = require("telescope.pickers")
+    finders = require("telescope.finders")
+    previewers = require("telescope.previewers")
 
-    actions = require('telescope.actions')
-    action_state = require('telescope.actions.state')
-    utils = require('telescope.utils')
-    conf = require('telescope.config').values
+    actions = require("telescope.actions")
+    action_state = require("telescope.actions.state")
+    utils = require("telescope.utils")
+    conf = require("telescope.config").values
   else
-    error('Cannot find telescope!')
+    error("Cannot find telescope!")
   end
 
-  local colors = vim.fn.getcompletion('', 'color')
+  local colors = vim.fn.getcompletion("", "color")
 
   local function clear_cmdline()
     vim.defer_fn(function()
@@ -31,10 +31,10 @@ local function theme_switcher(opts)
     local data
     local fd = assert(vim.loop.fs_open(filepath, mode, 438))
     local stat = assert(vim.loop.fs_fstat(fd))
-    if stat.type ~= 'file' then
+    if stat.type ~= "file" then
       data = false
     else
-      if mode == 'r' then
+      if mode == "r" then
         data = assert(vim.loop.fs_read(fd, stat.size, 0))
       else
         assert(vim.loop.fs_write(fd, content, 0))
@@ -47,42 +47,42 @@ local function theme_switcher(opts)
 
   local function change_theme(current_theme, new_theme)
     if current_theme == nil or new_theme == nil then
-      print('Error: Provide current and new theme name')
+      print("Error: Provide current and new theme name")
       return false
     end
     if current_theme == new_theme then
       return
     end
 
-    local file = vim.fn.stdpath('config') .. '/init.lua'
+    local file = vim.fn.stdpath("config") .. "/init.lua"
 
     -- store in data variable
-    local data = assert(file_fn('r', file))
+    local data = assert(file_fn("r", file))
     -- escape characters which can be parsed as magic chars
-    current_theme = current_theme:gsub('%p', '%%%0')
-    new_theme = new_theme:gsub('%p', '%%%0')
-    local find = 'theme = .?' .. current_theme .. '.?,'
+    current_theme = current_theme:gsub("%p", "%%%0")
+    new_theme = new_theme:gsub("%p", "%%%0")
+    local find = "theme = .?" .. current_theme .. ".?,"
     local replace = 'theme = "' .. new_theme .. '",'
     local content = string.gsub(data, find, replace)
     -- see if the find string exists in file
     if content == data then
-      print('Error: Cannot change default theme with ' .. new_theme .. ', edit ' .. file .. ' manually')
+      print("Error: Cannot change default theme with " .. new_theme .. ", edit " .. file .. " manually")
       return false
     else
-      assert(file_fn('w', file, content))
+      assert(file_fn("w", file, content))
     end
   end
   local function reload_theme(theme_name)
     -- if theme name is empty or nil, then reload the current theme
-    if theme_name == nil or theme_name == '' then
+    if theme_name == nil or theme_name == "" then
       theme_name = vim.g.theme
     end
 
     vim.g.theme = theme_name
-    local i, _ = string.find(theme_name, '-NvChad')
+    local i, _ = string.find(theme_name, "-NvChad")
     if i then
-      require('base46').load_all_highlights()
-      vim.opt.bg = require('base46').get_theme_tb('type')
+      require("base46").load_all_highlights()
+      vim.opt.bg = require("base46").get_theme_tb("type")
     end
 
     return true
@@ -92,7 +92,7 @@ local function theme_switcher(opts)
   if next(colors) ~= nil then
     -- save this to use it for later to restore if theme not changed
     local current_theme = vim.g.theme
-    local new_theme = ''
+    local new_theme = ""
     local change = false
 
     -- buffer number and name
@@ -129,9 +129,9 @@ local function theme_switcher(opts)
       define_preview = function(self, entry)
         local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
         vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, lines)
-        local filetype = require('plenary.filetype').detect(bufname) or 'diff'
+        local filetype = require("plenary.filetype").detect(bufname) or "diff"
 
-        require('telescope.previewers.utils').highlighter(self.state.bufnr, filetype)
+        require("telescope.previewers.utils").highlighter(self.state.bufnr, filetype)
         -- reload_theme(entry.value)
         -- print('THIS ' .. entry.value)
         vim.cmd.colorscheme(entry.value)
@@ -140,7 +140,7 @@ local function theme_switcher(opts)
     -- end
 
     local picker = pickers.new({
-      prompt_title = 'Change Colorscheme',
+      prompt_title = "Change Colorscheme",
       finder = finders.new_table(colors),
       previewer = previewer,
       sorter = conf.generic_sorter(opts),
@@ -172,7 +172,7 @@ local function theme_switcher(opts)
       if reload_theme(final_theme) then
         if change then
           -- ask for confirmation to set as default theme
-          local ans = string.lower(vim.fn.input('Set ' .. new_theme .. ' as default theme ? [y/N] ')) == 'y'
+          local ans = string.lower(vim.fn.input("Set " .. new_theme .. " as default theme ? [y/N] ")) == "y"
           clear_cmdline()
           if ans then
             change_theme(current_theme, final_theme)
@@ -192,12 +192,12 @@ local function theme_switcher(opts)
     -- launch the telescope picker
     picker:find()
   else
-    print('No themes found')
+    print("No themes found")
   end
 end
 
 -- register theme swticher as themes to telescope
-local present, telescope = pcall(require, 'telescope')
+local present, telescope = pcall(require, "telescope")
 if present then
   return telescope.register_extension({
     exports = {
@@ -205,5 +205,5 @@ if present then
     },
   })
 else
-  error('Cannot find telescope!')
+  error("Cannot find telescope!")
 end

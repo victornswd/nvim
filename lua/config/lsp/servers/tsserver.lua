@@ -1,4 +1,4 @@
-local conf = require('config.lsp.helpers')
+local conf = require("config.lsp.helpers")
 
 require('lspconfig').tsserver.setup({
   capabilities = conf.capabilities,
@@ -18,9 +18,9 @@ require('lspconfig').tsserver.setup({
     local function buf_set_option(...)
       vim.api.nvim_buf_set_option(bufnr, ...)
     end
-    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+    buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
-    require('nvim-lsp-ts-utils').setup({
+    require("nvim-lsp-ts-utils").setup({
       debug = false,
       disable_commands = false,
       enable_import_on_completion = true,
@@ -29,19 +29,19 @@ require('lspconfig').tsserver.setup({
       -- eslint
       eslint_enable_code_actions = false,
       eslint_enable_disable_comments = false,
-      eslint_bin = 'eslint_d',
+      eslint_bin = "eslint",
       eslint_config_fallback = nil,
       eslint_enable_diagnostics = false,
       eslint_opts = {
         -- diagnostics_format = "#{m} [#{c}]",
         condition = function(utils)
-          return utils.root_has_file('.eslintrc.js')
+          return utils.root_has_file(".eslintrc.js")
         end,
       },
 
       -- formatting
       enable_formatting = false,
-      formatter = 'prettier_d_slim',
+      formatter = "prettier_d_slim",
       formatter_config_fallback = nil,
 
       -- parentheses completion
@@ -54,11 +54,11 @@ require('lspconfig').tsserver.setup({
       watch_dir = nil,
 
       -- filter diagnostics
-      filter_out_diagnostics_by_severity = { 'hint' },
+      filter_out_diagnostics_by_severity = { "hint" },
       filter_out_diagnostics_by_code = {},
     })
 
-    require('nvim-lsp-ts-utils').setup_client(client)
-    require('twoslash-queries').attach(client, bufnr)
+    require("nvim-lsp-ts-utils").setup_client(client)
+    require("twoslash-queries").attach(client, bufnr)
   end,
 })

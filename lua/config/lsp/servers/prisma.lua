@@ -1,7 +1,7 @@
-local lspconfig = require('lspconfig')
-local conf = require('config.lsp.helpers')
+local lspconfig = require("lspconfig")
+local conf = require("config.lsp.helpers")
 
-lspconfig['prismals'].setup({
+lspconfig["prismals"].setup({
   capabilities = conf.capabilities,
   on_attach = conf.on_attach,
   settings = {},

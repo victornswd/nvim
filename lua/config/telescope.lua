@@ -1,27 +1,27 @@
-local i, j = string.find(vim.g.theme, '-NvChad')
+local i, j = string.find(vim.g.theme, "-NvChad")
 if i then
-  require('base46').load_highlight('telescope')
+  require("base46").load_highlight("telescope")
 end
 
-require('telescope').setup({
+require("telescope").setup({
   defaults = {
     vimgrep_arguments = {
-      'rg',
-      '--color=never',
-      '--no-heading',
-      '--with-filename',
-      '--line-number',
-      '--column',
-      '--smart-case',
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
     },
-    prompt_prefix = '   ',
-    selection_caret = '  ',
-    entry_prefix = '  ',
-    initial_mode = 'insert',
-    selection_strategy = 'reset',
-    sorting_strategy = 'ascending',
+    prompt_prefix = "   ",
+    selection_caret = "  ",
+    entry_prefix = "  ",
+    initial_mode = "insert",
+    selection_strategy = "reset",
+    sorting_strategy = "ascending",
 
-    layout_strategy = 'bottom_pane',
+    layout_strategy = "bottom_pane",
     layout_config = {
       height = 25,
       bottom_pane = {
@@ -29,19 +29,19 @@ require('telescope').setup({
       },
     },
 
-    file_sorter = require('telescope.sorters').get_fuzzy_file,
-    file_ignore_patterns = { 'node_modules' },
-    generic_sorter = require('telescope.sorters').get_generic_fuzzy_sorter,
-    path_display = { 'truncate' },
+    file_sorter = require("telescope.sorters").get_fuzzy_file,
+    file_ignore_patterns = { "node_modules" },
+    generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+    path_display = { "truncate" },
     winblend = 0,
     border = {},
-    borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+    borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
     color_devicons = true,
     use_less = true,
-    set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
-    file_previewer = require('telescope.previewers').vim_buffer_cat.new,
-    grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new,
-    qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
+    set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
+    file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+    grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+    qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
   },
 })
 
@@ -52,34 +52,34 @@ require('telescope').setup({
 -- end
 -- end)
 
-require('telescope').load_extension('fzf')
-require('telescope').load_extension('vw')
-require('telescope').load_extension('luasnip')
-require('telescope').load_extension('themes')
+require("telescope").load_extension("fzf")
+require("telescope").load_extension("vw")
+require("telescope").load_extension("luasnip")
+require("telescope").load_extension("themes")
 
 -- keymap
 
 _G.project_files = function()
   local opts = {} -- define here if you want to define something
-  vim.fn.system('git rev-parse --is-inside-work-tree')
+  vim.fn.system("git rev-parse --is-inside-work-tree")
   if vim.v.shell_error == 0 then
-    require('telescope.builtin').git_files(opts)
+    require("telescope.builtin").git_files(opts)
   else
-    require('telescope.builtin').find_files(opts)
+    require("telescope.builtin").find_files(opts)
   end
 end
 
-vim.keymap.set('n', '<leader>f', function()
-  pcall(require('telescope.builtin').live_grep)
-end, { desc = 'Search for word in folder' })
-vim.keymap.set('n', '<leader>h', function()
-  pcall(require('telescope.builtin').keymaps)
-end, { desc = 'Show key maps' })
-vim.keymap.set('n', '<leader>c', function()
-  pcall(require('telescope').extensions.themes.themes)
-end, { desc = 'Colorschemes' })
+vim.keymap.set("n", "<leader>f", function()
+  pcall(require("telescope.builtin").live_grep)
+end, { desc = "Search for word in folder" })
+vim.keymap.set("n", "<leader>h", function()
+  pcall(require("telescope.builtin").keymaps)
+end, { desc = "Show key maps" })
+vim.keymap.set("n", "<leader>c", function()
+  pcall(require("telescope").extensions.themes.themes)
+end, { desc = "Colorschemes" })
 
-vim.keymap.set('n', '<leader>t', function()
-  pcall(require('telescope.builtin').diagnostics(), { bufnr = 0 })
-end, { desc = 'Show file diagnostics' })
-vim.keymap.set('n', '<leader>o', project_files, { desc = 'Open file search' })
+vim.keymap.set("n", "<leader>t", function()
+  pcall(require("telescope.builtin").diagnostics(), { bufnr = 0 })
+end, { desc = "Show file diagnostics" })
+vim.keymap.set("n", "<leader>o", project_files, { desc = "Open file search" })

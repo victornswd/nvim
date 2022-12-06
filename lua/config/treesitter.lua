@@ -1,15 +1,15 @@
-local i, j = string.find(vim.g.theme, '-NvChad')
+local i, j = string.find(vim.g.theme, "-NvChad")
 if i then
-  require('base46').load_highlight('syntax')
-  require('base46').load_highlight('treesitter')
+  require("base46").load_highlight("syntax")
+  require("base46").load_highlight("treesitter")
 end
 
-require('nvim-treesitter.install').compilers = { 'gcc' }
-local ts = require('nvim-treesitter.configs')
+require("nvim-treesitter.install").compilers = { "gcc" }
+local ts = require("nvim-treesitter.configs")
 ts.setup({
-  ensure_installed = 'all',
+  ensure_installed = "all",
   -- FIXME: check this issue https://github.com/claytonrcarter/tree-sitter-phpdoc/issues/15
-  ignore_install = { 'phpdoc' },
+  ignore_install = { "phpdoc" },
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = true,
@@ -17,7 +17,7 @@ ts.setup({
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = 'gnn',
+      init_selection = "gnn",
     },
   },
   indent = {
@@ -42,16 +42,16 @@ ts.setup({
     updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
     persist_queries = false, -- Whether the query persists across vim sessions
     keybindings = {
-      toggle_query_editor = 'o',
-      toggle_hl_groups = 'i',
-      toggle_injected_languages = 't',
-      toggle_anonymous_nodes = 'a',
-      toggle_language_display = 'I',
-      focus_language = 'f',
-      unfocus_language = 'F',
-      update = 'R',
-      goto_node = '<cr>',
-      show_help = '?',
+      toggle_query_editor = "o",
+      toggle_hl_groups = "i",
+      toggle_injected_languages = "t",
+      toggle_anonymous_nodes = "a",
+      toggle_language_display = "I",
+      focus_language = "f",
+      unfocus_language = "F",
+      update = "R",
+      goto_node = "<cr>",
+      show_help = "?",
     },
   },
   textobjects = {
@@ -63,38 +63,38 @@ ts.setup({
 
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
-        ['af'] = '@function.outer',
-        ['if'] = '@function.inner',
-        ['ac'] = '@class.outer',
-        ['ic'] = '@class.inner',
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
       },
     },
     move = {
       enable = true,
       set_jumps = true, -- whether to set jumps in the jumplist
       goto_next_start = {
-        [']m'] = '@function.outer',
-        [']]'] = '@class.outer',
+        ["]m"] = "@function.outer",
+        ["]]"] = "@class.outer",
       },
       goto_next_end = {
-        [']M'] = '@function.outer',
-        [']['] = '@class.outer',
+        ["]M"] = "@function.outer",
+        ["]["] = "@class.outer",
       },
       goto_previous_start = {
-        ['[m'] = '@function.outer',
-        ['[['] = '@class.outer',
+        ["[m"] = "@function.outer",
+        ["[["] = "@class.outer",
       },
       goto_previous_end = {
-        ['[M'] = '@function.outer',
-        ['[]'] = '@class.outer',
+        ["[M"] = "@function.outer",
+        ["[]"] = "@class.outer",
       },
     },
     lsp_interop = {
       enable = true,
-      border = 'none',
+      border = "none",
       peek_definition_code = {
-        ['<leader>df'] = '@function.outer',
-        ['<leader>dF'] = '@class.outer',
+        ["<leader>df"] = "@function.outer",
+        ["<leader>dF"] = "@class.outer",
       },
     },
   },

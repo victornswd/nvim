@@ -2,7 +2,7 @@
 local M = {}
 
 local isempty = function(s)
-  return s == nil or s == ''
+  return s == nil or s == ""
 end
 
 local is_current = function()
@@ -28,64 +28,64 @@ local icon_cache = {}
 -- Copyright (c) 2020-2021 hoob3rt
 -- MIT license, see LICENSE for more details.
 local mode_map = {
-  ['n'] = 'NORMAL',
-  ['no'] = 'O-PENDING',
-  ['nov'] = 'O-PENDING',
-  ['noV'] = 'O-PENDING',
-  ['no\22'] = 'O-PENDING',
-  ['niI'] = 'NORMAL',
-  ['niR'] = 'NORMAL',
-  ['niV'] = 'NORMAL',
-  ['nt'] = 'NORMAL',
-  ['v'] = 'VISUAL',
-  ['vs'] = 'VISUAL',
-  ['V'] = 'V-LINE',
-  ['Vs'] = 'V-LINE',
-  ['\22'] = 'V-BLOCK',
-  ['\22s'] = 'V-BLOCK',
-  ['s'] = 'SELECT',
-  ['S'] = 'S-LINE',
-  ['\19'] = 'S-BLOCK',
-  ['i'] = 'INSERT',
-  ['ic'] = 'INSERT',
-  ['ix'] = 'INSERT',
-  ['R'] = 'REPLACE',
-  ['Rc'] = 'REPLACE',
-  ['Rx'] = 'REPLACE',
-  ['Rv'] = 'V-REPLACE',
-  ['Rvc'] = 'V-REPLACE',
-  ['Rvx'] = 'V-REPLACE',
-  ['c'] = 'COMMAND',
-  ['cv'] = 'EX',
-  ['ce'] = 'EX',
-  ['r'] = 'REPLACE',
-  ['rm'] = 'MORE',
-  ['r?'] = 'CONFIRM',
-  ['!'] = 'SHELL',
-  ['t'] = 'TERMINAL',
+  ["n"] = "NORMAL",
+  ["no"] = "O-PENDING",
+  ["nov"] = "O-PENDING",
+  ["noV"] = "O-PENDING",
+  ["no\22"] = "O-PENDING",
+  ["niI"] = "NORMAL",
+  ["niR"] = "NORMAL",
+  ["niV"] = "NORMAL",
+  ["nt"] = "NORMAL",
+  ["v"] = "VISUAL",
+  ["vs"] = "VISUAL",
+  ["V"] = "V-LINE",
+  ["Vs"] = "V-LINE",
+  ["\22"] = "V-BLOCK",
+  ["\22s"] = "V-BLOCK",
+  ["s"] = "SELECT",
+  ["S"] = "S-LINE",
+  ["\19"] = "S-BLOCK",
+  ["i"] = "INSERT",
+  ["ic"] = "INSERT",
+  ["ix"] = "INSERT",
+  ["R"] = "REPLACE",
+  ["Rc"] = "REPLACE",
+  ["Rx"] = "REPLACE",
+  ["Rv"] = "V-REPLACE",
+  ["Rvc"] = "V-REPLACE",
+  ["Rvx"] = "V-REPLACE",
+  ["c"] = "COMMAND",
+  ["cv"] = "EX",
+  ["ce"] = "EX",
+  ["r"] = "REPLACE",
+  ["rm"] = "MORE",
+  ["r?"] = "CONFIRM",
+  ["!"] = "SHELL",
+  ["t"] = "TERMINAL",
 }
 
 M.get_icon = function(filename, extension)
   if not filename then
     if vim.bo.modified then
-      return ' %#WinBarModified# %*'
+      return " %#WinBarModified# %*"
     end
 
-    if vim.bo.filetype == 'terminal' then
-      filename = 'terminal'
-      extension = 'terminal'
+    if vim.bo.filetype == "terminal" then
+      filename = "terminal"
+      extension = "terminal"
     else
-      filename = vim.fn.expand('%:t')
+      filename = vim.fn.expand("%:t")
     end
   end
 
   local cached = icon_cache[filename]
   if not cached then
     if not extension then
-      extension = vim.fn.fnamemodify(filename, ':e')
+      extension = vim.fn.fnamemodify(filename, ":e")
     end
-    local file_icon = require('nvim-web-devicons').get_icon(filename, extension)
-    cached = ' ' .. file_icon .. ' '
+    local file_icon = require("nvim-web-devicons").get_icon(filename, extension)
+    cached = " " .. file_icon .. " "
     icon_cache[filename] = cached
   end
   return cached
@@ -94,27 +94,27 @@ end
 M.get_filename = function()
   local has_icon, icon = pcall(M.get_icon)
   if has_icon then
-    return icon .. '%t'
+    return icon .. "%t"
   else
-    return ' %t'
+    return " %t"
   end
 end
 
 M.get_loc = function()
-  return string.format(' %3d:%-2d ', unpack(vim.api.nvim_win_get_cursor(0)))
+  return string.format(" %3d:%-2d ", unpack(vim.api.nvim_win_get_cursor(0)))
 end
 
 M.get_position = function()
-  local current_line = vim.fn.line('.')
-  local total_line = vim.fn.line('$')
+  local current_line = vim.fn.line(".")
+  local total_line = vim.fn.line("$")
 
   if current_line == 1 then
-    return ' Top '
-  elseif current_line == vim.fn.line('$') then
-    return ' Bot '
+    return " Top "
+  elseif current_line == vim.fn.line("$") then
+    return " Bot "
   end
   local result, _ = math.modf((current_line / total_line) * 100)
-  return ' ' .. string.format('%2d', result) .. '%% '
+  return " " .. string.format("%2d", result) .. "%% "
 end
 
 M.table_contains = function(table, element)
@@ -132,53 +132,53 @@ M.git_diff = function(diff, hl_group, sign)
   local changes = M.table_contains(vim.b.gitsigns_status_dict, diff)
   if changes then
     local value = vim.b.gitsigns_status_dict[diff]
-    if diff == 'head' then
-      return '%#' .. hl_group .. '#' .. sign .. value .. '%*'
+    if diff == "head" then
+      return "%#" .. hl_group .. "#" .. sign .. value .. "%*"
     end
     if value > 0 then
-      local text = '%#' .. hl_group .. '#' .. sign .. value .. '%*'
+      local text = "%#" .. hl_group .. "#" .. sign .. value .. "%*"
       return text
     else
-      return ''
+      return ""
     end
   else
-    return ''
+    return ""
   end
 end
 
 M.get_git_added = function()
-  return M.git_diff('added', 'StatusLineGitAdd', '  ')
+  return M.git_diff("added", "StatusLineGitAdd", "  ")
 end
 
 M.get_git_changed = function()
-  return M.git_diff('changed', 'StatusLineGitChanged', '  ')
+  return M.git_diff("changed", "StatusLineGitChanged", "  ")
 end
 
 M.get_git_removed = function()
-  return M.git_diff('removed', 'StatusLineGitRemoved', '  ')
+  return M.git_diff("removed", "StatusLineGitRemoved", "  ")
 end
 
 M.get_git_branch = function()
-  return M.git_diff('head', 'StatusLineGitBranch', '  ')
+  return M.git_diff("head", "StatusLineGitBranch", "  ")
 end
 
 M.get_mode = function()
   if not is_current() then
     --return "%#WinBarInactive# win #" .. vim.fn.winnr() .. " %*"
-    return '%#WinBarInactive#  #' .. vim.fn.winnr() .. '  %*'
+    return "%#WinBarInactive#  #" .. vim.fn.winnr() .. "  %*"
   end
   local mode_code = vim.api.nvim_get_mode().mode
   local mode = mode_map[mode_code] or string.upper(mode_code)
-  local modeStr = '%#Mode' .. mode:sub(1, 1)
-  return modeStr .. '# ' .. mode .. '  %*' .. modeStr .. 'Sep#%*'
+  local modeStr = "%#Mode" .. mode:sub(1, 1)
+  return modeStr .. "# " .. mode .. "  %*" .. modeStr .. "Sep#%*"
 end
 
 local get_sign = function(severity)
   local icons = {
-    Info = { text = ' ' },
-    Error = { text = ' ' },
-    Hint = { text = ' ' },
-    Warn = { text = ' ' },
+    Info = { text = " " },
+    Error = { text = " " },
+    Hint = { text = " " },
+    Warn = { text = " " },
   }
   return icons[severity].text
 end
@@ -187,46 +187,46 @@ M.lsp_loading = function()
   local Lsp = vim.lsp.util.get_progress_messages()[1]
 
   if Lsp then
-    local msg = Lsp.message or ''
+    local msg = Lsp.message or ""
     local percentage = Lsp.percentage or 0
-    local title = Lsp.title or ''
+    local title = Lsp.title or ""
     local spinners = {
-      '',
-      '',
-      '',
+      "",
+      "",
+      "",
     }
 
     local success_icon = {
-      '',
-      '',
-      '',
+      "",
+      "",
+      "",
     }
 
     local ms = vim.loop.hrtime() / 1000000
     local frame = math.floor(ms / 120) % #spinners
 
     if percentage >= 70 then
-      return string.format(' %%<%s %s %s (%s%%%%) ', success_icon[frame + 1], title, msg, percentage)
+      return string.format(" %%<%s %s %s (%s%%%%) ", success_icon[frame + 1], title, msg, percentage)
     end
 
-    return string.format(' %%<%s %s %s (%s%%%%) ', spinners[frame + 1], title, msg, percentage)
+    return string.format(" %%<%s %s %s (%s%%%%) ", spinners[frame + 1], title, msg, percentage)
   end
 
-  return ''
+  return ""
 end
 
 M.lsp_connected = function()
   if next(vim.lsp.buf_get_clients()) ~= nil then
-    return ' LSP'
+    return " LSP"
   else
-    return ''
+    return ""
   end
 end
 
 M.get_diag = function()
   local d = vim.diagnostic.get(0)
   if #d == 0 then
-    return ''
+    return ""
   end
 
   local min_severity = 100
@@ -235,17 +235,17 @@ M.get_diag = function()
       min_severity = diag.severity
     end
   end
-  local severity = ''
+  local severity = ""
   if min_severity == vim.diagnostic.severity.ERROR then
-    severity = 'Error'
+    severity = "Error"
   elseif min_severity == vim.diagnostic.severity.WARN then
-    severity = 'Warn'
+    severity = "Warn"
   elseif min_severity == vim.diagnostic.severity.INFO then
-    severity = 'Info'
+    severity = "Info"
   elseif min_severity == vim.diagnostic.severity.HINT then
-    severity = 'Hint'
+    severity = "Hint"
   else
-    return ''
+    return ""
   end
 
   return get_sign(severity)
@@ -254,7 +254,7 @@ end
 M.get_diag_counts = function()
   local d = vim.diagnostic.get(0)
   if #d == 0 then
-    return ''
+    return ""
   end
 
   local grouped = {}
@@ -266,19 +266,19 @@ M.get_diag_counts = function()
     grouped[severity] = grouped[severity] + 1
   end
 
-  local result = ''
+  local result = ""
   local S = vim.diagnostic.severity
   if grouped[S.ERROR] then
-    result = result .. '%#StatusLineError#' .. get_sign('Error') .. grouped[S.ERROR] .. '%* '
+    result = result .. "%#StatusLineError#" .. get_sign("Error") .. grouped[S.ERROR] .. "%* "
   end
   if grouped[S.WARN] then
-    result = result .. '%#StatusLineWarn#' .. get_sign('Warn') .. grouped[S.WARN] .. '%* '
+    result = result .. "%#StatusLineWarn#" .. get_sign("Warn") .. grouped[S.WARN] .. "%* "
   end
   if grouped[S.INFO] then
-    result = result .. '%#StatusLineInfo#' .. get_sign('Info') .. grouped[S.INFO] .. '%* '
+    result = result .. "%#StatusLineInfo#" .. get_sign("Info") .. grouped[S.INFO] .. "%* "
   end
   if grouped[S.HINT] then
-    result = result .. '%#StatusLineHint#' .. get_sign('Hint') .. grouped[S.HINT] .. '%* '
+    result = result .. "%#StatusLineHint#" .. get_sign("Hint") .. grouped[S.HINT] .. "%* "
   end
   return result
 end
@@ -294,97 +294,97 @@ vim.cmd([[
 ]])
 
 local winbar_filetype_exclude = {
-  [''] = true,
-  ['NvimTree'] = true,
-  ['Outline'] = true,
-  ['starter'] = true,
-  ['Trouble'] = true,
-  ['alpha'] = true,
-  ['dashboard'] = true,
-  ['lir'] = true,
-  ['neo-tree'] = true,
-  ['neogitstatus'] = true,
-  ['packer'] = true,
-  ['spectre_panel'] = true,
-  ['startify'] = true,
-  ['toggleterm'] = true,
+  [""] = true,
+  ["NvimTree"] = true,
+  ["Outline"] = true,
+  ["starter"] = true,
+  ["Trouble"] = true,
+  ["alpha"] = true,
+  ["dashboard"] = true,
+  ["lir"] = true,
+  ["neo-tree"] = true,
+  ["neogitstatus"] = true,
+  ["packer"] = true,
+  ["spectre_panel"] = true,
+  ["startify"] = true,
+  ["toggleterm"] = true,
 }
 
 M.get_winbar = function()
   -- floating window
   local cfg = vim.api.nvim_win_get_config(0)
-  if cfg.relative > '' or cfg.external then
-    return ''
+  if cfg.relative > "" or cfg.external then
+    return ""
   end
 
   if winbar_filetype_exclude[vim.bo.filetype] then
-    return '%{%v:lua.status.active_indicator()%}'
+    return "%{%v:lua.status.active_indicator()%}"
   end
 
-  if vim.bo.buftype == 'terminal' then
-    return '%{%v:lua.status.get_mode()%}%{%v:lua.status.get_icon()%} TERMINAL #%n %#WinBarLocation# %{b:term_title}%*'
+  if vim.bo.buftype == "terminal" then
+    return "%{%v:lua.status.get_mode()%}%{%v:lua.status.get_icon()%} TERMINAL #%n %#WinBarLocation# %{b:term_title}%*"
   else
     local buftype = vim.bo.buftype
     -- real files do not have buftypes
     if isempty(buftype) then
       return table.concat({
-        '%{%v:lua.status.aerial()%}',
-        '%=',
-        '%{%v:lua.status.get_diag()%}',
-        '%{%v:lua.status.get_git_dirty()%}',
-        '%{%v:lua.status.get_filename()%}',
+        "%{%v:lua.status.aerial()%}",
+        "%=",
+        "%{%v:lua.status.get_diag()%}",
+        "%{%v:lua.status.get_git_dirty()%}",
+        "%{%v:lua.status.get_filename()%}",
       })
     else
       -- Meant for quickfix, help, etc
-      return '%{%v:lua.status.get_mode()%}%( %h%) %f'
+      return "%{%v:lua.status.get_mode()%}%( %h%) %f"
     end
   end
 end
 
 M.get_statusline = function()
   local parts = {
-    '%#Main#  %*%#MainSep#%*',
-    '%{%v:lua.status.get_mode()%}',
-    '%<',
-    '%#StatusLineFile#%{%v:lua.status.get_filename()%} %*',
-    '%#StatusLineFileSep#%*',
-    '%{%v:lua.status.get_git_branch()%}',
-    '%{%v:lua.status.get_git_added()%}',
-    '%{%v:lua.status.get_git_changed()%}',
-    '%{%v:lua.status.get_git_removed()%}',
-    '%=',
-    '%#StatusLineGitBranch# %{%v:lua.status.lsp_connected()%}%*',
-    '%#StatusLineGitAdd# %{%v:lua.status.lsp_loading()%}%*',
-    '%{%v:lua.status.get_diag_counts()%}',
-    '%#StatusLineLocationSep#%*',
-    '%#StatusLineLocation# %{%v:lua.status.get_loc()%}%*',
-    '%#StatusLinePosition#%{%v:lua.status.get_position()%}%*',
-    '%#StatusLinePositionIconSep#%*%#StatusLinePositionIcon#  %*',
+    "%#Main#  %*%#MainSep#%*",
+    "%{%v:lua.status.get_mode()%}",
+    "%<",
+    "%#StatusLineFile#%{%v:lua.status.get_filename()%} %*",
+    "%#StatusLineFileSep#%*",
+    "%{%v:lua.status.get_git_branch()%}",
+    "%{%v:lua.status.get_git_added()%}",
+    "%{%v:lua.status.get_git_changed()%}",
+    "%{%v:lua.status.get_git_removed()%}",
+    "%=",
+    "%#StatusLineGitBranch# %{%v:lua.status.lsp_connected()%}%*",
+    "%#StatusLineGitAdd# %{%v:lua.status.lsp_loading()%}%*",
+    "%{%v:lua.status.get_diag_counts()%}",
+    "%#StatusLineLocationSep#%*",
+    "%#StatusLineLocation# %{%v:lua.status.get_loc()%}%*",
+    "%#StatusLinePosition#%{%v:lua.status.get_position()%}%*",
+    "%#StatusLinePositionIconSep#%*%#StatusLinePositionIcon#  %*",
   }
   return table.concat(parts)
 end
 
 M.active_indicator = function()
   if is_current() then
-    return '%#WinBarIndicator#▔▔▔▔▔▔▔▔%*'
+    return "%#WinBarIndicator#▔▔▔▔▔▔▔▔%*"
   else
-    return ''
+    return ""
   end
 end
 
 M.get_git_dirty = function()
   local dirty = vim.b.gitsigns_status
   if isempty(dirty) then
-    return ' '
+    return " "
   else
-    return '%#WinBarGitDirty# %*'
+    return "%#WinBarGitDirty# %*"
   end
 end
 
 M.gotoSymbolName = function(minwid, no, mouse)
-  if no == 2 and mouse == 'l' then
+  if no == 2 and mouse == "l" then
     local function split_string(str)
-      local first, second = string.match(str, '^(.*)000(.*)$')
+      local first, second = string.match(str, "^(.*)000(.*)$")
       return first, second
     end
 
@@ -394,26 +394,26 @@ M.gotoSymbolName = function(minwid, no, mouse)
 end
 
 M.aerial = function()
-  local aerial = require('aerial')
+  local aerial = require("aerial")
 
   local function format_status(symbols)
     local parts = {}
     for _, symbol in ipairs(symbols) do
       table.insert(
         parts,
-        '%'
+        "%"
           .. symbol.lnum
-          .. '000'
+          .. "000"
           .. symbol.col
-          .. '@v:lua.status.gotoSymbolName@%#Aerial'
+          .. "@v:lua.status.gotoSymbolName@%#Aerial"
           .. symbol.kind
-          .. 'Icon#'
+          .. "Icon#"
           .. symbol.icon
           .. symbol.name
-          .. '%*%X'
+          .. "%*%X"
       )
     end
-    return table.concat(parts, ' ▶ ')
+    return table.concat(parts, " ▶ ")
   end
 
   local symbols = aerial.get_location(true)
@@ -423,7 +423,7 @@ end
 
 _G.status = M
 
-vim.o.winbar = '%{%v:lua.status.get_winbar()%}'
-vim.o.statusline = '%{%v:lua.status.get_statusline()%}'
+vim.o.winbar = "%{%v:lua.status.get_winbar()%}"
+vim.o.statusline = "%{%v:lua.status.get_statusline()%}"
 
 return M

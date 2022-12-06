@@ -3,7 +3,7 @@
 -- <M-]>                   Cycle to the next suggestion, if one is available.
 -- <M-[>                   Cycle to the previous suggestion.
 
-require('copilot').setup({
+require("copilot").setup({
   panel = {
     enabled = false,
   },

@@ -1,9 +1,9 @@
-require('colorizer').setup({
-  filetypes = { '*' },
+require("colorizer").setup({
+  filetypes = { "*" },
   user_default_options = {
     RRGGBBAA = true,
     css_fn = true,
-    tailwind = 'lsp',
+    tailwind = "lsp",
     sass = { enable = true },
   },
 })
