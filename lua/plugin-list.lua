@@ -116,6 +116,7 @@ require('packer').startup({
     -- Command loaded plugins
     use({ 'tweekmonster/startuptime.vim', cmd = 'StartupTime' })
     use({ 'psliwka/termcolors.nvim', cmd = 'TermcolorsShow' })
+    use({ 'ThePrimeagen/vim-be-good', opt = true, cmd = 'VimBeGood' })
 
     -- Autocompletion
     use({ 'rafamadriz/friendly-snippets', module = { 'cmp', 'cmp_nvim_lsp' }, event = 'InsertEnter' })
