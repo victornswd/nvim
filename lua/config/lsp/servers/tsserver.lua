@@ -63,5 +63,6 @@ require('lspconfig').tsserver.setup({
     })
 
     require('nvim-lsp-ts-utils').setup_client(client)
+    require('twoslash-queries').attach(client, bufnr)
   end,
 })

@@ -143,7 +143,7 @@ require('packer').startup({
       },
     })
     use({
-      'ray-x/lsp_signature.nvim', -- NOTE: is this plugin helpful or distracting?
+      'ray-x/lsp_signature.nvim',
       'jose-elias-alvarez/nvim-lsp-ts-utils',
       after = 'nvim-lspconfig',
     })
@@ -160,6 +160,7 @@ require('packer').startup({
       config = get_config('copilot'),
       event = 'InsertEnter',
     })
+    use('marilari88/twoslash-queries.nvim')
 
     -- Debugging
     use({
