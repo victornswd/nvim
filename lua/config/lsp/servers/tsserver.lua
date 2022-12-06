@@ -20,10 +20,6 @@ require('lspconfig').tsserver.setup({
     end
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-    if client.server_capabilities.signatureHelpProvider then
-      require('lsp_signature').on_attach()
-    end
-
     require('nvim-lsp-ts-utils').setup({
       debug = false,
       disable_commands = false,
