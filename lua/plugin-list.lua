@@ -118,31 +118,30 @@ require("packer").startup({
     use({ "psliwka/termcolors.nvim", cmd = "TermcolorsShow" })
     use({ "ThePrimeagen/vim-be-good", opt = true, cmd = "VimBeGood" })
 
-    -- Autocompletion
-    use({ "rafamadriz/friendly-snippets", module = { "cmp", "cmp_nvim_lsp" }, event = "InsertEnter" })
+    -- LSP Zero
     use({
-      "hrsh7th/nvim-cmp",
-      after = "friendly-snippets",
-      config = get_config("cmp-conf"),
-    })
-    use({ "L3MON4D3/luasnip", wants = "friendly-snippets", after = "nvim-cmp" })
-
-    use({ "saadparwaiz1/cmp_luasnip", after = "luasnip" })
-    use({ "hrsh7th/cmp-nvim-lua", after = "cmp_luasnip" })
-    use({ "hrsh7th/cmp-nvim-lsp", after = "cmp-nvim-lua" })
-    use({ "hrsh7th/cmp-buffer", after = "cmp-nvim-lsp" })
-    use({ "hrsh7th/cmp-path", after = "cmp-buffer" })
-    use({ "lukas-reineke/cmp-rg", after = "cmp-path" })
-
-    -- LSP
-    use({
-      "neovim/nvim-lspconfig",
-      config = get_config("lsp.config"),
+      "VonHeikemen/lsp-zero.nvim",
+      config = get_config("lsp-zero"),
       requires = {
-        { "williamboman/mason.nvim", config = get_config("mason") },
-        { "williamboman/mason-lspconfig.nvim", config = get_config("lsp.mason-config") },
+        -- LSP Support
+        { "neovim/nvim-lspconfig" },
+        { "williamboman/mason.nvim" },
+        { "williamboman/mason-lspconfig.nvim" },
+
+        -- Autocompletion
+        { "hrsh7th/nvim-cmp" },
+        { "hrsh7th/cmp-buffer" },
+        { "hrsh7th/cmp-path" },
+        { "saadparwaiz1/cmp_luasnip" },
+        { "hrsh7th/cmp-nvim-lsp" },
+        { "hrsh7th/cmp-nvim-lua" },
+
+        -- Snippets
+        { "L3MON4D3/LuaSnip" },
+        { "rafamadriz/friendly-snippets" },
       },
     })
+
     use({
       "ray-x/lsp_signature.nvim",
       "jose-elias-alvarez/nvim-lsp-ts-utils",

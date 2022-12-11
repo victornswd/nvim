@@ -1,10 +1,6 @@
-local conf = require("config.lsp.helpers")
-local capabilities = conf.capabilities
--- capabilities.textDocument.colorProvider = { dynamicRegistration = false }
+local M = {}
 
-require("lspconfig").tailwindcss.setup({
-  capabilities = capabilities,
-  on_attach = conf.on_attach,
+M.setup = {
   cmd = { "tailwindcss-language-server", "--stdio" },
   filetypes = {
     "aspnetcorerazor",
@@ -91,4 +87,5 @@ require("lspconfig").tailwindcss.setup({
       validate = true,
     },
   },
-})
+}
+return M

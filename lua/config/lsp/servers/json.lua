@@ -1,9 +1,6 @@
-local lspconfig = require("lspconfig")
-local conf = require("config.lsp.helpers")
+local M = {}
 
-lspconfig["jsonls"].setup({
-  capabilities = conf.capabilities,
-  on_attach = conf.on_attach,
+M.setup = {
   settings = {
     json = {
       schemas = {
@@ -42,4 +39,6 @@ lspconfig["jsonls"].setup({
       },
     },
   },
-})
+}
+
+return M
