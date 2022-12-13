@@ -47,6 +47,58 @@ lsp.configure("jsonls", require("config.lsp.servers.json").setup)
 lsp.configure("tailwindcss", require("config.lsp.servers.tailwind").setup)
 lsp.configure("tsserver", require("config.lsp.servers.typescript").setup)
 
+local null_ls = require("null-ls")
+local b = null_ls.builtins
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+local lsp_format = function(bufnr)
+  vim.lsp.buf.format({
+    filter = function(clients)
+      return clients.name == "null-ls"
+    end,
+    bufnr = bufnr,
+  })
+end
+
+local null_opts = lsp.build_options("null-ls", {
+  on_attach = function(client, bufnr)
+    if client.supports_method("textDocument/formatting") then
+      vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        group = augroup,
+        buffer = bufnr,
+        callback = function()
+          lsp_format(bufnr)
+        end,
+      })
+    end
+  end,
+})
+
+null_ls.setup({
+  on_attach = null_opts.on_attach,
+  sources = {
+    b.formatting.prettierd.with({
+      filetypes = { "html", "markdown", "css" },
+      prefer_local = "node_modules/.bin",
+    }),
+    b.formatting.deno_fmt,
+    b.formatting.elm_format,
+
+    -- Lua
+    b.formatting.stylua,
+    b.diagnostics.luacheck.with({ extra_args = { "--global vim" } }),
+
+    -- Shell
+    b.formatting.shfmt,
+    b.diagnostics.shellcheck.with({ diagnostics_format = "#{m} [#{c}]" }),
+
+    -- TypeScript
+    require("typescript.extensions.null-ls.code-actions"),
+
+    -- b.diagnostics.eslint,
+  },
+})
+
 require("config/cmp-conf")
 
 lsp.nvim_workspace()
