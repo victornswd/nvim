@@ -144,7 +144,7 @@ require("packer").startup({
 
     use({
       "ray-x/lsp_signature.nvim",
-      "jose-elias-alvarez/nvim-lsp-ts-utils",
+      "jose-elias-alvarez/typescript.nvim",
       after = "nvim-lspconfig",
     })
     use({
@@ -153,7 +153,6 @@ require("packer").startup({
         "nvim-lua/plenary.nvim",
         "neovim/nvim-lspconfig",
       },
-      config = get_config("null-ls"),
     })
     use({
       "zbirenbaum/copilot.lua",
