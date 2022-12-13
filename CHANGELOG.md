@@ -6,6 +6,32 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.1] - 2022-10-05
+
+### Removed
+
+- Removed `vim-import-cost` because it wasn't working
+
+### Changed
+
+- Testing no-wrap
+- Change [StyLua](https://github.com/JohnnyMorganz/StyLua) rules to something
+  closer to default
+- Switch from [vim-easy-align](https://github.com/junegunn/vim-easy-align) to
+  [mini-align](https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-align.md)
+- Switch to [LSP Zero](https://github.com/VonHeikemen/lsp-zero.nvim) to simplify
+  LSP handling
+
+### Added
+
+- Added more ASCII art
+- `<C-[1-4]>` goes to Harpoon position
+- Added [boole.nvim](https://github.com/nat-418/boole.nvim) for more toggle
+  options
+- Added the `++p` flag to files saving to always create a new file even if
+  folder in the path doesn't exist
+- Added the [VimBeGood](https://github.com/ThePrimeagen/vim-be-good) game
+
 ## [0.3.0] - 2022-10-05
 
 ### Removed
