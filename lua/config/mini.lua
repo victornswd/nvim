@@ -1,3 +1,12 @@
+vim.defer_fn(function()
+  require("mini.ai").setup({})
+  require("mini.align").setup({})
+  require("mini.pairs").setup()
+  require("mini.tabline").setup({})
+  require("mini.comment").setup()
+  require("mini.surround").setup({})
+end, 10)
+
 local donut = [[
                 $$$$$$$@@@@@$           
              ********##$$$$$@@$$        
@@ -77,7 +86,7 @@ local pirate = [[
 ]]
 -- More ASCII ideas here: https://github.com/glepnir/dashboard-nvim/wiki/Ascii-Header-Text
 
-local starter = require('mini.starter')
+local starter = require("mini.starter")
 local function telescope()
   return {
     {

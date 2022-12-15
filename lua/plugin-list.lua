@@ -91,17 +91,7 @@ require("packer").startup({
     })
     use({
       "echasnovski/mini.nvim",
-      config = function()
-        require("config.mini-starter")
-        vim.defer_fn(function()
-          require("config.mini-comment")
-          require("config.mini-pairs")
-          require("config.mini-surround")
-          require("config.mini-tabline")
-          require("config.mini-ai")
-          require("config.mini-align")
-        end, 10)
-      end,
+      config = get_config("mini"),
     })
     use({
       "folke/which-key.nvim",
@@ -179,7 +169,7 @@ require("packer").startup({
     use({
       "microsoft/vscode-js-debug",
       opt = true,
-      run = 'npm install --legacy-peer-deps && npm run compile',
+      run = "npm install --legacy-peer-deps && npm run compile",
     })
 
     -- Automatically set up your configuration after cloning packer.nvim
