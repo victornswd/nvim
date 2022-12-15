@@ -1,9 +1,14 @@
-local i, j = string.find(vim.g.theme, "-NvChad")
+local i, _ = string.find(vim.g.theme, "-NvChad")
 if i then
   require("base46").load_highlight("telescope")
 end
 
-require("telescope").setup({
+local ok, telescope = pcall(require,"telescope")
+if not ok then
+  return
+end
+
+telescope.setup({
   defaults = {
     vimgrep_arguments = {
       "rg",

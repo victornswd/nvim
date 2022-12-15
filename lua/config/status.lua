@@ -394,7 +394,10 @@ M.gotoSymbolName = function(minwid, no, mouse)
 end
 
 M.aerial = function()
-  local aerial = require("aerial")
+  local ok, aerial = pcall(require,"aerial")
+  if not ok then
+    return ""
+  end
 
   local function format_status(symbols)
     local parts = {}

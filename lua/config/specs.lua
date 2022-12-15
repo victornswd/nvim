@@ -1,4 +1,10 @@
-require("specs").setup({
+local ok, specs = pcall(require,"specs")
+
+if not ok then
+  return
+end
+
+specs.setup({
   show_jumps = true,
   min_jump = 5,
   popup = {
