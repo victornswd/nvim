@@ -20,8 +20,6 @@ function EscapePair()
 end
 
 vim.cmd([[
-:cnoreabbrev wq w ++p<bar>BufDel
-:cnoreabbrev q BufDel
 :cnoreabbrev Q q
 :cnoreabbrev W w ++p
 ]])

@@ -83,7 +83,7 @@ require("packer").startup({
 
     -- DX flourishes
     use({ "ThePrimeagen/harpoon", requires = "nvim-lua/plenary.nvim" })
-    use({ "ojroques/nvim-bufdel" })
+    use({ "ojroques/nvim-bufdel", config = get_config("bufdel") })
     use({
       "phaazon/hop.nvim",
       config = get_config("hop"),
