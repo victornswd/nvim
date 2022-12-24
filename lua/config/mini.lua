@@ -1,10 +1,10 @@
 vim.defer_fn(function()
-  require("mini.ai").setup({})
-  require("mini.align").setup({})
-  require("mini.pairs").setup()
-  require("mini.tabline").setup({})
-  require("mini.comment").setup()
-  require("mini.surround").setup({})
+	require("mini.ai").setup({})
+	require("mini.align").setup({})
+	require("mini.pairs").setup()
+	require("mini.tabline").setup({})
+	require("mini.comment").setup()
+	require("mini.surround").setup({})
 end, 10)
 
 local donut = [[
@@ -88,27 +88,27 @@ local pirate = [[
 
 local starter = require("mini.starter")
 local function telescope()
-  return {
-    {
-      action = "lua pcall(require('harpoon.ui').toggle_quick_menu)",
-      name = "List Harpoon",
-      section = "List Harpoon",
-    },
-    { action = "lua project_files()", name = "Files", section = "File Management" },
-    { action = "Telescope live_grep", name = "Live grep", section = "File Management" },
-    { action = "Telescope oldfiles", name = "Old files", section = "File Management" },
-    { action = "VimwikiIndex", name = "Wiki Index", section = "VimWiki" },
-    { action = "Telescope themes", name = "Themes", section = "Neovim Internals" },
-    { action = "Telescope command_history", name = "Command history", section = "Neovim Internals" },
-  }
+	return {
+		{
+			action = "lua pcall(require('harpoon.ui').toggle_quick_menu)",
+			name = "List Harpoon",
+			section = "List Harpoon",
+		},
+		{ action = "lua project_files()", name = "Files", section = "File Management" },
+		{ action = "Telescope live_grep", name = "Live grep", section = "File Management" },
+		{ action = "Telescope oldfiles", name = "Old files", section = "File Management" },
+		{ action = "VimwikiIndex", name = "Wiki Index", section = "VimWiki" },
+		{ action = "Telescope themes", name = "Themes", section = "Neovim Internals" },
+		{ action = "Telescope command_history", name = "Command history", section = "Neovim Internals" },
+	}
 end
 starter.setup({
-  header = blackHole,
-  items = {
-    telescope(),
-  },
-  content_hooks = {
-    starter.gen_hook.adding_bullet(),
-    starter.gen_hook.aligning("center", "center"),
-  },
+	header = blackHole,
+	items = {
+		telescope(),
+	},
+	content_hooks = {
+		starter.gen_hook.adding_bullet(),
+		starter.gen_hook.aligning("center", "center"),
+	},
 })

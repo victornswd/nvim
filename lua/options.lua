@@ -25,7 +25,7 @@ g.loaded_rrhelper = 1
 
 opt.completeopt = { "menuone", "noinsert", "noselect" }
 opt.colorcolumn = { 80 }
-opt.expandtab = true -- Use spaces instead of tabs
+opt.expandtab = false -- Preserve tabs
 opt.number = true -- Show line numbers
 opt.relativenumber = true -- Relative line numbers
 opt.fileformat = "unix"

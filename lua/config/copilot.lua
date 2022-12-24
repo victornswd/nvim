@@ -4,10 +4,10 @@
 -- <M-[>                   Cycle to the previous suggestion.
 
 require("copilot").setup({
-  panel = {
-    enabled = false,
-  },
-  suggestion = {
-    auto_trigger = true,
-  },
+	panel = {
+		enabled = false,
+	},
+	suggestion = {
+		auto_trigger = true,
+	},
 })

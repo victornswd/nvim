@@ -1,7 +1,7 @@
 local ok, _ = pcall(require, "bufdel")
 
 if not ok then
-  return
+	return
 end
 
 vim.cmd([[
