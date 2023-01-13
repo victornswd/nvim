@@ -1,8 +1,8 @@
-local i, j = string.find(vim.g.theme, "-NvChad")
-if i then
-	require("base46").load_highlight("syntax")
-	require("base46").load_highlight("treesitter")
-end
+-- local i, j = string.find(vim.g.theme, "-NvChad")
+-- if i then
+-- 	require("base46").load_highlight("syntax")
+-- 	require("base46").load_highlight("treesitter")
+-- end
 
 require("nvim-treesitter.install").compilers = { "gcc" }
 local ts = require("nvim-treesitter.configs")

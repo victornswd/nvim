@@ -34,9 +34,7 @@ return {
 	{
 		"folke/todo-comments.nvim",
 		dependencies = "nvim-lua/plenary.nvim",
-		config = function()
-			require("config.todo-comments")
-		end,
+		config = true,
 		event = "VeryLazy",
 	},
 	{
@@ -67,14 +65,28 @@ return {
 		dependencies = "nvim-treesitter/nvim-treesitter",
 		keys = "<Leader>dd",
 	},
-	{ "vimwiki/vimwiki", branch = "dev", event = "VeryLazy" },
+	{
+		"vimwiki/vimwiki",
+		branch = "dev",
+		event = "VeryLazy",
+		config = function()
+			--------------------- VIMWIKI ------------------------------
+			vim.cmd([[
+				let g:vimwiki_list = [{'path': '~/Dropbox/wiki/',
+															\ 'syntax': 'markdown', 'ext': '.md'}]
+				let g:vimwiki_global_ext = 0
+			]])
+		end,
+	},
 
 	-- UI flourishes
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		config = function()
-			require("config.indent-blankline")
-		end,
+		opts = { enabled = true },
+		config = true,
+		-- config = function()
+		-- 	require("config.indent-blankline")
+		-- end,
 		event = "VeryLazy",
 	},
 	{
@@ -87,9 +99,7 @@ return {
 	{
 		"lewis6991/gitsigns.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function()
-			require("gitsigns").setup()
-		end,
+		config = true,
 		event = "VeryLazy",
 	},
 	{
@@ -124,15 +134,17 @@ return {
 	}, -- NOTE:
 	{
 		"echasnovski/mini.nvim",
+		event = "VimEnter",
 		config = function()
 			require("config.mini")
 		end,
 	},
 	{
 		"folke/which-key.nvim",
-		config = function()
-			require("config.which-key")
-		end,
+		config = true,
+		-- config = function()
+		-- 	require("config.which-key")
+		-- end,
 		event = "VeryLazy",
 	},
 	{
@@ -188,11 +200,13 @@ return {
 			"neovim/nvim-lspconfig",
 		},
 	},
-	-- {
-	-- 	"zbirenbaum/copilot.lua",
-	-- 	config = function() require("config.copilot"),
-	-- 	event = "InsertEnter",
-	-- },
+	{
+		"zbirenbaum/copilot.lua",
+		config = function()
+			require("config.copilot")
+		end,
+		event = "InsertEnter",
+	},
 	{ "marilari88/twoslash-queries.nvim", dependencies = "nvim-lspconfig" },
 
 	-- Debugging

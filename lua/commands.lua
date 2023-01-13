@@ -1,9 +1,9 @@
---------------------- VIMWIKI ------------------------------
-vim.cmd([[
-let g:vimwiki_list = [{'path': '~/Dropbox/wiki/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
-let g:vimwiki_global_ext = 0
-]])
+-- --------------------- VIMWIKI ------------------------------
+-- vim.cmd([[
+-- let g:vimwiki_list = [{'path': '~/Dropbox/wiki/',
+--                       \ 'syntax': 'markdown', 'ext': '.md'}]
+-- let g:vimwiki_global_ext = 0
+-- ]])
 
 -------------------- COMMANDS ------------------------------
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
