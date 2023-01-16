@@ -1,4 +1,3 @@
-
 vim.g.ui = {
 	theme = "everforest-NvChad",
 	changed_themes = {},
@@ -60,4 +59,3 @@ vim.g.ui = {
 
 vim.g.theme = vim.g.ui.theme
 vim.cmd.colorscheme(vim.g.theme)
-
