@@ -168,6 +168,8 @@ return {
 	{ "tweekmonster/startuptime.vim", cmd = "StartupTime" },
 	{ "psliwka/termcolors.nvim", cmd = "TermcolorsShow" },
 	{ "ThePrimeagen/vim-be-good", lazy = true, cmd = "VimBeGood" },
+	{ "nvim-colortils/colortils.nvim", lazy = true, cmd = "Colortils", config = true },
+	{ "nvim-tree/nvim-tree.lua", lazy = true, cmd = "NvimTreeToggle", config = true },
 
 	-- LSP Zero
 	{
