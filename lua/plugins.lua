@@ -5,12 +5,22 @@ return {
 	{ "stevearc/dressing.nvim", event = "VeryLazy" },
 
 	-- Colors
+	-- {
+	-- 	"victornswd/base46",
+	-- 	config = function()
+	-- 		require("colors")
+	-- 	end,
+	-- },
 	{
-		"victornswd/base46",
+		"catppuccin/nvim",
+		name = "catppuccin",
 		lazy = false, -- make sure we load this during startup if it is your main colorscheme
 		priority = 1000, -- make sure to load this before all the other start plugins
-		config = function()
-			require("colors")
+		opts = require("config.catppuccin"),
+		config = function(_, opts)
+			require("catppuccin").setup(opts)
+
+			vim.cmd.colorscheme("catppuccin")
 		end,
 	},
 
@@ -83,10 +93,9 @@ return {
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		opts = { enabled = true },
-		config = true,
-		-- config = function()
-		-- 	require("config.indent-blankline")
-		-- end,
+		config = function()
+			require("config.indent-blankline")
+		end,
 		event = "VeryLazy",
 	},
 	{
