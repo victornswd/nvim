@@ -79,13 +79,32 @@ return {
 		"vimwiki/vimwiki",
 		branch = "dev",
 		event = "VeryLazy",
+		init = function()
+			vim.g.vimwiki_list = {
+				{
+					path = "~/Dropbox/wiki/",
+					syntax = "markdown",
+					ext = ".md",
+				},
+			}
+			vim.g.vimwiki_global_ext = 0
+		end,
 		config = function()
-			--------------------- VIMWIKI ------------------------------
-			vim.cmd([[
-				let g:vimwiki_list = [{'path': '~/Dropbox/wiki/',
-															\ 'syntax': 'markdown', 'ext': '.md'}]
-				let g:vimwiki_global_ext = 0
-			]])
+			local vimwiki_gr = vim.api.nvim_create_augroup("VimWikiGroup", { clear = true })
+			vim.api.nvim_create_autocmd("FileType", {
+				callback = function()
+					vim.opt_local.filetype = "markdown"
+				end,
+				group = vimwiki_gr,
+				pattern = "vimwiki",
+			})
+			vim.api.nvim_create_autocmd("BufEnter", {
+				callback = function()
+					vim.opt_local.syntax = "markdown"
+				end,
+				group = vimwiki_gr,
+				pattern = "~/Dropbox/wiki/*.md",
+			})
 		end,
 	},
 
@@ -151,9 +170,6 @@ return {
 	{
 		"folke/which-key.nvim",
 		config = true,
-		-- config = function()
-		-- 	require("config.which-key")
-		-- end,
 		event = "VeryLazy",
 	},
 	{
