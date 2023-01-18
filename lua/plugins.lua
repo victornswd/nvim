@@ -57,11 +57,7 @@ return {
 		"folke/todo-comments.nvim",
 		dependencies = "nvim-lua/plenary.nvim",
 		config = true,
-		event = "VeryLazy",
-	},
-	{
-		"JoosepAlviste/nvim-ts-context-commentstring",
-		dependencies = "nvim-treesitter",
+		event = "BufReadPost",
 	},
 
 	-- Dev helpers (documentation, pickers, editor config, etc)
@@ -173,8 +169,21 @@ return {
 		event = "VeryLazy",
 	}, -- NOTE:
 	{
+		"JoosepAlviste/nvim-ts-context-commentstring",
+		opt = true,
+	},
+	{
 		"echasnovski/mini.nvim",
 		event = "VimEnter",
+		dependencies = {
+			"JoosepAlviste/nvim-ts-context-commentstring",
+			{
+				"nvim-treesitter/nvim-treesitter-textobjects",
+				init = function()
+					require("lazy.core.loader").disable_rtp_plugin("nvim-treesitter-textobjects")
+				end,
+			},
+		},
 		config = function()
 			require("config.mini")
 		end,
