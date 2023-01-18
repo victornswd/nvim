@@ -2,8 +2,20 @@ return {
 	-- Dependencies
 	"kyazdani42/nvim-web-devicons",
 	"nvim-lua/plenary.nvim",
-	{ "stevearc/dressing.nvim", event = "VeryLazy" },
-
+	{
+		"stevearc/dressing.nvim",
+		lazy = true,
+		init = function()
+			vim.ui.select = function(...)
+				require("lazy").load({ plugins = { "dressing.nvim" } })
+				return vim.ui.select(...)
+			end
+			vim.ui.input = function(...)
+				require("lazy").load({ plugins = { "dressing.nvim" } })
+				return vim.ui.input(...)
+			end
+		end,
+	},
 	-- Colors
 	-- {
 	-- 	"victornswd/base46",
