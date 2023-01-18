@@ -13,7 +13,13 @@ vim.defer_fn(function()
 	require("mini.align").setup({})
 	require("mini.pairs").setup()
 	require("mini.tabline").setup({})
-	require("mini.comment").setup()
+	require("mini.comment").setup({
+		hooks = {
+			pre = function()
+				require("ts_context_commentstring.internal").update_commentstring({})
+			end,
+		},
+	})
 	require("mini.surround").setup({})
 end, 10)
 
