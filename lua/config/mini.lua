@@ -21,6 +21,14 @@ vim.defer_fn(function()
 		},
 	})
 	require("mini.surround").setup({})
+	require("mini.move").setup({
+		mappings = {
+			down = "J",
+			up = "K",
+			line_down = "J",
+			line_up = "K",
+		},
+	})
 end, 10)
 
 local donut = [[
