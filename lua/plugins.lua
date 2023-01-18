@@ -132,6 +132,7 @@ return {
 		end,
 		ft = { "css", "javascript", "vim", "html", "lua", "typescript", "typescriptreact", "react", "astro" },
 	},
+	{ "luukvbaal/statuscol.nvim", opts = { setopt = true }, config = true, event = "VeryLazy" },
 	{
 		"lewis6991/gitsigns.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
