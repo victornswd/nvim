@@ -68,8 +68,6 @@ return {
 		end,
 		dependencies = {
 			{
-				"ElPiloto/telescope-vimwiki.nvim", -- NOTE:
-				"benfowler/telescope-luasnip.nvim", -- NOTE:
 				{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 			},
 		},

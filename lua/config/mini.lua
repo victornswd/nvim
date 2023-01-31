@@ -118,7 +118,7 @@ local function telescope()
 			name = "List Harpoon",
 			section = "List Harpoon",
 		},
-		{ action = "lua project_files()", name = "Files", section = "File Management" },
+		{ action = "lua Project_files()", name = "Files", section = "File Management" },
 		{ action = "Telescope live_grep", name = "Live grep", section = "File Management" },
 		{ action = "Telescope oldfiles", name = "Old files", section = "File Management" },
 		{ action = "VimwikiIndex", name = "Wiki Index", section = "VimWiki" },

@@ -50,21 +50,11 @@ telescope.setup({
 	},
 })
 
--- local extensions = { 'vw', 'luasnip', 'fzf', 'themes', 'terms'}
--- pcall(function()
---   for _, ext in ipairs(extensions) do
--- require'telescope'.load_extension(ext)
--- end
--- end)
-
-require("telescope").load_extension("fzf")
-require("telescope").load_extension("vw")
-require("telescope").load_extension("luasnip")
 require("telescope").load_extension("themes")
 
 -- keymap
 
-_G.project_files = function()
+Project_files = function()
 	local opts = {} -- define here if you want to define something
 	vim.fn.system("git rev-parse --is-inside-work-tree")
 	if vim.v.shell_error == 0 then
@@ -87,4 +77,4 @@ end, { desc = "Colorschemes" })
 vim.keymap.set("n", "<leader>t", function()
 	pcall(require("telescope.builtin").diagnostics(), { bufnr = 0 })
 end, { desc = "Show file diagnostics" })
-vim.keymap.set("n", "<leader>o", project_files, { desc = "Open file search" })
+vim.keymap.set("n", "<leader>o", Project_files, { desc = "Open file search" })
