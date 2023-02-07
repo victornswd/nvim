@@ -51,6 +51,18 @@ lsp.configure("tsserver", require("config.lsp.servers.typescript").setup)
 local null_ls = require("null-ls")
 local b = null_ls.builtins
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+require("mason-null-ls").setup({
+	ensure_installed = {
+		"jq",
+		"prettierd",
+		"stylua",
+		"shfmt",
+		"deno_fmt",
+		"elm_format",
+	},
+})
+
 local lsp_format = function(bufnr)
 	vim.lsp.buf.format({
 		filter = function(clients)
@@ -79,19 +91,19 @@ null_ls.setup({
 	on_attach = null_opts.on_attach,
 	sources = {
 		b.formatting.prettierd.with({
-			filetypes = { "html", "markdown", "css" },
-			prefer_local = "node_modules/.bin",
+			-- filetypes = { "html", "markdown", "css" },
+			-- prefer_local = "node_modules/.bin",
+			-- env = { "PRETTIERD_LOCAL_PRETTIER_ONLY=true" },
+			-- command = "prettier",
 		}),
 		b.formatting.deno_fmt,
 		b.formatting.elm_format,
 
 		-- Lua
 		b.formatting.stylua,
-		b.diagnostics.luacheck.with({ extra_args = { "--global vim" } }),
 
 		-- Shell
 		b.formatting.shfmt,
-		b.diagnostics.shellcheck.with({ diagnostics_format = "#{m} [#{c}]" }),
 
 		-- TypeScript
 		require("typescript.extensions.null-ls.code-actions"),

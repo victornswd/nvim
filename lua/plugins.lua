@@ -234,13 +234,14 @@ return {
 		event = "VeryLazy",
 	},
 
-	-- TypeScript LSP Extras
+	-- TypeScript Extras
 	{
 		"ray-x/lsp_signature.nvim",
 		"jose-elias-alvarez/typescript.nvim",
 		dependencies = "nvim-lspconfig",
 	},
 	{
+		"jay-babu/mason-null-ls.nvim",
 		"jose-elias-alvarez/null-ls.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
