@@ -53,6 +53,16 @@ return {
 			ModeV = { bg = colors.sapphire, fg = colors.base, style = { "bold" } },
 			ModeRSep = { fg = colors.peach, bg = colors.base, style = { "bold" } },
 			ModeR = { bg = colors.peach, fg = colors.base, style = { "bold" } },
+			TelescopePromptPrefix = { bg = colors.crust },
+			TelescopePromptNormal = { bg = colors.crust },
+			TelescopeResultsNormal = { bg = colors.mantle },
+			TelescopePreviewNormal = { bg = colors.crust },
+			TelescopePromptBorder = { bg = colors.crust, fg = colors.crust },
+			TelescopeResultsBorder = { bg = colors.mantle, fg = colors.crust },
+			TelescopePreviewBorder = { bg = colors.crust, fg = colors.crust },
+			TelescopePromptTitle = { fg = colors.crust, bg = colors.green },
+			TelescopeResultsTitle = { fg = colors.text, bg = colors.red },
+			TelescopePreviewTitle = { fg = colors.crust, bg = colors.sapphire },
 		}
 	end,
 }
