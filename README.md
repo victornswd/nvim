@@ -7,11 +7,8 @@
 - [Neovim](http://neovim.io/) 0.8+
 - [ripgrep](https://github.com/BurntSushi/ripgrep) is required for string search
   in Telescope
-- [Read this](https://github.com/tree-sitter/tree-sitter-haskell#building-on-macos)
-  if you are using this config on a Mac, or just disable `tree-sitter-haskell`
-  in the config
-- [NerdFont](https://www.nerdfonts.com/font-downloads) with ligature support for
-  the status line. I use [Delugia Code](https://github.com/adam7/delugia-code)
+- [NerdFont](https://www.nerdfonts.com/font-downloads) with ligature and powerline
+  support for the status line. I use [Delugia Code](https://github.com/adam7/delugia-code)
 - `xclip`/`xsel` required on Linux for access to the global clipboard
 
 ## Getting started
@@ -25,18 +22,12 @@ git branch might be unstable
   ln -s ~/<this repo location>/init.lua ~/.config/nvim/init.lua
   ln -s ~/<this repo location>/lua ~/.config/nvim/lua
   ```
-- if they exist, remove `packer_compiled.lua` from `~/.config/nvim/plugin` and
-  `~/.local/share/nvim/site/`. If you don't want to bother with this check the
-  [Troubleshooting](#troubleshooting) section
 - open nvim as normal
+- (optional) restart your neovim to make sure everything is using the proper config
 - enjoy!
 
-**_NOTE:_** there is a config for null-ls that covers my personal needs, please
-check the documentation on
-[null-ls builtins](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md)
-on how to expand. For null-ls to work you also need the majority of linters &
-checkers to be installed globally. `:Mason` might help with installing these,
-but I don't have experience with this.
+**_NOTE:_** Both LSP config and null-ls are based on my needs and requirements,
+update them for your needs in the `lua/config/lsp-zero.lua` file.
 
 ## Keybindings
 
@@ -76,13 +67,8 @@ but I don't have experience with this.
 
 ## Troubleshooting
 
-#### Installation failed
-
-If the installation failed you can just open nvim run `:PackerSync` manually.
-This can also be ran if you currently have a Packer based config and don't want
-to manually delete the plugin folder.
-
 ## Special Thanks
 
+- [r/neovim](https://www.reddit.com/r/neovim/)
 - [NvChad](https://nvchad.github.io/)
 - [Ecovim](https://github.com/ecosse3/nvim)
