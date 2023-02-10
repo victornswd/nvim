@@ -45,6 +45,10 @@ return {
 		build = ":TSUpdate",
 		event = "VeryLazy",
 	},
+	{
+		"nvim-treesitter/playground",
+		cmd = { "TSPlaygroundToggle", "TSHighlightCapturesUnderCursor", "TSNodeUnderCursor" },
+	},
 	{ "mrjones2014/nvim-ts-rainbow", event = "VeryLazy" }, -- NOTE:
 	{
 		"andymass/vim-matchup",
