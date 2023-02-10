@@ -209,7 +209,13 @@ return {
 	{ "psliwka/termcolors.nvim", cmd = "TermcolorsShow" },
 	{ "ThePrimeagen/vim-be-good", lazy = true, cmd = "VimBeGood" },
 	{ "nvim-colortils/colortils.nvim", lazy = true, cmd = "Colortils", config = true },
-	{ "nvim-tree/nvim-tree.lua", lazy = true, cmd = "NvimTreeToggle", config = true },
+	{
+		"nvim-tree/nvim-tree.lua",
+		lazy = true,
+		cmd = "NvimTreeToggle",
+		keys = { { "<leader>b", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree" } },
+		config = true,
+	},
 
 	-- LSP Zero
 	{
