@@ -216,6 +216,7 @@ return {
 		keys = { { "<leader>b", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree" } },
 		config = true,
 	},
+	{ "mbbill/undotree", lazy = true, cmd = "UndotreeToggle" },
 
 	-- LSP Zero
 	{
