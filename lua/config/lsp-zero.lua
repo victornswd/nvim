@@ -49,7 +49,6 @@ lsp.configure("tailwindcss", require("config.lsp.servers.tailwind").setup)
 lsp.configure("tsserver", require("config.lsp.servers.typescript").setup)
 
 local null_ls = require("null-ls")
-local b = null_ls.builtins
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 require("mason-null-ls").setup({
