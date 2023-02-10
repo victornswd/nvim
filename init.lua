@@ -18,6 +18,7 @@ require("options")
 
 vim.defer_fn(function()
 	require("keymaps")
+	require("conceal")
 	require("commands")
 	require("config.status")
 end, 10)
