@@ -61,6 +61,7 @@ require("mason-null-ls").setup({
 		"deno_fmt",
 		"elm_format",
 	},
+	automatic_setup = true,
 })
 
 local lsp_format = function(bufnr)
@@ -87,29 +88,10 @@ local null_opts = lsp.build_options("null-ls", {
 	end,
 })
 
+require("mason-null-ls").setup_handlers()
+
 null_ls.setup({
 	on_attach = null_opts.on_attach,
-	sources = {
-		b.formatting.prettierd.with({
-			-- filetypes = { "html", "markdown", "css" },
-			-- prefer_local = "node_modules/.bin",
-			-- env = { "PRETTIERD_LOCAL_PRETTIER_ONLY=true" },
-			-- command = "prettier",
-		}),
-		b.formatting.deno_fmt,
-		b.formatting.elm_format,
-
-		-- Lua
-		b.formatting.stylua,
-
-		-- Shell
-		b.formatting.shfmt,
-
-		-- TypeScript
-		require("typescript.extensions.null-ls.code-actions"),
-
-		-- b.diagnostics.eslint,
-	},
 })
 
 require("config/cmp-conf")
