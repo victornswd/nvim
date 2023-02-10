@@ -7,12 +7,30 @@
 require("nvim-treesitter.install").compilers = { "gcc" }
 local ts = require("nvim-treesitter.configs")
 ts.setup({
-	ensure_installed = "all",
-	-- FIXME: check this issue https://github.com/claytonrcarter/tree-sitter-phpdoc/issues/15
-	ignore_install = { "phpdoc" },
+	ensure_installed = {
+		"lua",
+		"vim",
+		"help",
+		"javascript",
+		"typescript",
+		"tsx",
+		"elm",
+		"bash",
+		"toml",
+		"yaml",
+		"astro",
+		"json",
+		"markdown",
+		"markdown_inline",
+		"prisma",
+		"query",
+		"rust",
+		"css",
+	},
+	auto_install = true,
 	highlight = {
 		enable = true,
-		additional_vim_regex_highlighting = true,
+		additional_vim_regex_highlighting = false,
 	},
 	incremental_selection = {
 		enable = true,
