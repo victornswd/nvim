@@ -12,7 +12,7 @@ lsp.ensure_installed({
 	"astro",
 	"sqls",
 	"emmet_ls",
-	"sumneko_lua",
+	"lua_ls",
 })
 
 lsp.set_preferences({
