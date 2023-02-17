@@ -1,5 +1,10 @@
 local lsp = require("lsp-zero")
-lsp.preset("lsp-compe")
+lsp.preset({
+	name = "minimal",
+	set_lsp_keymaps = false,
+	manage_nvim_cmp = false,
+	suggest_lsp_servers = true,
+})
 
 lsp.ensure_installed({
 	"bashls",
@@ -13,10 +18,6 @@ lsp.ensure_installed({
 	"sqls",
 	"emmet_ls",
 	"lua_ls",
-})
-
-lsp.set_preferences({
-	set_lsp_keymaps = false,
 })
 
 lsp.on_attach(function(_, bufnr)
