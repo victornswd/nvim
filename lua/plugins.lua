@@ -165,13 +165,6 @@ return {
 		end,
 	},
 	{
-		"phaazon/hop.nvim",
-		config = function()
-			require("config.hop")
-		end,
-		event = "VeryLazy",
-	}, -- NOTE:
-	{
 		"JoosepAlviste/nvim-ts-context-commentstring",
 		opt = true,
 	},
