@@ -141,7 +141,15 @@ return {
 		end,
 		ft = { "css", "javascript", "vim", "html", "lua", "typescript", "typescriptreact", "react", "astro" },
 	},
-	{ "luukvbaal/statuscol.nvim", opts = { setopt = true }, config = true, event = "VeryLazy" },
+	{
+		"luukvbaal/statuscol.nvim",
+		opts = { setopt = true },
+		config = true,
+		event = "VeryLazy",
+		cond = function()
+			return vim.version().minor >= 9
+		end,
+	},
 	{
 		"lewis6991/gitsigns.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
