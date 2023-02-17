@@ -1,3 +1,8 @@
+local minimal = true
+if os.getenv("MINIMAL") == "true" then
+	minimal = false
+end
+
 return {
 	-- Dependencies
 	"nvim-tree/nvim-web-devicons",
@@ -76,6 +81,7 @@ return {
 			},
 		},
 		event = "VeryLazy",
+		cond = minimal,
 	},
 	{
 		"danymat/neogen",
@@ -84,6 +90,7 @@ return {
 		end,
 		dependencies = "nvim-treesitter/nvim-treesitter",
 		keys = "<Leader>dd",
+		cond = minimal,
 	},
 	{
 		"vimwiki/vimwiki",
@@ -154,6 +161,7 @@ return {
 			require("config.specs")
 		end,
 		event = "VeryLazy",
+		cond = minimal,
 	},
 
 	-- DX flourishes
@@ -188,6 +196,7 @@ return {
 		"folke/which-key.nvim",
 		config = true,
 		event = "VeryLazy",
+		cond = minimal,
 	},
 	{
 		"nat-418/boole.nvim",
@@ -236,6 +245,7 @@ return {
 			{ "rafamadriz/friendly-snippets" },
 		},
 		event = "VeryLazy",
+		cond = minimal,
 	},
 
 	-- TypeScript Extras
@@ -243,6 +253,7 @@ return {
 		"ray-x/lsp_signature.nvim",
 		"jose-elias-alvarez/typescript.nvim",
 		dependencies = "nvim-lspconfig",
+		cond = minimal,
 	},
 	{
 		"jay-babu/mason-null-ls.nvim",
@@ -251,6 +262,7 @@ return {
 			"nvim-lua/plenary.nvim",
 			"neovim/nvim-lspconfig",
 		},
+		cond = minimal,
 	},
 	-- {
 	-- 	"zbirenbaum/copilot.lua",
