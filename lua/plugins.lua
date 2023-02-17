@@ -183,6 +183,7 @@ return {
 	{
 		"JoosepAlviste/nvim-ts-context-commentstring",
 		opt = true,
+		cond = minimal,
 	},
 	{
 		"echasnovski/mini.nvim",
