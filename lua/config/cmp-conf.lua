@@ -93,7 +93,6 @@ cmp.setup({
 			border = border("CmpDocBorder"),
 		},
 	},
-	auto_select = false,
 	snippet = {
 		expand = function(args)
 			luasnip.lsp_expand(args.body)
