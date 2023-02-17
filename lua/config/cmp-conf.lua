@@ -111,7 +111,8 @@ cmp.setup({
 			behavior = cmp.ConfirmBehavior.Replace,
 		}),
 		["<C-a>"] = cmp.mapping(function(_)
-			require("copilot.suggestion").accept()
+			-- require("copilot.suggestion").accept()
+			-- vim.api.nvim_feedkeys(vim.fn["codeium#Accept"](), "n", true)
 		end),
 		-- ["<s-tab>"] = cmp.mapping.select_prev_item(),
 		-- ["<tab>"] = cmp.mapping.select_next_item(),

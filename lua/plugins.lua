@@ -252,13 +252,38 @@ return {
 			"neovim/nvim-lspconfig",
 		},
 	},
-	{
-		"zbirenbaum/copilot.lua",
-		config = function()
-			require("config.copilot")
-		end,
-		event = "InsertEnter",
-	},
+	-- {
+	-- 	"zbirenbaum/copilot.lua",
+	-- 	config = function()
+	-- 		require("copilot").setup({
+	-- 			panel = {
+	-- 				enabled = false,
+	-- 			},
+	-- 			suggestion = {
+	-- 				auto_trigger = true,
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- 	event = "InsertEnter",
+	-- },
+	-- {
+	-- 	"Exafunction/codeium.vim",
+	-- 	config = function()
+	-- 		vim.keymap.set(
+	-- 			"i",
+	-- 			"<Plug>(vimrc:copilot-dummy-map)",
+	-- 			'codeium#Accept("")',
+	-- 			{ silent = true, expr = true, script = true, desc = "Copilot dummy accept" }
+	-- 		)
+	-- 		vim.keymap.set("i", "<M-]>", function()
+	-- 			return vim.fn["codeium#CycleCompletions"](1)
+	-- 		end, { expr = true })
+	-- 		vim.keymap.set("i", "<M-]>", function()
+	-- 			return vim.fn["codeium#CycleCompletions"](-1)
+	-- 		end, { expr = true })
+	-- 	end,
+	-- 	event = "InsertEnter",
+	-- },
 	{ "marilari88/twoslash-queries.nvim", dependencies = "nvim-lspconfig" },
 
 	-- Debugging
