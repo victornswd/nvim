@@ -1,7 +1,7 @@
 local M = {}
 
 M.setup = {
-	cmd = { "tailwindcss-language-server", "--stdio" },
+	cmd = {"bunx", "tailwindcss-language-server", "--stdio" },
 	filetypes = {
 		"aspnetcorerazor",
 		"astro",
