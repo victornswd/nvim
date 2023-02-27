@@ -270,6 +270,7 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"neovim/nvim-lspconfig",
+			"williamboman/mason.nvim",
 		},
 		cond = minimal,
 	},

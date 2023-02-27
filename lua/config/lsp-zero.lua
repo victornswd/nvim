@@ -49,6 +49,8 @@ lsp.configure("jsonls", require("config.lsp.servers.json").setup)
 lsp.configure("tailwindcss", require("config.lsp.servers.tailwind").setup)
 lsp.configure("tsserver", require("config.lsp.servers.typescript").setup)
 
+lsp.setup()
+
 local null_ls = require("null-ls")
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
@@ -61,7 +63,6 @@ require("mason-null-ls").setup({
 		"deno_fmt",
 		"elm_format",
 	},
-	automatic_setup = true,
 })
 
 local lsp_format = function(bufnr)
@@ -88,16 +89,27 @@ local null_opts = lsp.build_options("null-ls", {
 	end,
 })
 
-require("mason-null-ls").setup_handlers()
+require("mason-null-ls").setup_handlers({
+	function(source_name, methods)
+		require("mason-null-ls.automatic_setup")(source_name, methods)
+	end,
+	prettierd = function(source_name, methods)
+		null_ls.register(null_ls.builtins.formatting.prettierd.with({
+			extra_filetypes = {
+				"astro",
+			},
+		}))
+	end,
+})
 
 null_ls.setup({
 	on_attach = null_opts.on_attach,
+	setup = {},
 })
 
 require("config/cmp-conf")
 
 lsp.nvim_workspace()
-lsp.setup()
 vim.diagnostic.config({
 	virtual_text = true,
 })
