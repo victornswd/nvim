@@ -11,6 +11,7 @@ vim.defer_fn(function()
 		},
 	})
 	require("mini.align").setup({})
+	require("mini.bracketed").setup()
 	require("mini.pairs").setup()
 	require("mini.tabline").setup({})
 	require("mini.comment").setup({
