@@ -78,6 +78,8 @@ return {
 		dependencies = {
 			{
 				{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+				"nvim-lua/plenary.nvim",
+				"debugloop/telescope-undo.nvim",
 			},
 		},
 		event = "VeryLazy",
@@ -227,7 +229,6 @@ return {
 		keys = { { "<leader>b", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree" } },
 		config = true,
 	},
-	{ "mbbill/undotree", lazy = true, cmd = "UndotreeToggle" },
 
 	-- LSP Zero
 	{

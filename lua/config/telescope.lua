@@ -51,6 +51,7 @@ telescope.setup({
 })
 
 require("telescope").load_extension("themes")
+require("telescope").load_extension("undo")
 
 -- keymap
 
@@ -81,3 +82,6 @@ vim.keymap.set("n", "<leader>o", Project_files, { desc = "Open file search" })
 vim.keymap.set("n", "<leader>i", function()
 	pcall(require("telescope.builtin").find_files)
 end, { desc = "Open all file search" })
+vim.keymap.set("n", "<leader>u", function()
+	pcall(require("telescope").extensions.undo.undo)
+end, { desc = "Show undo tree" })
