@@ -138,9 +138,22 @@ cmp.setup({
 		end, { "i", "s" }),
 	},
 	sources = {
-		{ name = "nvim_lsp" },
+		{
+			name = "nvim_lsp",
+			filter = function(entry, _)
+				local kinds = require("cmp.types").lsp.CompletionItemKind
+				local in_capture = require("cmp.config.context").in_treesitter_capture
+				if kinds[entry:get_kind()] == "Snippet" then
+					local name = vim.split(entry.source:get_debug_name(), ":")[2]
+					if name == "emmet_ls" then
+						return not in_capture("jsx_text")
+					end
+				end
+			end,
+			priority = 5,
+		},
 		{ name = "path" },
-		{ name = "luasnip" },
+		{ name = "luasnip", priority = 3 },
 		{ name = "buffer", keywork_length = 3 },
 		{ name = "npm", keyword_length = 4 },
 		{ name = "rg", keyword_length = 4 },
