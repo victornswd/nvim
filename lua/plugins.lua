@@ -68,6 +68,12 @@ return {
 		config = true,
 		event = "BufReadPost",
 	},
+	{
+		"lukas-reineke/headlines.nvim",
+		dependencies = "nvim-treesitter/nvim-treesitter",
+		config = true,
+		event = "VeryLazy",
+	},
 
 	-- Dev helpers (documentation, pickers, editor config, etc)
 	{
