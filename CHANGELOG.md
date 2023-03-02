@@ -6,6 +6,35 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2023-03-02
+
+### Removed
+
+- Removed `Hop` because I wasn't using it
+
+### Changed
+
+- Changed `packer.nvim` to [`lazy.nvim`](https://github.com/folke/lazy.nvim)
+- Modified install steps in `README`
+- Toned down `emmet-ls` results in JSX/TSX
+- Reduced the number of installed languages in Treesitter, with autoinstall
+
+### Added
+
+- Added `mini.bracketed` for new jumps
+- Added [mason-null-ls](https://github.com/jay-babu/mason-null-ls.nvim) to keep
+  null-ls sources in the same spot as mason
+- Added auto-install and auto-setup of null-ls sources
+- Added [Codeium](https://www.codeium.com/) support. **NOTE:** AI completion
+  helpers are commented out in `plugins.lua`
+- Added [nvim-tree](https://github.com/nvim-tree/nvim-tree.lua)
+- Added [telescope-undo](https://github.com/debugloop/telescope-undo.nvim),
+  which is similar to [undo-tree](https://github.com/debugloop/telescope-undo.nvim)
+- Added [statuscol](https://github.com/luukvbaal/statuscol.nvim) for interactive
+  column (nvim 0.9+)
+- Added some Treesitter performance optimizations, thanks to
+  [mars90226](https://github.com/mars90226/dotvim/blob/master/lua/vimrc/plugins/nvim_treesitter.lua#L349-L449)
+
 ## [0.3.1] - 2022-10-05
 
 ### Removed
