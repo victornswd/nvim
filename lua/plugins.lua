@@ -152,7 +152,6 @@ return {
 	{
 		"luukvbaal/statuscol.nvim",
 		opts = { setopt = true },
-		commit = "49a3bda",
 		config = true,
 		event = "VeryLazy",
 		cond = function()
