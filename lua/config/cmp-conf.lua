@@ -78,6 +78,16 @@ cmp_window.info = function(self)
 	return info
 end
 
+local types = require("cmp.types")
+local function deprioritize_snippet(entry1, entry2)
+	if entry1:get_kind() == types.lsp.CompletionItemKind.Snippet then
+		return false
+	end
+	if entry2:get_kind() == types.lsp.CompletionItemKind.Snippet then
+		return true
+	end
+end
+
 cmp.setup({
 	window = {
 		confirm_opts = {
@@ -140,16 +150,6 @@ cmp.setup({
 	sources = {
 		{
 			name = "nvim_lsp",
-			filter = function(entry, _)
-				local kinds = require("cmp.types").lsp.CompletionItemKind
-				local in_capture = require("cmp.config.context").in_treesitter_capture
-				if kinds[entry:get_kind()] == "Snippet" then
-					local name = vim.split(entry.source:get_debug_name(), ":")[2]
-					if name == "emmet_ls" then
-						return not in_capture("jsx_text")
-					end
-				end
-			end,
 			priority = 5,
 		},
 		{ name = "path" },
@@ -173,4 +173,21 @@ cmp.setup({
 		ghost_text = false,
 	},
 	preselect = cmp.PreselectMode.None,
+	sorting = {
+		priority_weight = 2,
+		comparators = {
+			deprioritize_snippet,
+			-- the rest of the comparators are pretty much the defaults
+			cmp.config.compare.offset,
+			cmp.config.compare.exact,
+			cmp.config.compare.scopes,
+			cmp.config.compare.score,
+			cmp.config.compare.recently_used,
+			cmp.config.compare.locality,
+			cmp.config.compare.kind,
+			cmp.config.compare.sort_text,
+			cmp.config.compare.length,
+			cmp.config.compare.order,
+		},
+	},
 })
