@@ -15,7 +15,7 @@ lsp.ensure_installed({
 	"tailwindcss", -- custom
 	"prismals",
 	"astro",
-	"sqls",
+	"sqlls",
 	"emmet_ls",
 	"lua_ls",
 })
@@ -63,6 +63,16 @@ require("mason-null-ls").setup({
 		"deno_fmt",
 		"elm_format",
 	},
+	handlers = {
+		prettierd = function(source_name, methods)
+			require("mason-null-ls").default_setup(source_name, methods)
+			null_ls.register(null_ls.builtins.formatting.prettierd.with({
+				extra_filetypes = {
+					"astro",
+				},
+			}))
+		end,
+	},
 })
 
 local lsp_format = function(bufnr)
@@ -86,19 +96,6 @@ local null_opts = lsp.build_options("null-ls", {
 				end,
 			})
 		end
-	end,
-})
-
-require("mason-null-ls").setup_handlers({
-	function(source_name, methods)
-		require("mason-null-ls.automatic_setup")(source_name, methods)
-	end,
-	prettierd = function(source_name, methods)
-		null_ls.register(null_ls.builtins.formatting.prettierd.with({
-			extra_filetypes = {
-				"astro",
-			},
-		}))
 	end,
 })
 
