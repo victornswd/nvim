@@ -76,7 +76,7 @@ vim.keymap.set("n", "<leader>c", function()
 end, { desc = "Colorschemes" })
 
 vim.keymap.set("n", "<leader>t", function()
-	pcall(require("telescope.builtin").diagnostics(), { bufnr = 0 })
+	pcall(require("telescope.builtin").diagnostics(), {})
 end, { desc = "Show file diagnostics" })
 vim.keymap.set("n", "<leader>o", Project_files, { desc = "Open file search" })
 vim.keymap.set("n", "<leader>i", function()

@@ -63,7 +63,6 @@ end, { desc = "Remove all files from harpoon" })
 
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank to global clipboard" })
 vim.keymap.set({ "n", "v" }, "<leader>p", '"+p', { desc = "Paste from global clipboard" })
-vim.keymap.set("n", "<leader>r", ":source ~/.config/nvim/init.lua<CR>", { desc = "Reload nvim config" })
 vim.keymap.set("n", "<leader>s", ":mksession<CR>", { desc = "Save current files as a session" })
 
 -- TODO: document in README
@@ -82,6 +81,8 @@ function HL_search()
 end
 vim.keymap.set("n", "n", "nzz:lua HL_search()<CR>", { desc = "Inline search occurence" })
 vim.keymap.set("n", "N", "Nzz:lua HL_search()<CR>", { desc = "Inline search occurence" })
+
+vim.keymap.set("n", "<M-w>", ":set wrap!<CR>", { desc = "Toggle word wrap" })
 
 -- Mouse context menu
 vim.api.nvim_create_autocmd({ "LspAttach" }, {
