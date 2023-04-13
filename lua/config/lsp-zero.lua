@@ -36,6 +36,10 @@ lsp.on_attach(function(_, bufnr)
 
 	vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, { desc = "LSP - Function signature help" })
 
+	vim.keymap.set("n", "gF", function()
+		vim.lsp.buf.format({ async = true })
+	end)
+
 	require("lsp_signature").on_attach({
 		floating_window = false,
 		bind = true, -- This is mandatory, otherwise border config won't get registered.
