@@ -175,19 +175,20 @@ cmp.setup({
 	preselect = cmp.PreselectMode.None,
 	sorting = {
 		priority_weight = 2,
-		comparators = {
-			deprioritize_snippet,
-			-- the rest of the comparators are pretty much the defaults
-			cmp.config.compare.offset,
-			cmp.config.compare.exact,
-			cmp.config.compare.scopes,
-			cmp.config.compare.score,
-			cmp.config.compare.recently_used,
-			cmp.config.compare.locality,
-			cmp.config.compare.kind,
-			cmp.config.compare.sort_text,
-			cmp.config.compare.length,
-			cmp.config.compare.order,
-		},
+		-- FIXME: Commented until https://github.com/hrsh7th/nvim-cmp/pull/1499 gets merged
+		-- comparators = {
+		-- 	deprioritize_snippet,
+		-- 	-- the rest of the comparators are pretty much the defaults
+		-- 	cmp.config.compare.offset,
+		-- 	cmp.config.compare.exact,
+		-- 	cmp.config.compare.scopes,
+		-- 	cmp.config.compare.score,
+		-- 	cmp.config.compare.recently_used,
+		-- 	cmp.config.compare.locality,
+		-- 	cmp.config.compare.kind,
+		-- 	cmp.config.compare.sort_text,
+		-- 	cmp.config.compare.length,
+		-- 	cmp.config.compare.order,
+		-- },
 	},
 })
