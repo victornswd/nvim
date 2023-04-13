@@ -28,7 +28,7 @@ local conceal_html_class = function(bufnr, format)
 		end
 	end
 
-	local query = vim.treesitter.parse_query(format, querySel()) -- using single character for conceal thanks to u/Rafat913
+	local query = vim.treesitter.query.parse(format, querySel()) -- using single character for conceal thanks to u/Rafat913
 
 	for _, captures, metadata in query:iter_matches(root, bufnr, root:start(), root:end_()) do
 		local start_row, start_col, end_row, end_col = captures[2]:range()
