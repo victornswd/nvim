@@ -53,6 +53,13 @@ lsp.configure("jsonls", require("config.lsp.servers.json").setup)
 lsp.configure("tailwindcss", require("config.lsp.servers.tailwind").setup)
 lsp.configure("tsserver", require("config.lsp.servers.typescript").setup)
 
+lsp.set_sign_icons({
+	error = " ",
+	warn = " ",
+	hint = " ",
+	info = " ",
+})
+
 lsp.setup()
 
 local null_ls = require("null-ls")
