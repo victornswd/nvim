@@ -1,26 +1,39 @@
-local lsp = require("lsp-zero")
-lsp.preset({
-	name = "minimal",
-	set_lsp_keymaps = false,
-	manage_nvim_cmp = false,
-	suggest_lsp_servers = true,
+require("mason").setup()
+
+require("mason-lspconfig").setup({
+	ensure_installed = {
+		"bashls",
+		"cssls",
+		"html",
+		"jsonls", -- custom
+		"tsserver", -- custom
+		"tailwindcss", -- custom
+		"prismals",
+		"astro",
+		"sqlls",
+		"emmet_ls",
+		"lua_ls",
+	},
 })
 
-lsp.ensure_installed({
-	"bashls",
-	"cssls",
-	"html",
-	"jsonls", -- custom
-	"tsserver", -- custom
-	"tailwindcss", -- custom
-	"prismals",
-	"astro",
-	"sqlls",
-	"emmet_ls",
-	"lua_ls",
-})
+local lspconfig = require("lspconfig")
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+local lsp_format = function(bufnr)
+	local ft = vim.bo[bufnr].filetype
+	local have_nls = (#require("null-ls.sources").get_available(ft, "NULL_LS_FORMATTING") > 0)
+	vim.lsp.buf.format({
+		filter = function(client)
+			if have_nls then
+				return client.name == "null-ls"
+			end
+			return client.name ~= "null-ls"
+		end,
+		bufnr = bufnr,
+	})
+end
 
-lsp.on_attach(function(_, bufnr)
+local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+local lsp_attach = function(client, bufnr)
 	-- keymap
 	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "LSP - Go to declaration" })
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "LSP - Go to definition" })
@@ -39,6 +52,10 @@ lsp.on_attach(function(_, bufnr)
 	vim.keymap.set("n", "gF", function()
 		vim.lsp.buf.format({ async = true })
 	end)
+	if client.name == "tsserver" then
+		vim.keymap.set("n", "gco", "<cmd>TypescriptOrganizeImports<CR>", { buffer = bufnr, desc = "Organize Imports" })
+		vim.keymap.set("n", "gcR", "<cmd>TypescriptRenameFile<CR>", { desc = "Rename File", buffer = bufnr })
+	end
 
 	require("lsp_signature").on_attach({
 		floating_window = false,
@@ -47,23 +64,33 @@ lsp.on_attach(function(_, bufnr)
 			border = "rounded",
 		},
 	}, bufnr)
-end)
 
-lsp.configure("jsonls", require("config.lsp.servers.json").setup)
-lsp.configure("tailwindcss", require("config.lsp.servers.tailwind").setup)
-lsp.configure("tsserver", require("config.lsp.servers.typescript").setup)
+	if client.supports_method("textDocument/formatting") then
+		vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			group = augroup,
+			buffer = bufnr,
+			callback = function()
+				lsp_format(bufnr)
+			end,
+		})
+	end
+end
 
-lsp.set_sign_icons({
-	error = " ",
-	warn = " ",
-	hint = " ",
-	info = " ",
+require("mason-lspconfig").setup_handlers({
+	function(server_name)
+		lspconfig[server_name].setup({
+			on_attach = lsp_attach,
+			capabilities = lsp_capabilities,
+		})
+	end,
 })
 
-lsp.setup()
+lspconfig.jsonls.setup(require("config.lsp.servers.json").setup)
+lspconfig.tailwindcss.setup(require("config.lsp.servers.tailwind").setup)
+require("config.lsp.servers.typescript")
 
 local null_ls = require("null-ls")
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 require("mason-null-ls").setup({
 	ensure_installed = {
@@ -73,8 +100,14 @@ require("mason-null-ls").setup({
 		"shfmt",
 		"deno_fmt",
 		"elm_format",
+		"eslint_d",
 	},
 	handlers = {
+		eslint_d = function()
+			null_ls.builtins.diagnostics.eslint_d.with({
+				method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+			})
+		end,
 		prettierd = function(source_name, methods)
 			require("mason-null-ls").default_setup(source_name, methods)
 			null_ls.register(null_ls.builtins.formatting.prettierd.with({
@@ -86,40 +119,30 @@ require("mason-null-ls").setup({
 	},
 })
 
-local lsp_format = function(bufnr)
-	vim.lsp.buf.format({
-		filter = function(clients)
-			return clients.name == "null-ls"
-		end,
-		bufnr = bufnr,
-	})
-end
-
-local null_opts = lsp.build_options("null-ls", {
-	on_attach = function(client, bufnr)
-		if client.supports_method("textDocument/formatting") then
-			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-			vim.api.nvim_create_autocmd("BufWritePre", {
-				group = augroup,
-				buffer = bufnr,
-				callback = function()
-					lsp_format(bufnr)
-				end,
-			})
-		end
-	end,
-})
-
 null_ls.setup({
-	on_attach = null_opts.on_attach,
+	on_attach = lsp_attach,
 	setup = {},
+	sources = {
+		require("typescript.extensions.null-ls.code-actions"),
+	},
 })
 
 require("config/cmp-conf")
 
-lsp.nvim_workspace()
+local signs = {
+	Error = " ",
+	Warn = " ",
+	Hint = " ",
+	Info = " ",
+}
+for type, icon in pairs(signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
 vim.diagnostic.config({
 	virtual_text = true,
+	signs = true,
+	underline = true,
 })
 
 -- keymaps

@@ -242,14 +242,18 @@ return {
 
 	-- LSP Zero
 	{
-		"VonHeikemen/lsp-zero.nvim",
+		"neovim/nvim-lspconfig",
 		config = function()
-			require("config.lsp-zero")
+			require("config.lsp")
 		end,
 		dependencies = {
 			-- LSP Support
-			{ "neovim/nvim-lspconfig" },
-			{ "williamboman/mason.nvim" },
+			{
+				"williamboman/mason.nvim",
+				build = function()
+					pcall(vim.cmd, "MasonUpdate")
+				end,
+			},
 			{ "williamboman/mason-lspconfig.nvim" },
 
 			-- Autocompletion
