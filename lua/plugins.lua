@@ -132,6 +132,19 @@ return {
 			})
 		end,
 	},
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = "nvim-tree/nvim-web-devicons",
+		config = function()
+			require("config.lualine")
+		end,
+		event = "VeryLazy",
+	},
+	{
+		"j-hui/fidget.nvim",
+		config = true,
+		event = "VeryLazy",
+	},
 
 	-- UI flourishes
 	{
