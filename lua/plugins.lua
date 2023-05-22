@@ -252,7 +252,7 @@ return {
 		config = true,
 	},
 
-	-- LSP Zero
+	-- LSP
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
