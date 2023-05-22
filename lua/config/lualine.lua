@@ -22,13 +22,32 @@ require("lualine").setup({
 	},
 	sections = {
 		lualine_a = { "mode" },
-		lualine_b = { "branch" },
+		lualine_b = { { "branch", icon = "" } },
 		lualine_c = {
-			{ "diff", source = diff_source, padding = { left = 1, right = 0 } },
+			{
+				"diff",
+				source = diff_source,
+				padding = { left = 1, right = 0 },
+				symbols = {
+					added = " ",
+					modified = " ",
+					removed = " ",
+				},
+			},
 			{ "filetype", icon_only = true, separator = "", padding = { right = 0, left = 1 } },
 			"filename",
 		},
-		lualine_x = { "diagnostics" },
+		lualine_x = {
+			{
+				"diagnostics",
+				symbols = {
+					error = " ",
+					warn = " ",
+					info = " ",
+					hint = " ",
+				},
+			},
+		},
 		lualine_y = { "location" },
 		lualine_z = { "progress" },
 	},
