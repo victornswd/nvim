@@ -1,3 +1,14 @@
+local function diff_source()
+	local gitsigns = vim.b.gitsigns_status_dict
+	if gitsigns then
+		return {
+			added = gitsigns.added,
+			modified = gitsigns.changed,
+			removed = gitsigns.removed,
+		}
+	end
+end
+
 require("lualine").setup({
 	options = {
 		component_separators = "",
@@ -11,11 +22,15 @@ require("lualine").setup({
 	},
 	sections = {
 		lualine_a = { "mode" },
-		lualine_b = { "branch", "diff", "diagnostics" },
-		lualine_c = { "filename" },
-		lualine_x = { "encoding", "fileformat", "filetype" },
-		lualine_y = { "progress" },
-		lualine_z = { "location" },
+		lualine_b = { "branch" },
+		lualine_c = {
+			{ "diff", source = diff_source, padding = { left = 1, right = 0 } },
+			{ "filetype", icon_only = true, separator = "", padding = { right = 0, left = 1 } },
+			"filename",
+		},
+		lualine_x = { "diagnostics" },
+		lualine_y = { "location" },
+		lualine_z = { "progress" },
 	},
 	inactive_sections = {
 		lualine_a = {},
