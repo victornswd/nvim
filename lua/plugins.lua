@@ -74,6 +74,12 @@ return {
 		config = true,
 		event = "VeryLazy",
 	},
+	{
+		"nvim-treesitter/nvim-treesitter-context",
+		dependencies = "nvim-treesitter/nvim-treesitter",
+		config = true,
+		event = "VeryLazy",
+	},
 
 	-- Dev helpers (documentation, pickers, editor config, etc)
 	{
@@ -175,13 +181,6 @@ return {
 		"lewis6991/gitsigns.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = true,
-		event = "VeryLazy",
-	},
-	{
-		"stevearc/aerial.nvim",
-		config = function()
-			require("config.aerial")
-		end,
 		event = "VeryLazy",
 	},
 	{
