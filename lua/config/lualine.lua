@@ -46,6 +46,9 @@ require("lualine").setup({
 					info = " ",
 					hint = " ",
 				},
+				on_click = function()
+					vim.diagnostic.setqflist()
+				end,
 			},
 		},
 		lualine_y = { "location" },
