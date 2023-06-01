@@ -337,7 +337,6 @@ return {
 	-- 	end,
 	-- 	event = "InsertEnter",
 	-- },
-	{ "marilari88/twoslash-queries.nvim", dependencies = "nvim-lspconfig" },
 
 	-- Debugging
 	{

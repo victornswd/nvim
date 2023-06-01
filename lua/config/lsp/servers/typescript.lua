@@ -7,6 +7,7 @@ require("typescript").setup({
 					includeInlayParameterNameHintsWhenArgumentMatchesName = false,
 					includeInlayFunctionParameterTypeHints = true,
 					includeInlayVariableTypeHints = true,
+					includeInlayVariableTypeHintsWhenTypeMatchesName = false,
 					includeInlayPropertyDeclarationTypeHints = true,
 					includeInlayFunctionLikeReturnTypeHints = true,
 					includeInlayEnumMemberValueHints = true,
@@ -18,6 +19,7 @@ require("typescript").setup({
 					includeInlayParameterNameHintsWhenArgumentMatchesName = false,
 					includeInlayFunctionParameterTypeHints = true,
 					includeInlayVariableTypeHints = true,
+					includeInlayVariableTypeHintsWhenTypeMatchesName = false,
 					includeInlayPropertyDeclarationTypeHints = true,
 					includeInlayFunctionLikeReturnTypeHints = true,
 					includeInlayEnumMemberValueHints = true,
@@ -27,8 +29,5 @@ require("typescript").setup({
 				completeFunctionCalls = true,
 			},
 		},
-		on_attach = function(client, bufnr)
-			require("twoslash-queries").attach(client, bufnr)
-		end,
 	},
 })
