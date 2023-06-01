@@ -15,6 +15,7 @@ vim.g.mapleader = " "
 require("lazy").setup("plugins")
 
 require("options")
+vim.cmd.colorscheme("catppuccin")
 
 vim.defer_fn(function()
 	require("keymaps")
