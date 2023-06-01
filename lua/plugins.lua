@@ -280,11 +280,24 @@ return {
 		opt = true,
 		cond = minimal,
 	},
+	-- mini.nvim
 	{
-		"echasnovski/mini.nvim",
-		event = "VimEnter",
+		"echasnovski/mini.ai",
+		event = "BufReadPre",
+		config = function()
+			local ai = require("mini.ai")
+			ai.setup({
+				custom_textobjects = {
+					o = ai.gen_spec.treesitter({
+						a = { "@block.outer", "@conditional.outer", "@loop.outer" },
+						i = { "@block.inner", "@conditional.inner", "@loop.inner" },
+					}, {}),
+					f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }, {}),
+					c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }, {}),
+				},
+			})
+		end,
 		dependencies = {
-			"JoosepAlviste/nvim-ts-context-commentstring",
 			{
 				"nvim-treesitter/nvim-treesitter-textobjects",
 				init = function()
@@ -292,6 +305,62 @@ return {
 				end,
 			},
 		},
+	},
+	{
+		"echasnovski/mini.align",
+		event = "BufReadPre",
+		config = true,
+	},
+	{
+		"echasnovski/mini.bracketed",
+		event = "BufReadPre",
+		config = true,
+	},
+	{
+		"echasnovski/mini.comment",
+		event = "BufReadPre",
+		opts = {
+			options = {
+				custom_commentstring = function()
+					return require("ts_context_commentstring.internal").calculate_commentstring()
+						or vim.bo.commentstring
+				end,
+			},
+		},
+		dependencies = {
+			"JoosepAlviste/nvim-ts-context-commentstring",
+		},
+	},
+	{
+		"echasnovski/mini.move",
+		event = "BufReadPre",
+		opts = {
+			mappings = {
+				down = "J",
+				up = "K",
+				line_down = "J",
+				line_up = "K",
+			},
+		},
+	},
+	{
+		"echasnovski/mini.pairs",
+		event = "BufReadPre",
+		config = true,
+	},
+	{
+		"echasnovski/mini.surround",
+		event = "BufReadPre",
+		config = true,
+	},
+	{
+		"echasnovski/mini.tabline",
+		event = "BufReadPre",
+		config = true,
+	},
+	{
+		"echasnovski/mini.starter",
+		event = "VimEnter",
 		config = function()
 			require("config.mini")
 		end,

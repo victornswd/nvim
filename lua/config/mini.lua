@@ -1,37 +1,3 @@
-vim.defer_fn(function()
-	local ai = require("mini.ai")
-	ai.setup({
-		custom_textobjects = {
-			o = ai.gen_spec.treesitter({
-				a = { "@block.outer", "@conditional.outer", "@loop.outer" },
-				i = { "@block.inner", "@conditional.inner", "@loop.inner" },
-			}, {}),
-			f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }, {}),
-			c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }, {}),
-		},
-	})
-	require("mini.align").setup({})
-	require("mini.bracketed").setup()
-	require("mini.pairs").setup()
-	require("mini.tabline").setup({})
-	require("mini.comment").setup({
-		options = {
-			custom_commentstring = function()
-				return require("ts_context_commentstring.internal").calculate_commentstring() or vim.bo.commentstring
-			end,
-		},
-	})
-	require("mini.surround").setup({})
-	require("mini.move").setup({
-		mappings = {
-			down = "J",
-			up = "K",
-			line_down = "J",
-			line_up = "K",
-		},
-	})
-end, 10)
-
 local donut = [[
                 $$$$$$$@@@@@$           
              ********##$$$$$@@$$        
