@@ -104,7 +104,11 @@ return {
 	{
 		"danymat/neogen",
 		config = function()
-			require("config.neogen")
+			require("neogen").setup({ snippet_engine = "luasnip" })
+
+			vim.keymap.set("n", "<leader>dd", function()
+				pcall(require("neogen").generate)
+			end, { desc = "Generate function documentation" })
 		end,
 		dependencies = "nvim-treesitter/nvim-treesitter",
 		keys = "<Leader>dd",
@@ -161,7 +165,17 @@ return {
 		"lukas-reineke/indent-blankline.nvim",
 		opts = { enabled = true },
 		config = function()
-			require("config.indent-blankline")
+			require("indent_blankline").setup({
+				space_char_blankline = " ",
+				show_current_context = true,
+				show_current_context_start = true,
+				indent_blankline_use_treesitter = true,
+			})
+
+			vim.cmd("let g:indent_blankline_filetype_exclude = ['starter', 'markdown', 'vimwiki']")
+
+			vim.api.nvim_set_hl(0, "IndentBlanklineContextStart", {})
+			vim.api.nvim_set_hl(0, "IndentBlanklineContextStart", { underline = true, sp = "#CA9EE6" })
 		end,
 		event = "VeryLazy",
 	},
@@ -177,9 +191,6 @@ return {
 		opts = { setopt = true },
 		config = true,
 		event = "VeryLazy",
-		cond = function()
-			return vim.version().minor >= 9
-		end,
 	},
 	{
 		"lewis6991/gitsigns.nvim",
@@ -194,7 +205,23 @@ return {
 		"xiyaowong/specs.nvim",
 		branch = "feat/show-on-win-enter",
 		config = function()
-			require("config.specs")
+			require("specs").setup({
+				show_jumps = true,
+				min_jump = 5,
+				popup = {
+					delay_ms = 0, -- delay before popup displays
+					inc_ms = 10, -- time increments used for fade/resize effects
+					blend = 10, -- starting blend, between 0-100 (fully transparent), see :h winblend
+					width = 10,
+					winhl = "SpecsHL",
+					fader = require("specs").linear_fader,
+					resizer = require("specs").shrink_resizer,
+				},
+				ignore_filetypes = {},
+				ignore_buftypes = {
+					nofile = true,
+				},
+			})
 		end,
 		event = "VeryLazy",
 		cond = minimal,
@@ -205,7 +232,10 @@ return {
 	{
 		"ojroques/nvim-bufdel",
 		config = function()
-			require("config.bufdel")
+			vim.cmd([[
+				:cnoreabbrev wq w ++p<bar>BufDel
+				:cnoreabbrev q BufDel
+			]])
 		end,
 	},
 	{
@@ -238,13 +268,25 @@ return {
 	{
 		"nat-418/boole.nvim",
 		config = function()
-			require("config.boole")
+			require("boole").setup({
+				mappings = {
+					increment = "<C-a>",
+					decrement = "<C-x>",
+				},
+				-- User defined loops
+				additions = {
+					{ "Foo", "Bar" },
+					{ "tic", "tac", "toe" },
+				},
+				allow_caps_additions = {
+					{ "enable", "disable" },
+				},
+			})
 		end,
 		event = "VeryLazy",
 	},
 
 	-- Command loaded plugins
-	{ "tweekmonster/startuptime.vim", cmd = "StartupTime" },
 	{ "psliwka/termcolors.nvim", cmd = "TermcolorsShow" },
 	{ "ThePrimeagen/vim-be-good", lazy = true, cmd = "VimBeGood" },
 	{ "nvim-colortils/colortils.nvim", lazy = true, cmd = "Colortils", config = true },
