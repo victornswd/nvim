@@ -102,10 +102,6 @@ ts.setup({
 			disable = extension_disable_check,
 		},
 	},
-	-- context_commentstring = {
-	-- 	enable = true,
-	-- 	-- enable_autocmd = false,
-	-- },
 	matchup = {
 		enable = true, -- mandatory, false will disable the whole extension
 		matchparen = { offscreen = {} },
