@@ -48,9 +48,13 @@ telescope.setup({
 		grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
 		qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
 	},
+	pickers = {
+		colorscheme = {
+			enable_preview = true,
+		},
+	},
 })
 
-require("telescope").load_extension("themes")
 require("telescope").load_extension("undo")
 
 -- keymap
@@ -72,7 +76,7 @@ vim.keymap.set("n", "<leader>h", function()
 	pcall(require("telescope.builtin").keymaps)
 end, { desc = "Show key maps" })
 vim.keymap.set("n", "<leader>c", function()
-	pcall(require("telescope").extensions.themes.themes)
+	pcall(require("telescope.builtin").colorscheme)
 end, { desc = "Colorschemes" })
 
 vim.keymap.set("n", "<leader>t", function()
