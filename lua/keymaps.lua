@@ -19,9 +19,9 @@ function EscapePair()
 	end
 end
 
-vim.cmd.cnoreabbrev("Q", "q")
-vim.cmd.cnoreabbrev("W", "w ++p")
-vim.cmd.cnoreabbrev("w", "w ++p")
+vim.keymap.set("ca", "Q", "q")
+vim.keymap.set("ca", "W", "w ++p")
+vim.keymap.set("ca", "w", "w ++p")
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Jump down 1/2 screen" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Jump up 1/2 screen" })
