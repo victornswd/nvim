@@ -403,11 +403,9 @@ return {
 	{ "ThePrimeagen/vim-be-good", lazy = true, cmd = "VimBeGood" },
 	{ "nvim-colortils/colortils.nvim", lazy = true, cmd = "Colortils", config = true },
 	{
-		"nvim-tree/nvim-tree.lua",
-		lazy = true,
-		cmd = "NvimTreeToggle",
-		keys = { { "<leader>b", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree" } },
+		"echasnovski/mini.files",
 		config = true,
+		keys = { { "<leader>b", "<cmd>:lua MiniFiles.open()<cr>", desc = "File Tree" } },
 	},
 
 	-- LSP
