@@ -43,6 +43,15 @@ return {
 					telescope = true,
 					mini = true,
 					-- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+					native_lsp = {
+						enabled = true,
+						underlines = {
+							errors = { "undercurl" },
+							hints = { "undercurl" },
+							warnings = { "undercurl" },
+							information = { "undercurl" },
+						},
+					},
 				},
 				custom_highlights = function(colors)
 					return {
