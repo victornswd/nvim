@@ -245,11 +245,7 @@ return {
 		event = "VeryLazy",
 	},
 	{
-		-- "edluffy/specs.nvim",
-		-- HACK: use this PR to fix a weird open in INSERT mode bug
-		-- https://github.com/edluffy/specs.nvim/pull/16
-		"xiyaowong/specs.nvim",
-		branch = "feat/show-on-win-enter",
+		"edluffy/specs.nvim",
 		config = function()
 			require("specs").setup({
 				show_jumps = true,
