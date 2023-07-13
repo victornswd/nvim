@@ -405,7 +405,7 @@ return {
 	{
 		"echasnovski/mini.files",
 		config = true,
-		keys = { { "<leader>b", "<cmd>:lua MiniFiles.open()<cr>", desc = "File Tree" } },
+		keys = { { "<leader>f", "<cmd>:lua MiniFiles.open()<cr>", desc = "File Tree" } },
 	},
 
 	-- LSP

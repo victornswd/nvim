@@ -78,7 +78,7 @@ Project_files = function()
 	end
 end
 
-vim.keymap.set("n", "<leader>f", function()
+vim.keymap.set("n", "<leader>g", function()
 	pcall(require("telescope.builtin").live_grep)
 end, { desc = "Search for word in folder" })
 vim.keymap.set("n", "<leader>h", function()
@@ -98,3 +98,6 @@ end, { desc = "Open all file search" })
 vim.keymap.set("n", "<leader>u", function()
 	pcall(require("telescope").extensions.undo.undo)
 end, { desc = "Show undo tree" })
+vim.keymap.set("n", "<leader>b", function()
+	pcall(require("telescope.builtin").buffers)
+end, { desc = "Show open buffers" })

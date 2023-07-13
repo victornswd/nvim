@@ -36,12 +36,13 @@ update them for your needs in the `lua/config/lsp-zero.lua` file.
 | Keys                   | Action                                |
 | ---------------------- | ------------------------------------- |
 | `<Space>o`             | Open file search                      |
-| `<Space>s`             | Reload nvim config                    |
 | `<Space>t`             | Show file diagnostics                 |
 | `<Tab>`/`<Shift><Tab>` | navigate autocomplete                 |
 | `<Space>y`/`<Space>p`  | copy-paste to global clipboard        |
 | `<Space>c`             | Colorschemes                          |
-| `<Space>f`             | Search for word in folder             |
+| `<Space>g`             | Search for word in folder             |
+| `<Space>f`             | Show file navigator                   |
+| `<Space>b`             | Show open buffers                     |
 | `h`                    | Hop to word                           |
 | `l`                    | Hop to line                           |
 | `<Ctrl>l`              | Clear highlighted text                |

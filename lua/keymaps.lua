@@ -23,9 +23,6 @@ vim.keymap.set("ca", "Q", "q")
 vim.keymap.set("ca", "W", "w ++p")
 vim.keymap.set("ca", "w", "w ++p")
 
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Jump down 1/2 screen" })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Jump up 1/2 screen" })
-
 -- Harpoon
 vim.keymap.set("n", "<M-1>", function()
 	pcall(function()
@@ -69,18 +66,10 @@ vim.keymap.set("n", "<leader>s", ":mksession<CR>", { desc = "Save current files 
 vim.keymap.set("i", "<C-c>", EscapePair, { desc = "Escape pairs while in insert mode" })
 vim.keymap.set("i", "<C-w>", EscapePair, { desc = "Escape pairs while in insert mode" })
 
-function HL_search()
-	local ns = vim.api.nvim_create_namespace("search")
-	vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
-
-	local sc = vim.fn.searchcount()
-	vim.api.nvim_buf_set_extmark(0, ns, vim.api.nvim_win_get_cursor(0)[1] - 1, 0, {
-		virt_text = { { "[" .. sc.current .. "/" .. sc.total .. "]", "Comment" } },
-		virt_text_pos = "eol",
-	})
-end
-vim.keymap.set("n", "n", "nzz:lua HL_search()<CR>", { desc = "Inline search occurence" })
-vim.keymap.set("n", "N", "Nzz:lua HL_search()<CR>", { desc = "Inline search occurence" })
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Jump down 1/2 screen" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Jump up 1/2 screen" })
+vim.keymap.set("n", "n", "nzz<CR>", { desc = "Center search" })
+vim.keymap.set("n", "N", "Nzz<CR>", { desc = "Center search" })
 
 vim.keymap.set("n", "<M-w>", ":set wrap!<CR>", { desc = "Toggle word wrap" })
 
