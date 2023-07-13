@@ -76,14 +76,6 @@ local lsp_attach = function(client, bufnr)
 		vim.keymap.set("n", "gcR", "<cmd>TypescriptRenameFile<CR>", { desc = "Rename File", buffer = bufnr })
 	end
 
-	require("lsp_signature").on_attach({
-		floating_window = false,
-		bind = true, -- This is mandatory, otherwise border config won't get registered.
-		handler_opts = {
-			border = "rounded",
-		},
-	}, bufnr)
-
 	if client.supports_method("textDocument/formatting") then
 		vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
 		vim.api.nvim_create_autocmd("BufWritePre", {
