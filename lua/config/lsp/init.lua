@@ -52,7 +52,6 @@ local lsp_format = function(bufnr)
 	})
 end
 
-local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 local lsp_attach = function(client, bufnr)
 	-- keymap
 	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "LSP - Go to declaration" })
@@ -97,6 +96,7 @@ local lsp_attach = function(client, bufnr)
 	end
 end
 
+local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 require("mason-lspconfig").setup_handlers({
 	function(server_name)
 		lspconfig[server_name].setup({
@@ -146,8 +146,6 @@ null_ls.setup({
 		require("typescript.extensions.null-ls.code-actions"),
 	},
 })
-
-require("config/cmp-conf")
 
 local signs = {
 	Error = " ",
