@@ -11,7 +11,7 @@ require("mason-lspconfig").setup({
 		"prismals",
 		"astro",
 		"sqlls",
-		"emmet_ls",
+		"emmet_language_server",
 		"lua_ls",
 	},
 })
@@ -118,7 +118,6 @@ require("mason-null-ls").setup({
 		"prettierd",
 		"stylua",
 		"shfmt",
-		"deno_fmt",
 		"elm_format",
 		"eslint_d",
 	},
