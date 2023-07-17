@@ -41,6 +41,5 @@ vim.cmd.colorscheme("catppuccin")
 
 vim.defer_fn(function()
 	require("keymaps")
-	require("conceal")
 	require("commands")
 end, 10)
