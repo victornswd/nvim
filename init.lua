@@ -12,7 +12,29 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
-require("lazy").setup("plugins")
+require("lazy").setup({
+	spec = {
+		{ import = "plugins" },
+		{ import = "config.lsp.servers.tailwind" },
+		{ import = "config.lsp.servers.typescript" },
+	},
+	install = { colorscheme = { "catppuccin" } },
+	performance = {
+		rtp = {
+			-- disable some rtp plugins
+			disabled_plugins = {
+				"gzip",
+				-- "matchit",
+				-- "matchparen",
+				-- "netrwPlugin",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
+			},
+		},
+	},
+})
 
 require("options")
 vim.cmd.colorscheme("catppuccin")

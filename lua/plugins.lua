@@ -438,11 +438,6 @@ return {
 
 	-- TypeScript Extras
 	{
-		"jose-elias-alvarez/typescript.nvim",
-		dependencies = "nvim-lspconfig",
-		cond = minimal,
-	},
-	{
 		"jay-babu/mason-null-ls.nvim",
 		"jose-elias-alvarez/null-ls.nvim",
 		dependencies = {

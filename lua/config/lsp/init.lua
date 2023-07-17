@@ -99,8 +99,6 @@ require("mason-lspconfig").setup_handlers({
 })
 
 lspconfig.jsonls.setup(require("config.lsp.servers.json").setup)
-lspconfig.tailwindcss.setup(require("config.lsp.servers.tailwind").setup)
-require("config.lsp.servers.typescript")
 
 local null_ls = require("null-ls")
 
@@ -133,9 +131,9 @@ require("mason-null-ls").setup({
 null_ls.setup({
 	on_attach = lsp_attach,
 	setup = {},
-	sources = {
-		require("typescript.extensions.null-ls.code-actions"),
-	},
+	-- sources = {
+	-- 	require("typescript.extensions.null-ls.code-actions"),
+	-- },
 })
 
 local signs = {
