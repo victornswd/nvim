@@ -65,7 +65,7 @@ local lsp_attach = function(client, bufnr)
 	vim.keymap.set("n", "gr", function()
 		pcall(require("telescope.builtin").lsp_references)
 	end, { desc = "LSP - References" })
-	vim.keymap.set("n", "gca", vim.lsp.buf.code_action, { desc = "LSP - Code actions" })
+	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP - Code actions" })
 
 	vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, { desc = "LSP - Function signature help" })
 
