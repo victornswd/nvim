@@ -53,29 +53,45 @@ local lsp_format = function(bufnr)
 	})
 end
 
+-- keymaps
+local opts = { noremap = true, silent = true }
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts, { desc = "LSP - Open Diag" })
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts, { desc = "LSP - Go to previous diag" })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts, { desc = "LSP - Go to next diag" })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, opts, { desc = "LSP - Add all diagnostics to loclist" })
+
 local lsp_attach = function(client, bufnr)
 	-- keymap
 	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "LSP - Go to declaration" })
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "LSP - Go to definition" })
-	vim.keymap.set("n", "gh", vim.lsp.buf.hover, { desc = "LSP - Display hover tooltip" })
 	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "LSP - Go to implementation" })
-	vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "LSP - Show diagnostic message" })
-	vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { desc = "LSP - Go to type definition" })
-	vim.keymap.set("n", "gR", vim.lsp.buf.rename, { desc = "LSP - Rename all references" })
+	vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, { desc = "LSP - Go to type definition" })
+	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP - Rename all references" })
 	vim.keymap.set("n", "gr", function()
 		pcall(require("telescope.builtin").lsp_references)
 	end, { desc = "LSP - References" })
-	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP - Code actions" })
+	vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP - Code actions" })
 
+	vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP - Display hover tooltip" })
 	vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, { desc = "LSP - Function signature help" })
 
-	vim.keymap.set("n", "gF", function()
+	vim.keymap.set("n", "<leader>f", function()
 		vim.lsp.buf.format({ async = true })
 	end)
-	if client.name == "tsserver" then
-		vim.keymap.set("n", "gco", "<cmd>TypescriptOrganizeImports<CR>", { buffer = bufnr, desc = "Organize Imports" })
-		vim.keymap.set("n", "gcR", "<cmd>TypescriptRenameFile<CR>", { desc = "Rename File", buffer = bufnr })
-	end
+
+	-- Lesser used LSP functionality
+	vim.keymap.set(
+		"n",
+		"<leader>ws",
+		require("telescope.builtin").lsp_dynamic_workspace_symbols,
+		{ desc = "Workspace Symbols" }
+	)
+	vim.keymap.set("n", "<leader>ds", require("telescope.builtin").lsp_document_symbols, { desc = "Document Symbols" })
+	vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder)
+	vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder)
+	vim.keymap.set("n", "<leader>wl", function()
+		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+	end)
 
 	if client.supports_method("textDocument/formatting") then
 		vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
@@ -146,10 +162,3 @@ vim.diagnostic.config({
 	signs = true,
 	underline = true,
 })
-
--- keymaps
-local opts = { noremap = true, silent = true }
-vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts, { desc = "LSP - Open Diag" })
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts, { desc = "LSP - Go to previous diag" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts, { desc = "LSP - Go to next diag" })
-vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts, { desc = "LSP - Add all diagnostics to loclist" })
