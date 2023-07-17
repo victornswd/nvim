@@ -13,6 +13,7 @@ require("mason-lspconfig").setup({
 		"sqlls",
 		"emmet_language_server",
 		"lua_ls",
+		"eslint",
 	},
 })
 
@@ -109,14 +110,8 @@ require("mason-null-ls").setup({
 		"stylua",
 		"shfmt",
 		"elm_format",
-		"eslint_d",
 	},
 	handlers = {
-		eslint_d = function()
-			null_ls.builtins.diagnostics.eslint_d.with({
-				method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-			})
-		end,
 		prettierd = function(source_name, methods)
 			require("mason-null-ls").default_setup(source_name, methods)
 			null_ls.register(null_ls.builtins.formatting.prettierd.with({
