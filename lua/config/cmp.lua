@@ -65,8 +65,9 @@ return {
 		local defaults = require("cmp.config.default")()
 
 		return {
+			preselect = cmp.PreselectMode.None,
 			completion = {
-				completeopt = "menu,menuone,noinsert",
+				completeopt = "menu,menuone,noinsert,noselect",
 			},
 			snippet = {
 				expand = function(args)
@@ -130,7 +131,6 @@ return {
 			-- 		cmp.config.compare.order,
 			-- 	},
 			-- },
-			preselect = cmp.PreselectMode.None,
 			confirm_opts = {
 				behavior = cmp.ConfirmBehavior.Replace,
 				select = false,
