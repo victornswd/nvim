@@ -15,3 +15,11 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	group = cmnt_group,
 	pattern = "*",
 })
+
+-- set templ filetype
+local templ_group = vim.api.nvim_create_augroup("Templ", { clear = true })
+vim.api.nvim_create_autocmd("BufRead", {
+	command = "set ft=templ",
+	group = templ_group,
+	pattern = "*.templ",
+})

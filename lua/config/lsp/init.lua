@@ -14,6 +14,8 @@ require("mason-lspconfig").setup({
 		"emmet_language_server",
 		"lua_ls",
 		"eslint",
+		"gopls",
+		"templ",
 	},
 })
 
