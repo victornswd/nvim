@@ -68,8 +68,6 @@ vim.keymap.set("i", "<C-w>", EscapePair, { desc = "Escape pairs while in insert 
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Jump down 1/2 screen" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Jump up 1/2 screen" })
-vim.keymap.set("n", "n", "nzz<CR>", { desc = "Center search" })
-vim.keymap.set("n", "N", "Nzz<CR>", { desc = "Center search" })
 
 vim.keymap.set("n", "<M-w>", ":set wrap!<CR>", { desc = "Toggle word wrap" })
 
