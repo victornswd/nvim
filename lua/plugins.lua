@@ -240,19 +240,12 @@ return {
 	-- UI flourishes
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		opts = { enabled = true },
+		main = "ibl",
 		config = function()
-			require("indent_blankline").setup({
-				space_char_blankline = " ",
-				show_current_context = true,
-				show_current_context_start = true,
-				indent_blankline_use_treesitter = true,
+			require("ibl").setup({
+				indent = { char = "│", tab_char = "│" },
+				scope = { highlight = "IndentBlanklineContextChar", char = "│" },
 			})
-
-			vim.cmd("let g:indent_blankline_filetype_exclude = ['starter', 'markdown', 'vimwiki']")
-
-			vim.api.nvim_set_hl(0, "IndentBlanklineContextStart", {})
-			vim.api.nvim_set_hl(0, "IndentBlanklineContextStart", { underline = true, sp = "#CA9EE6" })
 		end,
 		event = "VeryLazy",
 	},
