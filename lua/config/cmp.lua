@@ -3,7 +3,7 @@ return {
 	dependencies = {
 		{ "hrsh7th/cmp-buffer" },
 		{ "hrsh7th/cmp-path" },
-		{ "saadparwaiz1/cmp_luasnip" },
+		{ "dcampos/cmp-snippy" },
 		{ "hrsh7th/cmp-nvim-lsp" },
 		{ "hrsh7th/cmp-nvim-lsp-signature-help" },
 		{ "hrsh7th/cmp-nvim-lua" },
@@ -71,7 +71,7 @@ return {
 			},
 			snippet = {
 				expand = function(args)
-					require("luasnip").lsp_expand(args.body)
+					require("snippy").expand_snippet(args.body)
 				end,
 			},
 			mapping = cmp.mapping.preset.insert({
@@ -99,7 +99,7 @@ return {
 				},
 				{ name = "path" },
 				{ name = "nvim_lsp_signature_help" },
-				{ name = "luasnip", priority = 3 },
+				{ name = "snippy", priority = 3 },
 				{ name = "buffer", keywork_length = 3 },
 				{ name = "npm", keyword_length = 4 },
 				{ name = "rg", keyword_length = 4 },

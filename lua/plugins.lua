@@ -451,7 +451,7 @@ return {
 			require("config.cmp"),
 
 			-- Snippets
-			require("config.snip"),
+			require("config.snippy"),
 		},
 		event = "VeryLazy",
 		cond = minimal,
