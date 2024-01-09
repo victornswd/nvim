@@ -19,6 +19,7 @@ require("lazy").setup({
 		{ import = "config.lsp.servers.typescript" },
 	},
 	install = { colorscheme = { "catppuccin" } },
+	change_detection = { notify = false },
 	performance = {
 		rtp = {
 			-- disable some rtp plugins
