@@ -1,6 +1,4 @@
-local M = {}
-
-M.setup = {
+require("lspconfig").jsonls.setup({
 	settings = {
 		json = {
 			schemas = {
@@ -37,8 +35,10 @@ M.setup = {
 					url = "https://json.schemastore.org/pm2-ecosystem.json",
 				},
 			},
+			format = {
+				enable = true,
+			},
+			validate = { enable = true },
 		},
 	},
-}
-
-return M
+})

@@ -15,8 +15,6 @@ vim.g.mapleader = " "
 require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
-		{ import = "config.lsp.servers.tailwind" },
-		{ import = "config.lsp.servers.typescript" },
 	},
 	install = { colorscheme = { "catppuccin" } },
 	change_detection = { notify = false },

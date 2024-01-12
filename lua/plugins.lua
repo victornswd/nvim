@@ -429,20 +429,17 @@ return {
 			require("config.lsp")
 		end,
 		dependencies = {
-			-- LSP Support
-			{
-				"williamboman/mason.nvim",
-				build = function()
-					pcall(vim.cmd, "MasonUpdate")
-				end,
-			},
-			{ "williamboman/mason-lspconfig.nvim" },
+			-- LSP Support (auto-install...)
+			require("config.lsp.helpers"),
 
 			-- Autocompletion
 			require("config.cmp"),
 
 			-- Snippets
 			require("config.snippets"),
+
+			{ "pmizio/typescript-tools.nvim" },
+			{ "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
 		},
 		event = "VeryLazy",
 		cond = minimal,

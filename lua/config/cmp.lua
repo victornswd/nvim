@@ -101,11 +101,14 @@ return {
 				{ name = "nvim_lsp_signature_help" },
 				{ name = "snippy", priority = 3 },
 				{ name = "buffer", keywork_length = 3 },
-				{ name = "npm", keyword_length = 4 },
-				{ name = "rg", keyword_length = 4 },
 			}),
 			formatting = {
-				format = function(_, vim_item)
+				format = function(entry, vim_item)
+					local tw_item = require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
+					if tw_item.kind == "XX" then
+						return tw_item
+					end
+
 					vim_item.kind = (lsp_symbols[vim_item.kind] or "") .. vim_item.kind
 					return vim_item
 				end,
