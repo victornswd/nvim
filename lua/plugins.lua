@@ -525,7 +525,7 @@ return {
 			require("config.cmp"),
 
 			-- Snippets
-			require("config.snippy"),
+			require("config.snippets"),
 		},
 		event = "VeryLazy",
 		cond = minimal,
