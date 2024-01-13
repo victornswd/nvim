@@ -78,9 +78,18 @@ Project_files = function()
 	end
 end
 
-vim.keymap.set("n", "<leader>g", function()
+vim.keymap.set("n", "<leader>gg", function()
 	pcall(require("telescope.builtin").live_grep)
 end, { desc = "Search for word in folder" })
+
+vim.keymap.set("n", "<leader>gw", function()
+	require("telescope.builtin").grep_string()
+end, { desc = "Search for word in folder" })
+
+vim.keymap.set("n", "<leader>gW", function()
+	require("telescope.builtin").grep_string({ search = vim.fn.expand("<cWORD>") })
+end, { desc = "Search for word in folder" })
+
 vim.keymap.set("n", "<leader>h", function()
 	pcall(require("telescope.builtin").keymaps)
 end, { desc = "Show key maps" })
