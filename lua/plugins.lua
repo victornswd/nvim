@@ -444,17 +444,10 @@ return {
 		cond = minimal,
 	},
 
-	-- TypeScript Extras
-	{
-		"jay-babu/mason-null-ls.nvim",
-		"jose-elias-alvarez/null-ls.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"neovim/nvim-lspconfig",
-			"williamboman/mason.nvim",
-		},
-		cond = minimal,
-	},
+	-- Linters & Formatters
+	require("config.linters"),
+
+	-- AI
 	-- {
 	-- 	"zbirenbaum/copilot.lua",
 	-- 	config = function()
