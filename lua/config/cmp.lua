@@ -7,6 +7,7 @@ return {
 		{ "hrsh7th/cmp-nvim-lsp" },
 		{ "hrsh7th/cmp-nvim-lsp-signature-help" },
 		{ "hrsh7th/cmp-nvim-lua" },
+		{ "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
 	},
 	opts = function()
 		local lsp_symbols = {

@@ -439,7 +439,6 @@ return {
 			require("config.snippets"),
 
 			{ "pmizio/typescript-tools.nvim" },
-			{ "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
 		},
 		event = "VeryLazy",
 		cond = minimal,
