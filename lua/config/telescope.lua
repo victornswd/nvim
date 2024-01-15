@@ -90,7 +90,7 @@ vim.keymap.set("n", "<leader>gW", function()
 	require("telescope.builtin").grep_string({ search = vim.fn.expand("<cWORD>") })
 end, { desc = "Search for word in folder" })
 
-vim.keymap.set("n", "<leader>h", function()
+vim.keymap.set("n", "<leader>hh", function()
 	pcall(require("telescope.builtin").keymaps)
 end, { desc = "Show key maps" })
 vim.keymap.set("n", "<leader>c", function()
