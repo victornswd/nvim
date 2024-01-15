@@ -33,6 +33,7 @@ return {
 					"goimports",
 					"gofumpt",
 					"rustywind",
+					"golangci-lint",
 				},
 				run_on_start = false,
 			})
